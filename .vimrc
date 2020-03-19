@@ -23,6 +23,7 @@ Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
@@ -34,17 +35,22 @@ set background=dark
 set cursorline
 set showmatch
 set history=500
+" search settings
 set ignorecase
+set smartcase
 set incsearch " hightlight match while typing
+set hlsearch
+nmap <silent> <BS> :nohlsearch<CR>
 set encoding=utf-8
 set hidden " don't warn when switching from unsaved buffer
-set clipboard=unnamed " use system clipboard
+set clipboard^=unnamed " use system clipboard
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set textwidth=119
 set expandtab
 set autoindent
+set backspace=indent,eol,start "allow backspace to delete as expected
 set pastetoggle=<F2>
 let python_highlight_all=1
 
@@ -68,7 +74,20 @@ set statusline+=\ buffer:\ %n
 set splitbelow
 set splitright
 
-" split navigations
+" use very magic mode by default for searching
+nnoremap / /\v
+
+" Indent with tab
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+vnoremap <Tab> >
+vnoremap <S-Tab> <
+
+"tab navigation
+nnoremap <leader>j :tabnext<CR>
+nnoremap <leader>k :tabprev<CR>
+
+" split/window navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -83,14 +102,16 @@ nnoremap <space> za
 " YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" NERDTree options
-let NERDTreeIgnore=['\.pyc$', '\~$']
-
 " pep8 indentation
 au BufNewFile,BufRead *.py call SetPythonOptions()
 
 " indentation for web development
 au BufNewFile,BufRead *.js, *.html, *.css call SetWebDevOptions()
+
+augroup HelpInTabs
+    autocmd!
+    autocmd BufEnter *.txt call HelpInNewTab()
+augroup END
 
 function! SetPythonOptions()
     set tabstop=4
@@ -102,6 +123,7 @@ function! SetPythonOptions()
     set fileformat=unix
     let g:pymode_python='python3'
     let g:pymode_options_max_line_length=119
+    let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
     let g:pymode_virtualenv=1
     let g:pymode_run=1
     let g:pymode_run_bind='<leader>r'
@@ -113,8 +135,19 @@ function! SetWebDevOptions()
     set shiftwidth=2
 endfunction
 
-" autostart NERDTree if nothing was passed to vim
+function! HelpInNewTab()
+    if &buftype == 'help'
+        "Convert the help window to a tab..."
+        execute "normal \<C-W>T"
+    endif
+endfunction
+
+" NERDTree options
+map <leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$']
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=0
+let NERDTreeWinSize=24
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <leader>space :NERDTreeToggle<CR>
-let NERDTreeWinSize=24
