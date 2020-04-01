@@ -13,8 +13,6 @@ call plug#begin('~/.vim/plugged')
 " Plug 'vim-syntastic/syntastic'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'google/yapf'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-python'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'nvie/vim-flake8'
@@ -64,15 +62,17 @@ set statusline+=%f
 set statusline+=\%m
 set statusline+=\ %y
 set statusline+=\ pos:\ %l,%c
+set statusline+=\ %{kite#statusline()}
 " switch to the right side
 set statusline+=%=
 set statusline+=%{FugitiveStatusline()}
 set statusline+=\ lines:\ %L
 set statusline+=\ buffer:\ %n
 
-" set default split locations
+" split settings
 set splitbelow
 set splitright
+" set fillchars=vert:| " need to research this
 
 " use very magic mode by default for searching
 nnoremap / /\v
@@ -99,34 +99,45 @@ set foldlevel=99
 " fold with space
 nnoremap <space> za
 
-" YouCompleteMe options
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" pep8 indentation
+" fzf settings
+let g:fzf_layout = { 'down': '-40%' }
+nnoremap <Leader>f :Ag <C-R><C-W><cr>
+vnoremap <Leader>f y:Ag <C-R><cr>
+nnoremap <C-F> :Ag<Space>
+" nnoremap <Leader><Leader> :Files<cr>
+
+" kite options
+let g:kite_tab_complete=1
+nmap <silent> <buffer> K <Plug>(kite-docs)
+
+" set python options
 au BufNewFile,BufRead *.py call SetPythonOptions()
 
-" indentation for web development
+" set web development options
 au BufNewFile,BufRead *.js, *.html, *.css call SetWebDevOptions()
+
+" set groovy options
+au BufNewFile,BufRead Jenkinsfile call SetWebDevOptions()
 
 augroup HelpInTabs
     autocmd!
     autocmd BufEnter *.txt call HelpInNewTab()
 augroup END
 
+function! SetGroovyOptions()
+    set filetype=groovy
+endfunction
+
 function! SetPythonOptions()
-    set tabstop=4
-    set softtabstop=4
-    set shiftwidth=4
-    set textwidth=119
-    set expandtab
-    set autoindent
     set fileformat=unix
     let g:pymode_python='python3'
     let g:pymode_options_max_line_length=119
     let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
     let g:pymode_virtualenv=1
-    let g:pymode_run=1
     let g:pymode_run_bind='<leader>r'
+    let g:pymode_rope_completion=0
+    let g:pymode_rope_rename_bind='<leader>R'
+    let g:pymode_doc=0
 endfunction
 
 function! SetWebDevOptions()
@@ -147,7 +158,7 @@ map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$']
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=0
-let NERDTreeWinSize=24
+let NERDTreeWinSize=32
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
