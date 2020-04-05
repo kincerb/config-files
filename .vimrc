@@ -92,6 +92,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <Leader>N :vertical resize 32<CR>
+
 
 " folding
 set foldmethod=indent
@@ -117,7 +119,7 @@ au BufNewFile,BufRead *.py call SetPythonOptions()
 au BufNewFile,BufRead *.js, *.html, *.css call SetWebDevOptions()
 
 " set groovy options
-au BufNewFile,BufRead Jenkinsfile call SetWebDevOptions()
+au BufNewFile,BufRead *Jenkinsfile call SetGroovyOptions()
 
 augroup HelpInTabs
     autocmd!
