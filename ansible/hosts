@@ -1,0 +1,11 @@
+[digitalocean]
+access
+artifactory
+nextcloud
+
+[home]
+nuc
+
+[personal:children]
+digitalocean
+home
