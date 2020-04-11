@@ -3,13 +3,9 @@
 #############################
 say () {
     if ( tty 2>/dev/null |grep -io pts &>/dev/null ); then
-        # shellcheck disable=SC2034
         r='\033[31m'
-        # shellcheck disable=SC2034
         y='\033[33m'
-        # shellcheck disable=SC2034
         g='\033[32m'
-        # shellcheck disable=SC2034
         w='\033[0m'
     fi
     if [ "${1}" == "Error" ]; then
@@ -27,6 +23,23 @@ say () {
     fi
 }
 
+pip_search() {
+    local _args="-i"
+
+    while :; do
+        case $1 in
+            --)
+                shift; break;;
+            -*|-h|--help)
+                echo -e "Usage:\tpip_search [-e|--exact] package_name"
+                return;;
+            *)
+                local pkg_name="${1}"; break;;
+        esac
+    done
+    pip3 search "${pkg_name}" |ggrep ${_args} ^${pkg_name}
+}
+
 git_branch() {
     local cur_branch
     cur_branch=$(git branch 2>/dev/null | awk '{if ($1 == "*") print $2}' |sed 's/[()]//g')
@@ -36,11 +49,10 @@ git_branch() {
 }
 
 ssh() {
-    if [ -n "${TMUX}" ]; then
-        # shellcheck disable=SC2086
-        printf "\033k%s\033\\" "$(basename ${PWD})"
-    fi
     TERM=xterm-256color command ssh "$@"
+    if ! [ -z "${TMUX}" ]; then
+        printf "\033k$(basename ${PWD})\033\\"
+    fi
 }
 
 rvim() {

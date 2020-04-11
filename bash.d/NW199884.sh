@@ -1,4 +1,10 @@
 export my_ps="mac"
+export HOMEBREW_GITHUB_API_TOKEN="de80bed57fed2ee501671dafdf22b8ff61d95b63"
+export PATH=${PATH}:${HOME}/Library/Python/3.8/bin
+export DTR=dtr-prod.nwie.net
+export DORG="${DTR}"/mwautomation
+export VISUAL=/usr/local/bin/vim
+export EDITOR="${VISUAL}"
 
 if [ -e ~/.gnupg/S.gpg-agent.ssh ]; then
     export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
@@ -6,17 +12,24 @@ fi
 
 alias socket='ssh -Nf elvmt0048 2>/dev/null'
 alias hulu='chrome_app https://hulu.com'
-alias chrome='(/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
+alias chrome='(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
 alias music='chrome_app https://music.youtube.com'
 alias amazon='chrome_app https://amazon.com'
 alias google_play='chrome_app https://play.google.com'
 alias netflix='chrome_app https://netflix.com'
 alias reset_dns_cache="sudo killall -HUP mDNSResponder"
-alias backup_lifecycle_db="socket; rsync -av elvmt0048:/webdata/backups/mysql_backup/ /Volumes/data/backups/lifecycle/mysql_backup/"
+alias backup_lifecycle_db="socket; rsync -av elvmt0048:/webdata/backups/mysql_backup/ /Volumes/google/backups/work/lifecycle/"
+alias dlogin="docker login ${DTR}"
 alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(x) ^ ord('_')) for x in base64.b64decode(sys.argv[1].replace('{xor}', '')).decode()))\""
+alias awk=/usr/local/bin/gawk
+alias sed=/usr/local/bin/gsed
 
-# shellcheck disable=SC1090
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+d_push() {
+    local repo="${1}"
+    docker push "${DORG}"/"${repo}"
+}
 
 brew_cleanup() {
     for x in /usr/local/Cellar/*; do
@@ -41,9 +54,8 @@ chrome_app() {
         return
     fi
     local url="${1}"
-    # shellcheck disable=SC2215
-    (/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --app="${url}"
-    --app-shell-user=dev.bkincer@gmail.com --proxy-pac-url=http://127.0.0.1:8010/iboss.pac &>/dev/null 2>&1 &)
+    (/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="${url}"
+    --app-shell-user=dev.bkincer@gmail.com --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)
 }
 
 __proxy() {

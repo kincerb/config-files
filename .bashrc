@@ -1,16 +1,17 @@
 # ${HOME}/.bashrc
+
 umask 027
 export HOST_BASHRC="${HOME}/.config/bash.d/${HOSTNAME%%.*}.sh"
 export PATH="${PATH}":/usr/local/sbin:"${HOME}"/bin
 
 # If not running interactively, don't do anything
 case $- in
-  *i*) ;;
-  *) return;;
+    *i*) ;;
+    *) return;;
 esac
 
 if [ -e /usr/share/defaults/etc/profile ]; then
-  source /usr/share/defaults/etc/profile
+    source /usr/share/defaults/etc/profile
 fi
 
 # Bash shell options
@@ -23,10 +24,9 @@ shopt -s nocaseglob
 shopt -s extglob
 shopt -s checkwinsize
 
-# Environment variables
+#   Environment variables   #
 export PAGER=less
 export EDITOR=/usr/bin/vim
-# shellcheck disable=SC2155
 export GPG_TTY=$(tty)
 export VISUAL=/usr/bin/vim
 export PROMPT_DIRTRIM=2
@@ -44,14 +44,14 @@ export PROMPT_COMMAND="history -a; history -c; history -r"
 
 # use gpg-agent as ssh agent
 if [ -s /run/user/"${UID}"/gnupg/S.gpg-agent.ssh ]; then
-  export SSH_AUTH_SOCK=/run/user/"${UID}"/gnupg/S.gpg-agent.ssh
+    export SSH_AUTH_SOCK=/run/user/"${UID}"/gnupg/S.gpg-agent.ssh
 fi
 
 # use screen-256color for tmux sessions
 if [ -z "${TMUX}" ]; then
-  export TERM=xterm-256color
+    export TERM=xterm-256color
 else
-  export TERM=screen-256color
+    export TERM=screen-256color
 fi
 
 # fancy prompt colors
@@ -70,18 +70,17 @@ done
 
 # Source host specific stuff
 if [ -e "${HOST_BASHRC}" ]; then
-  # shellcheck disable=SC1090
   source "${HOST_BASHRC}"
 fi
 
 if [ "${UID}" -ne 0 ]; then
-  # shellcheck disable=SC2154
-  if [ -n "${my_ps}" ]; then
-    export PS1="${PS_YELLOW}${my_ps} ${PS_PWD}\W${PS_GIT}\$(git_branch)${PS_YELLOW} \$ ${PS_RESET}"
-  else
-    export PS1="\[\e[0;32m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\$\[\e[m\] ${PS_RESET}"
-  fi
+    if [ ! -z "${my_ps}" ]; then
+        export PS1="${PS_YELLOW}${my_ps} ${PS_PWD}\W${PS_GIT}\$(git_branch)${PS_YELLOW} \$ ${PS_RESET}"
+    else
+        export PS1="\[\e[0;32m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\$\[\e[m\] ${PS_RESET}"
+    fi
 else
-  export PS1="\[\e[0;31m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\#\[\e[m\] ${PS_RESET}"
+    export PS1="\[\e[0;31m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\#\[\e[m\] ${PS_RESET}"
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
