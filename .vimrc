@@ -9,7 +9,8 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-" Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
+Plug 'airblade/vim-gitgutter'
 " Plug 'vim-syntastic/syntastic'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'google/yapf'
@@ -22,11 +23,14 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
 colorscheme afterglow
+" colorscheme atom
+" colorscheme nord
+" colorscheme wombat256mod
 filetype plugin indent on
 syntax on
 set background=dark
@@ -70,8 +74,8 @@ set statusline+=\ lines:\ %L
 set statusline+=\ buffer:\ %n
 
 " split settings
-set splitbelow
-set splitright
+set splitbelow " open vertical split below
+set splitright " open horizontal split to the right
 " set fillchars=vert:| " need to research this
 
 " use very magic mode by default for searching
@@ -92,8 +96,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <Leader>N :vertical resize 32<CR>
+nnoremap <leader>N :vertical resize 32<CR>
 
+" terminal fun
+nnoremap <leader>t :terminal<CR>
 
 " folding
 set foldmethod=indent
@@ -108,12 +114,11 @@ vnoremap <Leader>f y:Ag <C-R><cr>
 nnoremap <C-F> :Ag<Space>
 " nnoremap <Leader><Leader> :Files<cr>
 
+" set python options
+au BufNewFile,BufRead *.py call SetPythonOptions()
 " kite options
 let g:kite_tab_complete=1
 nmap <silent> <buffer> K <Plug>(kite-docs)
-
-" set python options
-au BufNewFile,BufRead *.py call SetPythonOptions()
 
 " set web development options
 au BufNewFile,BufRead *.js, *.html, *.css call SetWebDevOptions()
@@ -138,8 +143,11 @@ function! SetPythonOptions()
     let g:pymode_virtualenv=1
     let g:pymode_run_bind='<leader>r'
     let g:pymode_rope_completion=0
-    let g:pymode_rope_rename_bind='<leader>R'
+    let g:pymode_doc_bind='<C->k'
     let g:pymode_doc=0
+    let g:pymode_folding=0
+    let g:SimplyFold_docstring_preview=1
+    let g:SimplyFold_fold_import=0
 endfunction
 
 function! SetWebDevOptions()
@@ -164,3 +172,7 @@ let NERDTreeWinSize=32
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" fzf settings
+set rtp+=~/.fzf
+let g:fzf_layout = {'down': '~40%'}
