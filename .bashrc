@@ -61,12 +61,13 @@ PS_GIT="\[$(tput setaf 45)\]"
 PS_PWD="\[$(tput setaf 147)\]"
 
 # Source in all shared configs
-for x in ~/.config/bash.d/{secrets,aliases,functions,fzf}.sh; do
+for x in ~/.config/bash.d/{secrets,aliases,functions}.sh; do
   if [ -e "${x}" ]; then
-    # shellcheck disable=SC1090
     source "${x}"
   fi
 done
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Source host specific stuff
 if [ -e "${HOST_BASHRC}" ]; then
@@ -83,4 +84,3 @@ else
     export PS1="\[\e[0;31m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\#\[\e[m\] ${PS_RESET}"
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

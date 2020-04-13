@@ -5,6 +5,8 @@ export DTR=dtr-prod.nwie.net
 export DORG="${DTR}"/mwautomation
 export VISUAL=/usr/local/bin/vim
 export EDITOR="${VISUAL}"
+export POWERLINE_ROOT="${HOME}/Library/Python/3.8/lib/python/site-packages"
+export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 
 if [ -e ~/.gnupg/S.gpg-agent.ssh ]; then
     export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
@@ -25,6 +27,12 @@ alias awk=/usr/local/bin/gawk
 alias sed=/usr/local/bin/gsed
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+if [ -e "${POWERLINE_BASHRC}" ]; then
+    powerline-daemon -q
+    # POWERLINE_BASH_CONTINUATION=1
+    # POWERLINE_BASH_SELECT=1
+    # source "${POWERLINE_BASHRC}"
+fi
 
 d_push() {
     local repo="${1}"
