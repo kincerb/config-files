@@ -1,4 +1,7 @@
 export PATH="${PATH}:${HOME}/.local/bin"
+export POWERLINE_ROOT="${HOME}/.local/lib/python3.8/site-packages"
+export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -36,4 +39,11 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+if [ -e "${POWERLINE_BASHRC}" ]; then
+    powerline-daemon -q
+    # POWERLINE_BASH_CONTINUATION=1
+    # POWERLINE_BASH_SELECT=1
+    # source "${POWERLINE_BASHRC}"
 fi
