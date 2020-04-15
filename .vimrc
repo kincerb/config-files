@@ -149,13 +149,18 @@ function! SetPythonOptions()
     let g:pymode_options_max_line_length=119
     let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
     let g:pymode_virtualenv=1
-    let g:pymode_run_bind='<leader>r'
+    let g:pymode_run_bind='<leader>E'
     let g:pymode_rope_completion=0
     let g:pymode_doc_bind='<C->k'
     let g:pymode_doc=0
     let g:pymode_folding=0
     let g:SimplyFold_docstring_preview=1
     let g:SimplyFold_fold_import=0
+    let g:pymode_rope=1
+    let g:pymode_rope_goto_definition_bind='<leader>g'
+    let g:pymode_rope_rename_bind = '<leader>r'
+    let g:pymode_rope_goto_definition_cmd='new'
+    let g:pymode_rope_regenerate_on_write=1
 endfunction
 
 function! SetWebDevOptions()
