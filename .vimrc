@@ -24,8 +24,12 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
+
+" fzf settings
+set rtp+=~/.fzf
 
 colorscheme afterglow
 " colorscheme atom
@@ -109,8 +113,8 @@ nnoremap <space> za
 
 " fzf settings
 let g:fzf_layout = { 'down': '-40%' }
-nnoremap <Leader>f :Ag <C-R><C-W><cr>
-vnoremap <Leader>f y:Ag <C-R><cr>
+nnoremap <leader>f :Ag <C-R><C-W><cr>
+vnoremap <leader>f y:Ag <C-R><cr>
 nnoremap <C-F> :Ag<Space>
 " nnoremap <Leader><Leader> :Files<cr>
 
@@ -167,15 +171,11 @@ endfunction
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$']
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=0
+let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=32
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" fzf settings
-set rtp+=~/.fzf
-let g:fzf_layout = {'down': '~40%'}
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
