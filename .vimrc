@@ -120,8 +120,12 @@ nnoremap <C-F> :Ag<Space>
 
 " set python options
 au BufNewFile,BufRead *.py call SetPythonOptions()
+
 " kite options
 let g:kite_tab_complete=1
+set completeopt+=preview
+autocmd CompleteDone * if !pumvisible() | pclose | endif
+set belloff+=ctrlg  " if vim beeps during completion
 nmap <silent> <buffer> K <Plug>(kite-docs)
 
 " set web development options
