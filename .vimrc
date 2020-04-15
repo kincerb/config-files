@@ -23,8 +23,23 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim', {
+        \ 'on': [
+            \ 'Ag',
+            \ 'Rg',
+            \ 'FZF',
+            \ 'Files',
+            \ 'Buffers',
+            \ 'Commits',
+            \ 'BCommits',
+            \ 'Tags',
+            \ 'BTags',
+            \ 'History',
+            \ 'Lines',
+            \ 'BLines',
+            \ 'Marks'
+        \ ] }
 Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
@@ -112,9 +127,10 @@ set foldlevel=99
 nnoremap <space> za
 
 " fzf settings
-let g:fzf_layout = { 'down': '-40%' }
 nnoremap <leader>f :Ag <C-R><C-W><cr>
 vnoremap <leader>f y:Ag <C-R><cr>
+nnoremap <Leader>a :Ag <C-R><C-W><CR>:cw<CR>
+vnoremap <Leader>a y:Ag <C-R><C-W><CR>:cw<CR>
 nnoremap <C-F> :Ag<Space>
 " nnoremap <Leader><Leader> :Files<cr>
 
@@ -154,13 +170,12 @@ function! SetPythonOptions()
     let g:pymode_doc_bind='<C->k'
     let g:pymode_doc=0
     let g:pymode_folding=0
-    let g:SimplyFold_docstring_preview=1
+    let g:SimplyFold_docstring_preview=0
     let g:SimplyFold_fold_import=0
     let g:pymode_rope=1
     let g:pymode_rope_goto_definition_bind='<leader>g'
     let g:pymode_rope_rename_bind = '<leader>r'
     let g:pymode_rope_goto_definition_cmd='new'
-    let g:pymode_rope_regenerate_on_write=1
 endfunction
 
 function! SetWebDevOptions()
