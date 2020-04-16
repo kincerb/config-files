@@ -137,8 +137,31 @@ nnoremap <C-F> :Ag<Space>
 " set python options
 au BufNewFile,BufRead *.py call SetPythonOptions()
 
+" pymode options
+let g:pymode_python='python3'
+let g:pymode_options_max_line_length=119
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_virtualenv=1
+let g:pymode_run_bind='<leader>E'
+let g:pymode_rope_completion=0
+let g:pymode_doc_bind='<C->k'
+let g:pymode_doc=0
+let g:pymode_folding=0
+let g:pymode_rope=1
+let g:pymode_rope_goto_definition_bind='<leader>g'
+let g:pymode_rope_rename_bind = '<leader>r'
+let g:pymode_rope_goto_definition_cmd='new'
+
+" simplyfold options
+let g:SimplyFold_docstring_preview=0
+let g:SimplyFold_fold_import=0
+
 " kite options
 let g:kite_tab_complete=1
+let g:kite_auto_complete=1
+set completeopt+=menuone   " show the popup menu even when there is only 1 match
+set completeopt+=noinsert  " don't insert any text until user chooses a match
+set completeopt-=longest   " don't insert the longest common text"
 set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 set belloff+=ctrlg  " if vim beeps during completion
@@ -161,21 +184,6 @@ endfunction
 
 function! SetPythonOptions()
     set fileformat=unix
-    let g:pymode_python='python3'
-    let g:pymode_options_max_line_length=119
-    let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
-    let g:pymode_virtualenv=1
-    let g:pymode_run_bind='<leader>E'
-    let g:pymode_rope_completion=0
-    let g:pymode_doc_bind='<C->k'
-    let g:pymode_doc=0
-    let g:pymode_folding=0
-    let g:SimplyFold_docstring_preview=0
-    let g:SimplyFold_fold_import=0
-    let g:pymode_rope=1
-    let g:pymode_rope_goto_definition_bind='<leader>g'
-    let g:pymode_rope_rename_bind = '<leader>r'
-    let g:pymode_rope_goto_definition_cmd='new'
 endfunction
 
 function! SetWebDevOptions()
