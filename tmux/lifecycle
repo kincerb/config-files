@@ -1,0 +1,6 @@
+new -A -c ~/Projects/Middleware-Lifecycle-Core -s lifecycle -n Core
+selectw -t lifecycle:1
+neww -d -t lifecycle: -c ~/Projects/Middleware-Lifecycle-Checkins -n Checkins
+neww -d -t lifecycle: -c ~/Projects/Middleware-Lifecycle-Server -n Server
+neww -d -t lifecycle: -c ~/Projects/Middleware-Checkin-Scheduler -n Scheduler
+neww -d -t lifecycle: -c ~/Projects
