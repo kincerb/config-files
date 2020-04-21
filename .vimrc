@@ -40,13 +40,13 @@ Plug 'junegunn/fzf.vim', {
             \ 'BLines',
             \ 'Marks'
         \ ] }
-Plug 'rafi/awesome-vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 " fzf settings
 set rtp+=~/.fzf
 
-colorscheme afterglow
+colorscheme Monokai
 " colorscheme atom
 " colorscheme nord
 " colorscheme wombat256mod
@@ -115,7 +115,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <leader>N :vertical resize 32<CR>
+nnoremap <leader>= :vertical resize 32<CR>
 
 " terminal fun
 nnoremap <leader>t :terminal<CR>
@@ -200,10 +200,11 @@ function! HelpInNewTab()
 endfunction
 
 " NERDTree options
-map <leader>n :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.pyc$', '\~$']
+map <leader>n :NERDTreeFocus<CR>
+map <leader>N :NERDTreeClose<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$']
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=3
 let NERDTreeWinSize=32
 
 autocmd StdinReadPre * let s:std_in=1
