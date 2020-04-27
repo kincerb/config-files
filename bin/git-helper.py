@@ -18,7 +18,7 @@ def main():
     args = get_args()
     configure_logging(verbosity=args.verbosity)
     try:
-        personal_user, personal_password = get_creds()
+        personal_user, personal_password = get_creds(args.url)
     except EnvError as err:
         logger.critical(str(err))
         sys.exit(1)
@@ -27,14 +27,19 @@ def main():
         print_creds(personal_user, personal_password)
 
 
-def get_creds():
+def get_creds(url):
     """Get credentials from shell environment
 
+    :param url: repo base url
+    :type url: str
     :returns: personal_user, personal_password
     :rtype: tuple
     :raises EnvError: When variables are missing
     """
-    reqd_vars = ['GITHUB_PERSONAL_ID', 'GITHUB_PERSONAL_TOKEN']
+    if url == 'https://github.nwie.net':
+        reqd_vars = ['GITHUB_WORK_ID', 'GITHUB_WORK_TOKEN']
+    else:
+        reqd_vars = ['GITHUB_PERSONAL_ID', 'GITHUB_PERSONAL_TOKEN']
     env_vars = list(os.environ)
     missing_vars = []
 
@@ -67,6 +72,11 @@ def get_args():
                         action='store',
                         type=str,
                         help='Git action (get|store|erase)')
+    parser.add_argument('-u', '--url',
+                        required=True,
+                        dest='url',
+                        action='store',
+                        help='Repo base url')
     parser.add_argument('-v', '--verbose',
                         required=False,
                         dest='verbosity',
