@@ -37,9 +37,12 @@ def get_creds(url):
     :raises EnvError: When variables are missing
     """
     if url == 'https://github.nwie.net':
-        reqd_vars = ['GITHUB_WORK_ID', 'GITHUB_WORK_TOKEN']
+        id = 'GITHUB_WORK_ID'
+        token = 'GITHUB_WORK_TOKEN'
     else:
-        reqd_vars = ['GITHUB_PERSONAL_ID', 'GITHUB_PERSONAL_TOKEN']
+        id = 'GITHUB_PERSONAL_ID'
+        token = 'GITHUB_PERSONAL_TOKEN'
+    reqd_vars = [id, token]
     env_vars = list(os.environ)
     missing_vars = []
 
@@ -49,7 +52,7 @@ def get_creds(url):
     if missing_vars:
         raise EnvError('Missing environment variables: {}'.format(', '.join(missing_vars)))
 
-    return (os.environ.get('GITHUB_PERSONAL_ID'), os.environ.get('GITHUB_PERSONAL_TOKEN'))
+    return (os.environ.get(id), os.environ.get(token))
 
 
 def print_creds(personal_user, personal_password):
