@@ -23,6 +23,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-peekaboo'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim', {
         \ 'on': [
