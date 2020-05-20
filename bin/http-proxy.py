@@ -12,24 +12,8 @@ from pathlib import Path
 
 PORT = 8010
 LOG_DIR = Path(os.environ.get('HOME')).joinpath('Documents', 'log')
+ROOT_DIR = Path(os.environ.get('HOME')).joinpath('Google', 'devbkincer', 'configs')
 logger = logging.getLogger(__name__)
-
-
-def main():
-    args = get_args()
-    configure_logging(args.verbosity)
-
-    class DirHandler(http.server.SimpleHTTPRequestHandler):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, directory=str(args.directory), **kwargs)
-
-    with socketserver.TCPServer(('', PORT), DirHandler) as httpd:
-        logger.info(f'Serving at port {PORT}')
-        try:
-            httpd.serve_forever()
-        except KeyboardInterrupt:
-            print('Shutting down')
-            httpd.socket.close()
 
 
 def get_args():
@@ -42,11 +26,6 @@ def get_args():
         description='Start a simple HTTP server',
         epilog='Example: %(prog)s'
     )
-    parser.add_argument('-d', '--directory',
-                        dest='directory',
-                        required=False,
-                        default=Path(os.environ.get('HOME')).joinpath('Google', 'devbkincer', 'configs'),
-                        help='Directory to use as webserver root')
     parser.add_argument('-v', '--verbose',
                         required=False,
                         dest='verbosity',
@@ -93,5 +72,19 @@ def configure_logging(verbosity=0):
     logging.config.dictConfig(config)
 
 
-if __name__ == '__main__':
-    main()
+args = get_args()
+configure_logging(args.verbosity)
+
+
+class DirHandler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=str(ROOT_DIR), **kwargs)
+
+
+with socketserver.TCPServer(('', PORT), DirHandler) as httpd:
+    logger.info(f'listening on port {PORT}')
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        logger.info('Shutting down')
+        httpd.socket.close()
