@@ -53,3 +53,5 @@ fabric.properties
 
 */secrets.sh
 */work-secrets.sh
+
+.ropeproject/

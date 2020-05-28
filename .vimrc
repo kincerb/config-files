@@ -23,25 +23,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-peekaboo'
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim', {
-        \ 'on': [
-            \ 'Ag',
-            \ 'Rg',
-            \ 'FZF',
-            \ 'Files',
-            \ 'Buffers',
-            \ 'Commits',
-            \ 'BCommits',
-            \ 'Tags',
-            \ 'BTags',
-            \ 'History',
-            \ 'Lines',
-            \ 'BLines',
-            \ 'Marks'
-        \ ] }
+Plug 'junegunn/fzf.vim'
 Plug 'flazz/vim-colorschemes'
 call plug#end()
 
@@ -164,7 +147,7 @@ let g:kite_auto_complete=1
 set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text"
-set completeopt+=preview
+set completeopt-=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 set belloff+=ctrlg  " if vim beeps during completion
 nmap <silent> <buffer> K <Plug>(kite-docs)
