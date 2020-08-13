@@ -39,10 +39,11 @@ while :; do
     esac
 done
 
-if [ -n "${in_file}" ]; then
+if [ -z "${in_file}" ]; then
     print_help
 fi
 
-if [ -n "${out_file}" ]; then
+if [ -z "${out_file}" ]; then
     out_file="${in_file}"
 fi
+convert_pdf
