@@ -2,7 +2,10 @@
 script=$(basename $0)
 
 convert_pdf() {
-    gs -o "${out_file}" -sDEVICE=pdfwrite -c "/setrgbcolor {pop pop pop 0 setgray} bind def" -f "${in_file}"
+    # gs -o "${out_file}" -sDEVICE=pdfwrite -c "/setrgbcolor {pop pop pop 0 setgray} bind def" -f "${in_file}"
+    # gs -o "${out_file}" -sDEVICE=pdfwrite -c "/osetcolor {/setcolor} bind def /setcolor {pop [0 0 0] osetcolor} def" \
+    #     -f "${in_file}"
+    gs -dNOPAUSE -dBATCH -q -sOutputFile="${out_file}" -sDEVICE=pdfimage8 -f "${in_file}"
 }
 
 print_help() {
