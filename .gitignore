@@ -55,3 +55,4 @@ fabric.properties
 */work-secrets.sh
 
 .ropeproject/
+*.swp
