@@ -189,7 +189,7 @@ endfunction
 " NERDTree options
 map <leader>n :NERDTreeFocus<CR>
 map <leader>N :NERDTreeClose<CR>
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$']
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=0
 let NERDTreeWinSize=32
