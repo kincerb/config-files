@@ -151,9 +151,9 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 set belloff+=ctrlg  " if vim beeps during completion
 nmap <silent> <buffer> K <Plug>(kite-docs)
 " I believe these are managed by the plugin itself
-" set completeopt+=menuone   " show the popup menu even when there is only 1 match
-" set completeopt+=noinsert  " don't insert any text until user chooses a match
-" set completeopt-=longest   " don't insert the longest common text
+set completeopt+=menuone   " show the popup menu even when there is only 1 match
+set completeopt+=noinsert  " don't insert any text until user chooses a match
+set completeopt-=longest   " don't insert the longest common text
 
 " set web development options
 au BufNewFile,BufRead *.js, *.html, *.css call SetWebDevOptions()
