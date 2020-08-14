@@ -189,9 +189,9 @@ endfunction
 " NERDTree options
 map <leader>n :NERDTreeFocus<CR>
 map <leader>N :NERDTreeClose<CR>
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$']
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$']
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=3
+let NERDTreeQuitOnOpen=0
 let NERDTreeWinSize=32
 
 autocmd StdinReadPre * let s:std_in=1
