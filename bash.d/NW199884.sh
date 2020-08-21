@@ -1,15 +1,17 @@
 export my_ps="mac"
 export HOMEBREW_GITHUB_API_TOKEN="de80bed57fed2ee501671dafdf22b8ff61d95b63"
 export PATH=${PATH}:${HOME}/Library/Python/3.8/bin
-export DTR=dtr-prod.nwie.net
+export DTR=dtr.aws.e1.nwie.net
 export DORG="${DTR}"/mwautomation
 export VISUAL=/usr/local/bin/vim
 export EDITOR="${VISUAL}"
 export POWERLINE_ROOT="${HOME}/Library/Python/3.8/lib/python/site-packages"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 
-if [ -e ~/.gnupg/S.gpg-agent.ssh ]; then
-    export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
+if [ -z "${SSH_CONNECTION}" ]; then
+    if [ -e ~/.gnupg/S.gpg-agent.ssh ]; then
+        export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
+    fi
 fi
 
 alias socket='ssh -Nf elvmt0048 2>/dev/null'
