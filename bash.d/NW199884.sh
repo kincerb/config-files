@@ -57,6 +57,11 @@ datagrip() {
     open "/Users/kincerb/Applications/JetBrains Toolbox/DataGrip.app"
 }
 
+webstorm() {
+    unset TMUX
+    open "/Users/kincerb/Applications/JetBrains Toolbox/WebStorm.app"
+}
+
 chrome_app() {
     if [ "${#}" -ne 1 ]; then
         echo -e "Usage:\n chrome_app [url]"
