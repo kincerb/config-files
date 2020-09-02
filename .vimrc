@@ -156,7 +156,7 @@ set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text
 
 " set web development options
-au BufNewFile,BufRead *.js, *.html, *.css call SetWebDevOptions()
+au BufNewFile,BufRead *.js, *.html, *.css, *.yml call SetWebDevOptions()
 
 " set groovy options
 au BufNewFile,BufRead *Jenkinsfile call SetGroovyOptions()
