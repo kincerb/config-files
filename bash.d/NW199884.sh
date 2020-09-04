@@ -17,6 +17,7 @@ fi
 alias socket='ssh -Nf elvmt0048 2>/dev/null'
 alias hulu='chrome_app https://hulu.com'
 alias chrome='(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
+alias chrome_canary='(/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
 alias music='chrome_app https://music.youtube.com'
 alias amazon='chrome_app https://amazon.com'
 alias google_play='chrome_app https://play.google.com'
@@ -69,7 +70,7 @@ chrome_app() {
         return
     fi
     local url="${1}"
-    (/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="${url}"
+    (/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --app="${url}"
     --app-shell-user=dev.bkincer@gmail.com --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)
 }
 
