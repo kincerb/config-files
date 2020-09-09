@@ -14,6 +14,8 @@ if [ -z "${SSH_CONNECTION}" ]; then
     fi
 fi
 
+launchctl setenv SSH_AUTH_SOCK "${SSH_AUTH_SOCK}"
+
 alias socket='ssh -Nf elvmt0048 2>/dev/null'
 alias hulu='chrome_app https://hulu.com'
 alias chrome='(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
