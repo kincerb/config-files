@@ -1,0 +1,25 @@
+let mapleader=","
+inoremap jk <ESC>
+unmap <A-i>
+set iskeyword-=_
+nnoremap zM :action CollapseAll<CR>
+nnoremap zm :action ExpandAll<CR>
+nnoremap <S-space> :action CollapseRegion<CR>
+nnoremap <space> :action ExpandRegion<CR>
+nnoremap <leader>f :action Find<CR>
+nnoremap K :action kite.docsAtCaret<CR>
+nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>p :action ActivatePythonConsoleToolWindow<CR>
+nnoremap <leader>s :action ActivateRemoteHostToolWindow<CR>
+nnoremap <leader>y :action ActivateYouTrackToolWindow<CR>
+nnoremap <leader>n :action ActivateProjectToolWindow<CR>
+nnoremap <C-j> :action NextSplitter<CR>
+nnoremap <C-k> :action PrevSplitter<CR>
+nnoremap <leader>j :action NextTab<CR>
+nnoremap <leader>k :action PreviousTab<CR>
+nnoremap <Tab> :action EditorIndentLineOrSelection<CR>
+nnoremap <S-Tab> :action EditorUnindentSelection<CR>
+nnoremap rr :action ReformatCode<CR>
+vnoremap rr :action ReformatCode<CR>
+nnoremap == :action RefactoringMenu<CR>
+vnoremap == :action RefactoringMenu<CR>
