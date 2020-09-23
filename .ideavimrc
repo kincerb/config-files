@@ -23,3 +23,5 @@ nnoremap rr :action ReformatCode<CR>
 vnoremap rr :action ReformatCode<CR>
 nnoremap == :action RefactoringMenu<CR>
 vnoremap == :action RefactoringMenu<CR>
+nnoremap <leader>R :action ShowReformatFileDialog<CR>
+nnoremap <leader>R :action ShowReformatFileDialog<CR>
