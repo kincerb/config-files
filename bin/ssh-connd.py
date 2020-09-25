@@ -52,43 +52,35 @@ def create_tunnel(hostname, private_key,
     if not _private_key_verified(private_key):
         return
 
-    with sshtunnel.open_tunnel(hostname,
-                               ssh_username=username,
-                               ssh_pkey=private_key,
-                               remote_bind_address=(remote_bind_ip, remote_bind_port),
-                               local_bind_address=(local_bind_ip, local_bind_port),
-                               set_keepalive=120.0
-                               ) as tunnel:
-        while True:
-            try:
-                tunnel.start()
-            except (sshtunnel.BaseSSHTunnelForwrderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
-                logger.error(err)
-                sleep(120)
-                continue
-            except KeyboardInterrupt:
-                logger.info('CTRL-C caught, exiting.')
-                tunnel.close()
-                sys.exit(0)
-            else:
-                logger.info('Tunnel established')
-                break
+    tunnel = sshtunnel.open_tunnel(
+        hostname,
+        ssh_username=username,
+        ssh_pkey=private_key,
+        allow_agent=False,
+        remote_bind_address=(remote_bind_ip, remote_bind_port),
+        local_bind_address=(local_bind_ip, local_bind_port),
+        set_keepalive=120.0
+    )
 
-        while True:
+    while True:
+        tunnel.check_tunnels()
+        success_msg = 'established'
+        try:
+            if not any(tunnel.tunnel_is_up.values()):
+                tunnel.start()
+            else:
+                success_msg = 'still up'
+        except (sshtunnel.BaseSSHTunnelForwarderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
+            logger.error(err)
             sleep(60)
-            try:
-                tunnel.check_tunnels()
-                if not any(tunnel.tunnel_is_up.values()):
-                    logger.warn('Restarting tunnel...')
-                    tunnel.restart()
-            except (sshtunnel.BaseSSHTunnelForwrderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
-                logger.error(err)
-                continue
-            except KeyboardInterrupt:
-                logger.info('CTRL-C caught, exiting.')
-                tunnel.close()
-                sys.exit(0)
-        tunnel.close()
+            continue
+        except KeyboardInterrupt:
+            logger.info('CTRL-C caught, exiting.')
+            tunnel.close()
+            sys.exit(0)
+        else:
+            logger.info(f'Tunnel {success_msg}')
+            sleep(300)
 
 
 def _private_key_verified(key_path):

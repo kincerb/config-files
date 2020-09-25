@@ -120,6 +120,9 @@ vnoremap <Leader>a y:Ag <C-R><C-W><CR>:cw<CR>
 nnoremap <C-F> :Ag<Space>
 " nnoremap <Leader><Leader> :Files<cr>
 
+" terminal bindings
+" nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
+" vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 " set python options
 au BufNewFile,BufRead *.py call SetPythonOptions()
 
@@ -156,7 +159,7 @@ set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text
 
 " set web development options
-au BufNewFile,BufRead *.js, *.html, *.css, *.yml call SetWebDevOptions()
+au BufNewFile,BufRead *.js, *.ts, *.html, *.css, *.yml call SetWebDevOptions()
 
 " set groovy options
 au BufNewFile,BufRead *Jenkinsfile call SetGroovyOptions()
