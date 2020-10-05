@@ -53,20 +53,36 @@ def create_tunnel(hostname, private_key,
         return
 
     while True:
-        tunnel = sshtunnel.open_tunnel(
-            hostname,
-            ssh_username=username,
-            ssh_pkey=private_key,
-            allow_agent=False,
-            remote_bind_address=(remote_bind_ip, remote_bind_port),
-            local_bind_address=(local_bind_ip, local_bind_port),
-            set_keepalive=120.0
-        )
+        try:
+            tunnel = sshtunnel.open_tunnel(
+                hostname,
+                ssh_username=username,
+                ssh_pkey=private_key,
+                allow_agent=False,
+                remote_bind_address=(remote_bind_ip, remote_bind_port),
+                local_bind_address=(local_bind_ip, local_bind_port),
+                set_keepalive=120.0
+            )
+        except (sshtunnel.BaseSSHTunnelForwarderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
+            logger.error(err)
+            sleep(60)
+            continue
+        except KeyboardInterrupt:
+            logger.info('CTRL-C caught, exiting.')
+            tunnel.close()
+            sys.exit(0)
+        except Exception as err:
+            logger.error(err)
+            sleep(60)
+            continue
+        else:
+            logger.info(f'Tunnel established')
+            sleep(300)
 
         while True:
             try:
                 tunnel.check_tunnels()
-                success_msg = 'established'
+                success_msg = 'restarted'
                 try:
                     if not any(tunnel.tunnel_is_up.values()):
                         tunnel.start()
