@@ -76,8 +76,7 @@ def create_tunnel(hostname, private_key,
             sleep(60)
             continue
         else:
-            logger.info(f'Tunnel established')
-            sleep(300)
+            logger.info(f'Initial tunnel established')
 
         while True:
             try:

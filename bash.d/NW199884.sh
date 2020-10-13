@@ -1,11 +1,11 @@
 export my_ps="mac"
 export HOMEBREW_GITHUB_API_TOKEN="de80bed57fed2ee501671dafdf22b8ff61d95b63"
-export PATH=${PATH}:${HOME}/Library/Python/3.8/bin
+# export PATH=${PATH}:${HOME}/Library/Python/3.8/bin
 export DTR=dtr.aws.e1.nwie.net
 export DORG="${DTR}"/mwautomation
 export VISUAL=/usr/local/bin/vim
 export EDITOR="${VISUAL}"
-export POWERLINE_ROOT="${HOME}/Library/Python/3.8/lib/python/site-packages"
+export POWERLINE_ROOT="/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 
 if [ -z "${SSH_CONNECTION}" ]; then

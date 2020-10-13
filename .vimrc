@@ -5,14 +5,16 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+set pythonthreedll=/Library/Frameworks/Python.framework/Versions/3.9/lib/libpython3.9.dylib
 set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'airblade/vim-gitgutter'
 " Plug 'vim-syntastic/syntastic'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'pseewald/vim-anyfold'
 Plug 'google/yapf'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
@@ -33,9 +35,6 @@ call plug#end()
 set rtp+=~/.fzf
 
 colorscheme Monokai
-" colorscheme atom
-" colorscheme nord
-" colorscheme wombat256mod
 filetype plugin indent on
 syntax on
 set background=dark
@@ -111,6 +110,10 @@ set foldmethod=indent
 set foldlevel=99
 " fold with space
 nnoremap <space> za
+" anyfold
+autocmd Filetype * AnyFoldActivate
+let g:anyfold_motion=0
+let g:anyfold_fold_display=0
 
 " fzf settings
 nnoremap <leader>f :Ag <C-R><C-W><cr>
@@ -121,8 +124,8 @@ nnoremap <C-F> :Ag<Space>
 " nnoremap <Leader><Leader> :Files<cr>
 
 " terminal bindings
-" nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
-" vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
+nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
+vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 " set python options
 au BufNewFile,BufRead *.py call SetPythonOptions()
 
@@ -142,8 +145,8 @@ let g:pymode_rope_rename_bind = '<leader>r'
 let g:pymode_rope_goto_definition_cmd='new'
 
 " simplyfold options
-let g:SimplyFold_docstring_preview=0
-let g:SimplyFold_fold_import=0
+" let g:SimplyFold_docstring_preview=1
+" let g:SimplyFold_fold_import=0
 
 " kite options
 let g:kite_supported_languages = ['python', 'javascript', 'go']
