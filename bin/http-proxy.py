@@ -81,7 +81,7 @@ class DirHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=str(ROOT_DIR), **kwargs)
 
 
-with socketserver.TCPServer(('', PORT), DirHandler) as httpd:
+with socketserver.TCPServer(('127.0.0.1', PORT), DirHandler) as httpd:
     logger.info(f'listening on port {PORT}')
     try:
         httpd.serve_forever()

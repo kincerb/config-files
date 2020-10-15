@@ -8,10 +8,10 @@ nnoremap <S-space> :action CollapseRegion<CR>
 nnoremap <space> :action ExpandRegion<CR>
 nnoremap <leader>f :action Find<CR>
 nnoremap K :action kite.docsAtCaret<CR>
+nnoremap <leader>g :action ActivateCommitToolWindow<CR>
 nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>p :action ActivatePythonConsoleToolWindow<CR>
 nnoremap <leader>s :action ActivateRemoteHostToolWindow<CR>
-nnoremap <leader>y :action ActivateYouTrackToolWindow<CR>
 nnoremap <leader>n :action ActivateProjectToolWindow<CR>
 nnoremap <C-j> :action NextSplitter<CR>
 nnoremap <C-k> :action PrevSplitter<CR>
@@ -23,5 +23,8 @@ nnoremap rr :action ReformatCode<CR>
 vnoremap rr :action ReformatCode<CR>
 nnoremap == :action RefactoringMenu<CR>
 vnoremap == :action RefactoringMenu<CR>
-nnoremap <leader>R :action ShowReformatFileDialog<CR>
-nnoremap <leader>R :action ShowReformatFileDialog<CR>
+nnoremap <leader>r :action ShowReformatFileDialog<CR>
+nnoremap <leader>i :action ShowIntentionActions<CR>
+nnoremap <leader><Tab> :action Switcher<CR>
+vnoremap <leader><Tab> :action Switcher<CR>
+nnoremap <leader><space> :action GotoFile<CR>
