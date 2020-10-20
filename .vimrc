@@ -12,6 +12,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -167,6 +168,7 @@ nmap <silent> <buffer> K <Plug>(kite-docs)
 
 " set web development options
 au BufNewFile,BufRead *.js, *.ts, *.html, *.css, *.yml call SetWebDevOptions()
+let g:coc_global_extensions = [ 'coc-tsserver' ]
 
 " set groovy options
 au BufNewFile,BufRead *Jenkinsfile call SetGroovyOptions()
@@ -188,6 +190,13 @@ function! SetWebDevOptions()
     set tabstop=2
     set softtabstop=2
     set shiftwidth=2
+    nmap <leader>ac <Plug>(coc-codeaction)
+    nmap <leader>qf <Plug>(coc-fix-current)
+    inoremap <silent><expr> <Tab> coc#refresh()
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
 endfunction
 
 function! HelpInNewTab()
