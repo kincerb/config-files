@@ -10,10 +10,12 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-" Plug 'tmhedberg/SimpylFold'
 Plug 'airblade/vim-gitgutter'
-" Plug 'vim-syntastic/syntastic'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'jparise/vim-graphql'
 Plug 'pseewald/vim-anyfold'
 Plug 'google/yapf'
 Plug 'tpope/vim-commentary'
@@ -152,14 +154,16 @@ let g:pymode_rope_goto_definition_cmd='new'
 let g:kite_supported_languages = ['python', 'javascript', 'go']
 let g:kite_tab_complete=1
 let g:kite_auto_complete=1
-set completeopt+=preview
-autocmd CompleteDone * if !pumvisible() | pclose | endif
-set belloff+=ctrlg  " if vim beeps during completion
-nmap <silent> <buffer> K <Plug>(kite-docs)
-" I believe these are managed by the plugin itself
+" let g:kite_previous_placeholder = '<C-H>'
+" let g:kite_next_placeholder = '<C-L>'
+" let g:kite_documentation_continual=1
 set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text
+set completeopt+=preview
+set belloff+=ctrlg         " disable beep during completion
+autocmd CompleteDone * if !pumvisible() | pclose | endif
+nmap <silent> <buffer> K <Plug>(kite-docs)
 
 " set web development options
 au BufNewFile,BufRead *.js, *.ts, *.html, *.css, *.yml call SetWebDevOptions()
