@@ -197,6 +197,8 @@ function! SetWebDevOptions()
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
+    nmap <leader>r <Plug>(coc-format)
+    vmap <leader>r <Plug>(coc-format-selected)
 endfunction
 
 function! HelpInNewTab()
