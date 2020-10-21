@@ -36,9 +36,9 @@ call plug#end()
 
 " fzf settings
 set rtp+=~/.fzf
-
-colorscheme Monokai
+filetype on
 filetype plugin indent on
+colorscheme Monokai
 syntax on
 set background=dark
 set cursorline
@@ -187,9 +187,6 @@ function! SetPythonOptions()
 endfunction
 
 function! SetWebDevOptions()
-    set tabstop=2
-    set softtabstop=2
-    set shiftwidth=2
     nmap <leader>ac <Plug>(coc-codeaction)
     nmap <leader>qf <Plug>(coc-fix-current)
     inoremap <silent><expr> <Tab> coc#refresh()
