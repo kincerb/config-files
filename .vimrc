@@ -43,6 +43,7 @@ syntax on
 set background=dark
 set cursorline
 set showmatch
+set number
 set history=500
 " search settings
 set ignorecase
@@ -147,10 +148,6 @@ let g:pymode_rope_goto_definition_bind='<leader>g'
 let g:pymode_rope_rename_bind = '<leader>r'
 let g:pymode_rope_goto_definition_cmd='new'
 
-" simplyfold options
-" let g:SimplyFold_docstring_preview=1
-" let g:SimplyFold_fold_import=0
-
 " kite options
 let g:kite_supported_languages = ['python', 'javascript', 'go']
 let g:kite_tab_complete=1
@@ -168,7 +165,7 @@ nmap <silent> <buffer> K <Plug>(kite-docs)
 
 " set web development options
 au BufNewFile,BufRead *.js, *.ts, *.html, *.css, *.yml call SetWebDevOptions()
-let g:coc_global_extensions = [ 'coc-tsserver' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-eslint', 'coc-prettier' ]
 
 " set groovy options
 au BufNewFile,BufRead *Jenkinsfile call SetGroovyOptions()
