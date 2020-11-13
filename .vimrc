@@ -20,9 +20,10 @@ Plug 'jparise/vim-graphql'
 Plug 'pseewald/vim-anyfold'
 Plug 'google/yapf'
 Plug 'tpope/vim-commentary'
-Plug 'dense-analysis/ale'
 Plug 'nvie/vim-flake8'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'frazrepo/vim-rainbow'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
@@ -38,7 +39,7 @@ call plug#end()
 set rtp+=~/.fzf
 filetype on
 filetype plugin indent on
-colorscheme Monokai
+colorscheme gruvbox
 syntax on
 set background=dark
 set cursorline
@@ -119,11 +120,13 @@ autocmd Filetype * AnyFoldActivate
 let g:anyfold_motion=0
 let g:anyfold_fold_display=0
 
+let g:rainbow_active=1
+
 " fzf settings
 nnoremap <leader>f :Ag <C-R><C-W><cr>
 vnoremap <leader>f y:Ag <C-R><cr>
-nnoremap <Leader>a :Ag <C-R><C-W><CR>:cw<CR>
-vnoremap <Leader>a y:Ag <C-R><C-W><CR>:cw<CR>
+" nnoremap <Leader>a :Ag <C-R><C-W><CR>:cw<CR>
+" vnoremap <Leader>a y:Ag <C-R><C-W><CR>:cw<CR>
 nnoremap <C-F> :Ag<Space>
 " nnoremap <Leader><Leader> :Files<cr>
 
@@ -149,11 +152,9 @@ let g:pymode_rope_rename_bind = '<leader>r'
 let g:pymode_rope_goto_definition_cmd='new'
 
 " kite options
-let g:kite_supported_languages = ['python', 'javascript', 'go']
+let g:kite_supported_languages = ['*']
 let g:kite_tab_complete=1
 let g:kite_auto_complete=1
-" let g:kite_previous_placeholder = '<C-H>'
-" let g:kite_next_placeholder = '<C-L>'
 " let g:kite_documentation_continual=1
 set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
@@ -165,7 +166,6 @@ nmap <silent> <buffer> K <Plug>(kite-docs)
 
 " set web development options
 au BufNewFile,BufRead *.js, *.ts, *.html, *.css, *.yml call SetWebDevOptions()
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-eslint', 'coc-prettier' ]
 
 " set groovy options
 au BufNewFile,BufRead *Jenkinsfile call SetGroovyOptions()
@@ -184,16 +184,51 @@ function! SetPythonOptions()
 endfunction
 
 function! SetWebDevOptions()
-    nmap <leader>ac <Plug>(coc-codeaction)
+    " Use tab for trigger completion with characters ahead and navigate.
+    " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+    " other plugin before putting this into your config.
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? "\<C-n>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    let g:coc_global_extensions = [ 'coc-tsserver', 'coc-eslint', 'coc-prettier', 'coc-angular', 'coc-json', 'coc-css' ]
+    nmap <leader><CR> <Plug>(coc-codeaction)
     nmap <leader>qf <Plug>(coc-fix-current)
     inoremap <silent><expr> <Tab> coc#refresh()
+    inoremap <silent><expr> <c-@> coc#refresh()
     nmap <silent> gd <Plug>(coc-definition)
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
     nmap <leader>r <Plug>(coc-format)
     vmap <leader>r <Plug>(coc-format-selected)
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    " Use `[g` and `]g` to navigate diagnostics
+    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+    " Use K to show documentation in preview window.
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction   
 
 function! HelpInNewTab()
     if &buftype == 'help'
@@ -212,6 +247,7 @@ let NERDTreeWinSize=32
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * wincmd p
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
