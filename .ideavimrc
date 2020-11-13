@@ -16,8 +16,8 @@ nnoremap <leader>n :action ActivateProjectToolWindow<CR>
 nnoremap <leader>j :action ActivateJIRAToolWindow<CR>
 nnoremap <C-j> :action NextSplitter<CR>
 nnoremap <C-k> :action PrevSplitter<CR>
-nnoremap <C-w>| :action SplitHorizontally<CR>
-nnoremap <C-w>- :action SplitVertically<CR>
+nnoremap <C-w>- :action SplitHorizontally<CR>
+nnoremap <C-w>\ :action SplitVertically<CR>
 nnoremap <C-w>m :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <C-l> :action NextTab<CR>
 nnoremap <C-h> :action PreviousTab<CR>
@@ -36,6 +36,5 @@ nnoremap <leader>C :action CompareActions<CR>
 nnoremap <leader><CR> :action NewFile<CR>
 nnoremap <leader>R :action Run<CR>
 nnoremap <leader>S :action Stop<CR>
-nnoremap ga :action Git.Add<CR>
-nnoremap gc :action Git.Commit.And.Push.Executor<CR>
-nnoremap gs :action Git.Stash<CR>
+nnoremap <leader>ga :action Git.Add<CR>
+nnoremap <leader>gs :action Git.Stash<CR>
