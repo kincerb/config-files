@@ -1,6 +1,6 @@
 export my_ps="oryxpro"
 export PATH="${PATH}:${HOME}/.local/bin"
-export POWERLINE_ROOT="${HOME}/.local/lib/python3.7/site-packages"
+export POWERLINE_ROOT="${HOME}/.local/lib/python3.8/site-packages"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 
 # make less more friendly for non-text input files, see lesspipe(1)
