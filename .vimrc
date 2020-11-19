@@ -37,11 +37,15 @@ call plug#end()
 
 " fzf settings
 set rtp+=~/.fzf
+set background=dark
+colorscheme gruvbox
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
+autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
+autocmd vimenter * hi CursorLine gui=underline cterm=underline
 filetype on
 filetype plugin indent on
-colorscheme gruvbox
 syntax on
-set background=dark
 set cursorline
 set showmatch
 set number
