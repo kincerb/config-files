@@ -142,8 +142,8 @@ nnoremap <C-F> :Ag<Space>
 nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
 vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 
-au BufNewFile,BufRead *.js, *.ts, *.html, *.css, *.yml :source ~/.vim/webdev.vim
-au BufNewFile,BufRead *.py :source ~/.vim/python.vim
+au BufNewFile,BufRead *.js,*.ts,*.html,*.css,*.yml source ~/.vim/webdev.vim
+au BufNewFile,BufRead *.py source ~/.vim/python.vim
 au BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 
 " kite options
