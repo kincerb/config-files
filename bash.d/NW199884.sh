@@ -24,7 +24,12 @@ alias music='chrome_app https://music.youtube.com'
 alias amazon='chrome_app https://amazon.com'
 alias google_play='chrome_app https://play.google.com'
 alias netflix='chrome_app https://netflix.com'
-alias reset_dns_cache="sudo killall -HUP mDNSResponder"
+alias reset_dns_cache="TERM=xterm sudo killall -HUP mDNSResponder"
+alias iboss_stop="TERM=xterm sudo -- launchctl unload /Library/LaunchDaemons/com.iboss.gen4agent.plist"
+alias iboss_start="TERM=xterm sudo -- launchctl load /Library/LaunchDaemons/com.iboss.gen4agent.plist"
+alias iboss_restart="TERM=xterm sudo -- /usr/local/bin/bash -c 'launchctl unload
+/Library/LaunchDaemons/com.iboss.gen4agent.plist; sleep 5; launchctl load
+/Library/LaunchDaemons/com.iboss.gen4agent.plist'"
 alias backup_lifecycle_db="socket; rsync -av elvmt0048:/webdata/backups/mysql_backup/ /Volumes/google/backups/work/lifecycle/"
 alias dlogin="docker login ${DTR}"
 alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(x) ^ ord('_')) for x in base64.b64decode(sys.argv[1].replace('{xor}', '')).decode()))\""
