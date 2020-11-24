@@ -28,6 +28,8 @@ Plug 'nvie/vim-flake8'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'frazrepo/vim-rainbow'
+Plug 'yggdroot/indentline'
+Plug 'othree/html5.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
@@ -74,7 +76,7 @@ set pastetoggle=<F2>
 let python_highlight_all=1
 
 inoremap jk <ESC>
-let mapleader=","
+let mapleader=" "
 
 " statusline
 set laststatus=2
@@ -122,7 +124,7 @@ nnoremap <leader>t :terminal<CR>
 set foldmethod=indent
 set foldlevel=99
 " fold with space
-nnoremap <space> za
+nnoremap <leader><leader> za
 " anyfold
 autocmd Filetype * AnyFoldActivate
 let g:anyfold_motion=0
@@ -133,10 +135,11 @@ let g:rainbow_active=1
 " fzf settings
 nnoremap <leader>f :Ag <C-R><C-W><cr>
 vnoremap <leader>f y:Ag <C-R><cr>
-" nnoremap <Leader>a :Ag <C-R><C-W><CR>:cw<CR>
-" vnoremap <Leader>a y:Ag <C-R><C-W><CR>:cw<CR>
 nnoremap <C-F> :Ag<Space>
-" nnoremap <Leader><Leader> :Files<cr>
+nnoremap <leader>. :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>w :Windows<CR>
+nnoremap <leader>c :Commands<CR>
 
 " terminal bindings
 nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
