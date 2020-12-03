@@ -91,6 +91,12 @@ set statusline+=%=
 set statusline+=%{FugitiveStatusline()}
 set statusline+=\ lines:\ %L
 set statusline+=\ buffer:\ %n
+" start recommended coc.nvim settings
+set nobackup
+set nowritebackup
+set updatetime=300
+set shortmess+=c
+" end recommended coc.nvim settings
 
 " split settings
 set splitbelow " open vertical split below
@@ -179,8 +185,8 @@ map <leader>n :NERDTreeFocus<CR>
 map <leader>N :NERDTreeClose<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=0
-let NERDTreeWinSize=32
+let NERDTreeQuitOnOpen=1
+let NERDTreeWinSize=36
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
