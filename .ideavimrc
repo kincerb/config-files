@@ -1,11 +1,11 @@
-let mapleader=","
+let mapleader=" "
 inoremap jk <ESC>
 unmap <A-i>
 set iskeyword-=_
 nnoremap zM :action CollapseAll<CR>
 nnoremap zm :action ExpandAll<CR>
-nnoremap <S-space> :action CollapseRegion<CR>
-nnoremap <space> :action ExpandRegion<CR>
+nnoremap <leader><leader> :action CollapseRegion<CR>
+nnoremap <leader>e :action ExpandRegion<CR>
 nnoremap <leader>f :action Find<CR>
 nnoremap K :action kite.docsAtCaret<CR>
 nnoremap <leader>g :action ActivateCommitToolWindow<CR>
@@ -19,19 +19,19 @@ nnoremap <C-k> :action PrevSplitter<CR>
 nnoremap <C-w>- :action SplitHorizontally<CR>
 nnoremap <C-w>\ :action SplitVertically<CR>
 nnoremap <C-w>m :action MoveEditorToOppositeTabGroup<CR>
-nnoremap <C-l> :action NextTab<CR>
-nnoremap <C-h> :action PreviousTab<CR>
+nnoremap <leader>j :action NextTab<CR>
+nnoremap <leader>k :action PreviousTab<CR>
 nnoremap <Tab> :action EditorIndentLineOrSelection<CR>
 nnoremap <S-Tab> :action EditorUnindentSelection<CR>
-nnoremap rr :action ReformatCode<CR>
-vnoremap rr :action ReformatCode<CR>
-nnoremap == :action RefactoringMenu<CR>
-vnoremap == :action RefactoringMenu<CR>
-nnoremap <leader>r :action ShowReformatFileDialog<CR>
-nnoremap <leader>i :action ShowIntentionActions<CR>
+nnoremap <leader>r :action ReformatCode<CR>
+vnoremap <leader>r :action ReformatCode<CR>
+nnoremap <leader>R :action RefactoringMenu<CR>
+vnoremap <leader>R :action RefactoringMenu<CR>
+nnoremap == :action ShowIntentionActions<CR>
+vnoremap == :action ShowIntentionActions<CR>
 nnoremap <leader><Tab> :action Switcher<CR>
 vnoremap <leader><Tab> :action Switcher<CR>
-nnoremap <leader><space> :action GotoFile<CR>
+nnoremap <leader>. :action GotoFile<CR>
 nnoremap <leader>C :action CompareActions<CR>
 nnoremap <leader><CR> :action NewFile<CR>
 nnoremap <leader>R :action Run<CR>
