@@ -51,7 +51,7 @@ autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
 autocmd vimenter * hi CursorLine gui=underline cterm=underline
 filetype on
 filetype plugin indent on
-syntax on
+syntax enable
 set cursorline
 set showmatch
 set number
@@ -151,10 +151,6 @@ nnoremap <leader>c :Commands<CR>
 nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
 vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 
-au BufNewFile,BufRead *.js,*.ts,*.html,*.css,*.yml source ~/.vim/webdev.vim
-au BufNewFile,BufRead *.py source ~/.vim/python.vim
-au BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
-
 " kite options
 let g:kite_supported_languages = ['*']
 let g:kite_tab_complete=1
@@ -166,7 +162,6 @@ set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 set belloff+=ctrlg         " disable beep during completion
 autocmd CompleteDone * if !pumvisible() | pclose | endif
-nmap <silent> <buffer> K <Plug>(kite-docs)
 
 augroup HelpInTabs
     autocmd!
@@ -191,6 +186,17 @@ let NERDTreeWinSize=36
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * wincmd p
+
+augroup WebDev
+    autocmd!
+    au BufNewFile,BufRead *.js,*.ts,*.html,*.css,*.yml,*.json source ~/.vim/webdev.vim
+augroup END
+augroup Python
+    autocmd!
+    au BufNewFile,BufRead *.py source ~/.vim/python.vim
+augroup END
+au BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
+
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
