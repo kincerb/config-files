@@ -41,14 +41,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'flazz/vim-colorschemes'
 call plug#end()
 
-" fzf settings
+" add fzf to vim runtimepath
 set rtp+=~/.fzf
 set background=dark
 colorscheme gruvbox
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+autocmd vimenter * hi Normal guibg=NONE,nocombine ctermbg=NONE
 autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
 autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
-autocmd vimenter * hi CursorLine gui=underline cterm=underline
+autocmd vimenter * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine termbg=NONE
+autocmd vimenter * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine termbg=NONE
+ctermbg=NONE guibg=NONE
 filetype on
 filetype plugin indent on
 syntax enable
@@ -139,6 +141,7 @@ let g:anyfold_fold_display=0
 let g:rainbow_active=1
 
 " fzf settings
+let g:fzf_action = { 'enter': 'tab split', 'ctrl-x': 'split' }
 nnoremap <leader>f :Ag <C-R><C-W><cr>
 vnoremap <leader>f y:Ag <C-R><cr>
 nnoremap <C-F> :Ag<Space>
