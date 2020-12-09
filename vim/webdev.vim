@@ -16,7 +16,6 @@ inoremap <buffer><silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <buffer><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-let b:coc_suggest_disable = 1
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-eslint', 'coc-prettier', 'coc-angular', 'coc-json', 'coc-css', 'coc-html' ]
 nmap <buffer> == <Plug>(coc-codeaction)
 vmap <buffer> == <Plug>(coc-codeaction-selected)
@@ -24,6 +23,7 @@ xmap <buffer> == <Plug>(coc-codeaction-selected)
 nmap <buffer> <leader>qf <Plug>(coc-fix-current)
 imap <buffer><silent><expr> <Tab> coc#refresh()
 imap <buffer><silent><expr> <c-@> coc#refresh()
+" goto mappings
 nmap <buffer><silent> gd <Plug>(coc-definition)
 nmap <buffer><silent> gy <Plug>(coc-type-definition)
 nmap <buffer><silent> gi <Plug>(coc-implementation)
@@ -36,6 +36,9 @@ imap <silent><expr><buffer> <cr> pumvisible() ? coc#_select_confirm()
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent><buffer> [g <Plug>(coc-diagnostic-prev)
 nmap <silent><buffer> ]g <Plug>(coc-diagnostic-next)
+
+nmap <buffer> =r <Plug>(coc-rename)
+vmap <buffer> =r <Plug>(coc-rename)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
