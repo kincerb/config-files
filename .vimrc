@@ -45,12 +45,11 @@ call plug#end()
 set rtp+=~/.fzf
 set background=dark
 colorscheme gruvbox
-autocmd vimenter * hi Normal guibg=NONE,nocombine ctermbg=NONE
-autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
-autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
-autocmd vimenter * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine termbg=NONE
-autocmd vimenter * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine termbg=NONE
-ctermbg=NONE guibg=NONE
+autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
+autocmd ColorScheme * hi LineNr guibg=NONE ctermbg=NONE
+autocmd ColorScheme * hi SignColumn guibg=NONE ctermbg=NONE
+autocmd ColorScheme * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+autocmd ColorScheme * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
 filetype on
 filetype plugin indent on
 syntax enable
