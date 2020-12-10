@@ -47,8 +47,9 @@ set background=dark
 colorscheme gruvbox
 autocmd SourcePost,ColorScheme * hi Normal guibg=NONE ctermbg=NONE
 autocmd SourcePost,ColorScheme * hi LineNr guibg=NONE ctermbg=NONE
-autocmd SourcePost,ColorScheme * hi SignColumn guibg=NONE ctermbg=NONE
+autocmd SourcePost,ColorScheme * hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
 autocmd SourcePost,ColorScheme * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+autocmd SourcePost,ColorScheme * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd SourcePost,ColorScheme * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
 filetype on
 filetype plugin indent on
