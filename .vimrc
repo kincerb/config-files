@@ -140,10 +140,21 @@ let g:anyfold_fold_display=0
 let g:rainbow_active=1
 
 " fzf settings
-let g:fzf_action = { 'enter': 'tab split', 'ctrl-x': 'split' }
+let g:fzf_action = { 'enter': 'tab split', 'ctrl-s': 'vsplit', 'ctrl-i': 'split'}
+" temporarily prevent powerline from crashing by not using the popup window
+let g:fzf_layout = { 'down': '40%' }
+" jump to window if possible
+let g:fzf_buffers_jump = 1
+" search for word under cursor
 nnoremap <leader>f :Ag <C-R><C-W><cr>
+" [visual] search for word under cursor
 vnoremap <leader>f y:Ag <C-R><cr>
+" enter search pattern
 nnoremap <C-F> :Ag<Space>
+" search vim command history
+nnoremap <leader>h :History:<CR>
+" normal mode mappings
+nnoremap <leader>? :Maps<CR>
 nnoremap <leader>. :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
