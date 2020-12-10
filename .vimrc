@@ -45,12 +45,18 @@ call plug#end()
 set rtp+=~/.fzf
 set background=dark
 colorscheme gruvbox
-autocmd SourcePost,ColorScheme * hi Normal guibg=NONE ctermbg=NONE
-autocmd SourcePost,ColorScheme * hi LineNr guibg=NONE ctermbg=NONE
-autocmd SourcePost,ColorScheme * hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
-autocmd SourcePost,ColorScheme * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
-autocmd SourcePost,ColorScheme * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
-autocmd SourcePost,ColorScheme * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+hi LineNr guibg=NONE ctermbg=NONE
+hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
+hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
+autocmd VimEnter,SourcePost,ColorScheme * hi Normal guibg=NONE ctermbg=NONE
+autocmd VimEnter,SourcePost,ColorScheme * hi LineNr guibg=NONE ctermbg=NONE
+autocmd VimEnter,SourcePost,ColorScheme * hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
+autocmd VimEnter,SourcePost,ColorScheme * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+autocmd VimEnter,SourcePost,ColorScheme * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+autocmd VimEnter,SourcePost,ColorScheme * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
 filetype on
 filetype plugin indent on
 syntax enable
@@ -175,19 +181,6 @@ set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 set belloff+=ctrlg         " disable beep during completion
-autocmd CompleteDone * if !pumvisible() | pclose | endif
-
-augroup HelpInTabs
-    autocmd!
-    autocmd BufEnter *.txt call HelpInNewTab()
-augroup END
-
-function! HelpInNewTab()
-    if &buftype == 'help'
-        "Convert the help window to a tab..."
-        execute "normal \<C-W>T"
-    endif
-endfunction
 
 " NERDTree options
 map <leader>n :NERDTreeFocus<CR>
@@ -197,20 +190,107 @@ let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=36
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * wincmd p
+function! HelpInNewTab()
+    if &buftype == 'help'
+        "Convert the help window to a tab..."
+        execute "normal \<C-W>T"
+    endif
+endfunction
+
+function! s:show_coc_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+endfunction
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction   
+
+function! SetWebDevOptions()
+    setlocal shiftwidth=2
+    setlocal tabstop=2
+    setlocal softtabstop=2
+    syntax enable
+
+    " Use tab for trigger completion with characters ahead and navigate.
+    " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+    " other plugin before putting this into your config.
+    inoremap <buffer><silent><expr> <TAB>
+          \ pumvisible() ? "\<C-n>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+    inoremap <buffer><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    let g:coc_global_extensions = [ 'coc-tsserver', 'coc-eslint', 'coc-prettier', 'coc-angular', 'coc-json', 'coc-css', 'coc-html' ]
+    nmap <buffer> == <Plug>(coc-codeaction)
+    vmap <buffer> == <Plug>(coc-codeaction-selected)
+    xmap <buffer> == <Plug>(coc-codeaction-selected)
+    nmap <buffer> <leader>qf <Plug>(coc-fix-current)
+    imap <buffer><silent><expr> <Tab> coc#refresh()
+    imap <buffer><silent><expr> <c-@> coc#refresh()
+    " goto mappings
+    nmap <buffer><silent> gd <Plug>(coc-definition)
+    nmap <buffer><silent> gy <Plug>(coc-type-definition)
+    nmap <buffer><silent> gi <Plug>(coc-implementation)
+    nmap <buffer><silent> gr <Plug>(coc-references)
+    nmap <buffer> <leader>r <Plug>(coc-format)
+    vmap <buffer> <leader>r <Plug>(coc-format-selected)
+    imap <silent><expr><buffer> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    " Use `[g` and `]g` to navigate diagnostics
+    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+    nmap <silent><buffer> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent><buffer> ]g <Plug>(coc-diagnostic-next)
+
+    nmap <buffer> =r <Plug>(coc-rename)
+    vmap <buffer> =r <Plug>(coc-rename)
+
+    " Use K to show documentation in preview window.
+    nmap <silent><buffer> K :call <SID>show_coc_documentation()<CR>
+endfunction
+
+function! SetPythonOptions()
+    syntax enable
+    let b:pymode_python='python3'
+    let b:pymode_options_max_line_length=119
+    let b:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+    let b:pymode_virtualenv=1
+    let b:pymode_run_bind='<leader>E'
+    let b:pymode_rope_completion=0
+    let b:pymode_doc_bind='<C->k'
+    let b:pymode_doc=0
+    let b:pymode_folding=0
+    let b:pymode_rope=1
+    let b:pymode_rope_goto_definition_bind='<leader>g'
+    let b:pymode_rope_rename_bind = '<leader>r'
+    let b:pymode_rope_goto_definition_cmd='new'
+    nmap <silent><buffer> K <Plug>(kite-docs)
+endfunction
 
 augroup WebDev
     autocmd!
-    au BufNewFile,BufRead *.js,*.ts,*.html,*.css,*.yml,*.json source ~/.vim/webdev.vim
+    au BufNewFile,BufRead *.js,*.ts,*.html,*.css,*.yml,*.json call SetWebDevOptions()
 augroup END
+
 augroup Python
     autocmd!
-    au BufNewFile,BufRead *.py source ~/.vim/python.vim
+    au BufNewFile,BufRead *.py call SetPythonOptions()
 augroup END
-au BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
+augroup HelpInTabs
+    autocmd!
+    autocmd BufEnter *.txt call HelpInNewTab()
+augroup END
 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * wincmd p
+autocmd CompleteDone * if !pumvisible() | pclose | endif
+autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
