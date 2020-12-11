@@ -51,12 +51,12 @@ hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
 hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
-autocmd VimEnter,SourcePost,ColorScheme * hi Normal guibg=NONE ctermbg=NONE
-autocmd VimEnter,SourcePost,ColorScheme * hi LineNr guibg=NONE ctermbg=NONE
-autocmd VimEnter,SourcePost,ColorScheme * hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
-autocmd VimEnter,SourcePost,ColorScheme * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
-autocmd VimEnter,SourcePost,ColorScheme * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
-autocmd VimEnter,SourcePost,ColorScheme * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
+autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Normal guibg=NONE ctermbg=NONE
+autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi LineNr guibg=NONE ctermbg=NONE
+autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
+autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
+autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
 filetype on
 filetype plugin indent on
 syntax enable
