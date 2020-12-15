@@ -1,5 +1,5 @@
-" bootstrap vim-plug
 " let $NVIM_COC_LOG_LEVEL = 'debug'
+" bootstrap vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -26,7 +26,7 @@ Plug 'pseewald/vim-anyfold'
 Plug 'google/yapf'
 Plug 'tpope/vim-commentary'
 Plug 'nvie/vim-flake8'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'frazrepo/vim-rainbow'
 Plug 'yggdroot/indentline'
@@ -157,7 +157,7 @@ let g:rainbow_active=1
 " fzf settings
 let g:fzf_action = { 'enter': 'tab split', 'ctrl-s': 'vsplit', 'ctrl-i': 'split'}
 " temporarily prevent powerline from crashing by not using the popup window
-let g:fzf_layout = { 'down': '40%' }
+" let g:fzf_layout = { 'down': '40%' }
 " jump to window if possible
 let g:fzf_buffers_jump = 1
 " search for word under cursor
@@ -183,7 +183,6 @@ vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 let g:kite_supported_languages = ['python']
 let g:kite_tab_complete=1
 let g:kite_auto_complete=1
-" let g:kite_documentation_continual=1
 set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text
@@ -195,8 +194,8 @@ map <leader>n :NERDTreeFocus<CR>
 map <leader>N :NERDTreeClose<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=1
-let NERDTreeWinSize=36
+let NERDTreeQuitOnOpen=0
+let NERDTreeWinSize=42
 
 function! HelpInNewTab()
     if &buftype == 'help'
@@ -234,9 +233,8 @@ function! SetWebDevOptions()
           \ <SID>check_back_space() ? "\<TAB>" :
           \ coc#refresh()
     inoremap <buffer><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    " coc.nvim options
     let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 'coc-angular', 'coc-json', 'coc-css', 'coc-html' ]
-    " let g:coc_suggest_disable=1
-    " let g:kite_supported_languages = ['*']
     nmap <buffer> == <Plug>(coc-codeaction)
     vmap <buffer> == <Plug>(coc-codeaction-selected)
     xmap <buffer> == <Plug>(coc-codeaction-selected)
@@ -265,6 +263,11 @@ function! SetWebDevOptions()
 endfunction
 
 function! SetPythonOptions()
+    " let b:coc_suggest_disable=1
+    " let b:coc_enabled=0
+    " let b:kite_tab_complete=1
+    " let b:kite_auto_complete=1
+    " let b:kite_documentation_continual=1
     syntax enable
     let b:pymode_python='python3'
     let b:pymode_options_max_line_length=119
@@ -302,6 +305,6 @@ autocmd VimEnter * wincmd p
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
