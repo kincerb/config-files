@@ -11,8 +11,8 @@
     "css",
     "html"
   ],
-  "eslint.autoFixOnSave": false,
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "tslint.autoFixOnSave": false,
+  "tslint.jsEnable": true,
   "prettier.disableSuccessMessage": true,
   "prettier.printWidth": 120,
   "prettier.tabWidth": 2,
