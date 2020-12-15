@@ -1,4 +1,5 @@
 " bootstrap vim-plug
+" let $NVIM_COC_LOG_LEVEL = 'debug'
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -63,6 +64,7 @@ syntax enable
 set cursorline
 set showmatch
 set number
+set relativenumber
 set history=500
 " search settings
 set ignorecase
@@ -133,6 +135,12 @@ nnoremap <leader>= :vertical resize 32<CR>
 
 " terminal fun
 nnoremap <leader>t :terminal<CR>
+
+" reload vimrc
+nnoremap <leader><F5> :source $MYVIMRC<CR>
+
+" remove conceal option for json files to show quotes
+let g:vim_json_conceal=0
 
 " folding
 set foldmethod=indent
@@ -226,7 +234,9 @@ function! SetWebDevOptions()
           \ <SID>check_back_space() ? "\<TAB>" :
           \ coc#refresh()
     inoremap <buffer><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-    let g:coc_global_extensions = [ 'coc-tsserver', 'coc-eslint', 'coc-prettier', 'coc-angular', 'coc-json', 'coc-css', 'coc-html' ]
+    let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 'coc-angular', 'coc-json', 'coc-css', 'coc-html' ]
+    " let g:coc_suggest_disable=1
+    " let g:kite_supported_languages = ['*']
     nmap <buffer> == <Plug>(coc-codeaction)
     vmap <buffer> == <Plug>(coc-codeaction-selected)
     xmap <buffer> == <Plug>(coc-codeaction-selected)
