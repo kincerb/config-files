@@ -265,8 +265,6 @@ endfunction
 function! SetPythonOptions()
     " let b:coc_suggest_disable=1
     " let b:coc_enabled=0
-    " let b:kite_tab_complete=1
-    " let b:kite_auto_complete=1
     " let b:kite_documentation_continual=1
     syntax enable
     let b:pymode_python='python3'
