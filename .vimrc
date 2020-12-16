@@ -185,8 +185,10 @@ let g:kite_tab_complete=1
 let g:kite_auto_complete=1
 set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
+set completeopt+=noselect
+set completeopt+=popup
 set completeopt-=longest   " don't insert the longest common text
-set completeopt+=preview
+" set completeopt+=preview
 set belloff+=ctrlg         " disable beep during completion
 
 " NERDTree options
@@ -280,7 +282,7 @@ function! SetPythonOptions()
     let b:pymode_rope_goto_definition_bind='<leader>g'
     let b:pymode_rope_rename_bind = '<leader>r'
     let b:pymode_rope_goto_definition_cmd='new'
-    nmap <silent><buffer> K <Plug>(kite-docs)
+    nmap <silent><buffer> gK <Plug>(kite-docs)
 endfunction
 
 augroup WebDev
