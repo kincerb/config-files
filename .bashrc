@@ -74,7 +74,7 @@ if [ -e "${HOST_BASHRC}" ]; then
   source "${HOST_BASHRC}"
 fi
 
-if [ "${UID}" -ne 0 ] && [ ! -z "${VIRTUAL_ENV}" ]; then
+if [ "${UID}" -ne 0 ] && [ -z "${VIRTUAL_ENV}" ]; then
     if [ ! -z "${my_ps}"  ]; then
         export PS1="${PS_YELLOW}${my_ps} ${PS_PWD}\W${PS_GIT}\$(git_branch)${PS_YELLOW} \$ ${PS_RESET}"
     else
