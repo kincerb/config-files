@@ -16,7 +16,6 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -62,6 +61,7 @@ filetype on
 filetype plugin indent on
 syntax enable
 set cursorline
+set signcolumn=number
 set showmatch
 set number
 set relativenumber
@@ -134,7 +134,8 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>= :vertical resize 32<CR>
 
 " terminal fun
-nnoremap <leader>t :terminal<CR>
+nnoremap <leader>t :terminal ++close ++shell ++rows=20<CR>
+nnoremap <leader>p :terminal ++close ++rows=20 python<CR>
 
 " reload vimrc
 nnoremap <leader><F5> :source $MYVIMRC<CR>
@@ -179,17 +180,45 @@ nnoremap <leader>c :Commands<CR>
 nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
 vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 
+" autocomplete settings
+set completeopt+=menuone   " show the popup menu even when there is only 1 match
+set completeopt+=noinsert  " don't insert any text until user chooses a match
+set completeopt+=noselect  " force user selection
+set completeopt+=popup     " switch to 'preview' to load in seperate window
+set completeopt-=longest   " don't insert the longest common text
+set belloff+=ctrlg         " disable beep during completion
+
 " kite options
 let g:kite_supported_languages = ['python']
 let g:kite_tab_complete=1
 let g:kite_auto_complete=1
-set completeopt+=menuone   " show the popup menu even when there is only 1 match
-set completeopt+=noinsert  " don't insert any text until user chooses a match
-set completeopt+=noselect
-set completeopt+=popup
-set completeopt-=longest   " don't insert the longest common text
-" set completeopt+=preview
-set belloff+=ctrlg         " disable beep during completion
+
+" global coc.nvim settings
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 
+    \ 'coc-angular', 'coc-json', 'coc-css', 'coc-html', 
+    \ 'coc-pyright', 'coc-markdownlint', 'coc-sh', 'coc-yaml', 'coc-vimlsp' ]
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+nmap == <Plug>(coc-codeaction)
+vmap == <Plug>(coc-codeaction-selected)
+xmap == <Plug>(coc-codeaction-selected)
+nmap <leader>qf <Plug>(coc-fix-current)
+imap <silent><expr> <Tab> coc#refresh()
+imap <silent><expr> <c-@> coc#refresh()
+" goto mappings
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>r <Plug>(coc-format)
+vmap <leader>r <Plug>(coc-format-selected)
+imap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap  =r <Plug>(coc-rename)
+vmap  =r <Plug>(coc-rename)
 
 " NERDTree options
 map <leader>n :NERDTreeFocus<CR>
@@ -234,54 +263,17 @@ function! SetWebDevOptions()
           \ pumvisible() ? "\<C-n>" :
           \ <SID>check_back_space() ? "\<TAB>" :
           \ coc#refresh()
-    inoremap <buffer><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-    " coc.nvim options
-    let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 'coc-angular', 'coc-json', 'coc-css', 'coc-html' ]
-    nmap <buffer> == <Plug>(coc-codeaction)
-    vmap <buffer> == <Plug>(coc-codeaction-selected)
-    xmap <buffer> == <Plug>(coc-codeaction-selected)
-    nmap <buffer> <leader>qf <Plug>(coc-fix-current)
-    imap <buffer><silent><expr> <Tab> coc#refresh()
-    imap <buffer><silent><expr> <c-@> coc#refresh()
-    " goto mappings
-    nmap <buffer><silent> gd <Plug>(coc-definition)
-    nmap <buffer><silent> gy <Plug>(coc-type-definition)
-    nmap <buffer><silent> gi <Plug>(coc-implementation)
-    nmap <buffer><silent> gr <Plug>(coc-references)
-    nmap <buffer> <leader>r <Plug>(coc-format)
-    vmap <buffer> <leader>r <Plug>(coc-format-selected)
-    imap <silent><expr><buffer> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-    " Use `[g` and `]g` to navigate diagnostics
-    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-    nmap <silent><buffer> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent><buffer> ]g <Plug>(coc-diagnostic-next)
-
-    nmap <buffer> =r <Plug>(coc-rename)
-    vmap <buffer> =r <Plug>(coc-rename)
 
     " Use K to show documentation in preview window.
     nmap <silent><buffer> K :call <SID>show_coc_documentation()<CR>
 endfunction
 
 function! SetPythonOptions()
-    " let b:coc_suggest_disable=1
+    let b:coc_suggest_disable=1
     " let b:coc_enabled=0
     " let b:kite_documentation_continual=1
+    setlocal textwidth=119
     syntax enable
-    let b:pymode_python='python3'
-    let b:pymode_options_max_line_length=119
-    let b:pymode_lint_options_pep8 = {'max_line_length': b:pymode_options_max_line_length}
-    let b:pymode_virtualenv=1
-    let b:pymode_run_bind='<leader>E'
-    let b:pymode_rope_completion=0
-    let b:pymode_doc_bind='<C->k'
-    let b:pymode_doc=0
-    let b:pymode_folding=0
-    let b:pymode_rope=1
-    let b:pymode_rope_goto_definition_bind='<leader>g'
-    let b:pymode_rope_rename_bind = '<leader>r'
-    let b:pymode_rope_goto_definition_cmd='new'
     nmap <silent><buffer> gK <Plug>(kite-docs)
 endfunction
 
