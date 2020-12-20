@@ -96,6 +96,7 @@ set statusline+=%f
 set statusline+=\%m
 set statusline+=\ %y
 set statusline+=\ pos:\ %l,%c
+set statusline+=\ %{coc#status()}
 set statusline+=\ %{kite#statusline()}
 " switch to the right side
 set statusline+=%=
@@ -203,8 +204,8 @@ nmap == <Plug>(coc-codeaction)
 vmap == <Plug>(coc-codeaction-selected)
 xmap == <Plug>(coc-codeaction-selected)
 nmap <leader>qf <Plug>(coc-fix-current)
-imap <silent><expr> <Tab> coc#refresh()
-imap <silent><expr> <c-@> coc#refresh()
+" imap <silent><expr> <Tab> coc#refresh()
+" imap <silent><expr> <c-@> coc#refresh()
 " goto mappings
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -275,7 +276,7 @@ function! SetPythonOptions()
     " let b:kite_documentation_continual=1
     setlocal textwidth=119
     syntax enable
-    nmap <silent><buffer> gK <Plug>(kite-docs)
+    nmap <silent><buffer> K <Plug>(kite-docs)
 endfunction
 
 augroup WebDev
