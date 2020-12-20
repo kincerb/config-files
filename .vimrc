@@ -22,8 +22,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jparise/vim-graphql'
 Plug 'pseewald/vim-anyfold'
-Plug 'google/yapf'
-Plug 'tpope/vim-commentary'
 Plug 'nvie/vim-flake8'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -34,7 +32,10 @@ Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -195,7 +196,7 @@ let g:kite_auto_complete=1
 
 " global coc.nvim settings
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 
-    \ 'coc-angular', 'coc-json', 'coc-css', 'coc-html', 
+    \ 'coc-angular', 'coc-json', 'coc-css', 'coc-html', 'coc-marketplace',
     \ 'coc-pyright', 'coc-markdownlint', 'coc-sh', 'coc-yaml', 'coc-vimlsp' ]
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nmap == <Plug>(coc-codeaction)

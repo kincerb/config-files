@@ -17,5 +17,6 @@
   "prettier.printWidth": 120,
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
-  "prettier.trailingComma": "none"
+  "prettier.trailingComma": "none",
+  "python.formatting.provider": "black"
 }
