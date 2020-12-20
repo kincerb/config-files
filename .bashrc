@@ -1,8 +1,6 @@
 # ${HOME}/.bashrc
-
 umask 027
 export HOST_BASHRC="${HOME}/.config/bash.d/${HOSTNAME%%.*}.sh"
-export PATH="${PATH}":/usr/local/sbin:"${HOME}"/bin
 
 # If not running interactively, don't do anything
 case $- in
@@ -55,10 +53,10 @@ else
 fi
 
 # fancy prompt colors
-PS_RESET="\[$(tput sgr0)\]"
-PS_YELLOW="\[$(tput setaf 154)\]"
-PS_GIT="\[$(tput setaf 45)\]"
-PS_PWD="\[$(tput setaf 147)\]"
+export PS_RESET="\[$(tput sgr0)\]"
+export PS_YELLOW="\[$(tput setaf 154)\]"
+export PS_GIT="\[$(tput setaf 45)\]"
+export PS_PWD="\[$(tput setaf 147)\]"
 
 # Source in all shared configs
 for x in ~/.config/bash.d/{secrets,aliases,functions}.sh; do
@@ -75,14 +73,18 @@ if [ -e "${HOST_BASHRC}" ]; then
 fi
 
 if [ "${UID}" -ne 0 ]; then
-    if [ -z "${VIRTUAL_ENV}" ]; then
-        if [ ! -z "${my_ps}"  ]; then
-            export PS1="${PS_YELLOW}${my_ps} ${PS_PWD}\W${PS_GIT}\$(git_branch)${PS_YELLOW} \$ ${PS_RESET}"
-        else
-            export PS1="\[\e[0;32m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\$\[\e[m\] ${PS_RESET}"
-        fi
+    if [ ! -z "${my_ps}"  ]; then
+        export PS1="${PS_YELLOW}${my_ps} ${PS_PWD}\W${PS_GIT}\$(git_branch)${PS_YELLOW} \$ ${PS_RESET}"
+    else
+        export PS1="\[\e[0;32m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\$\[\e[m\] ${PS_RESET}"
     fi
 else
     export PS1="\[\e[0;31m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\#\[\e[m\] ${PS_RESET}"
+fi
+
+# If this is a subshell under a virtual env, source it again
+# TODO: Fix the path nightmare that this causes
+if [ ! -z "${VIRTUAL_ENV}" ]; then
+    source "${VIRTUAL_ENV}"/bin/activate
 fi
 
