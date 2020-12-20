@@ -9,6 +9,7 @@
     "javascriptreact",
     "typescript.tsx",
     "css",
+    "python",
     "html"
   ],
   "tslint.autoFixOnSave": false,
