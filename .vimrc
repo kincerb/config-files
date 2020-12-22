@@ -7,9 +7,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 silent let hostname = system('echo -n $HOSTNAME') 
-if hostname == "NW199884"
-    set pythonthreedll=/Library/Frameworks/Python.framework/Versions/3.9/lib/libpython3.9.dylib
-endif
+" if hostname == "NW199884"
+"     set pythonthreedll=/Library/Frameworks/Python.framework/Versions/3.9/lib/libpython3.9.dylib
+" endif
 
 set nocompatible
 filetype off

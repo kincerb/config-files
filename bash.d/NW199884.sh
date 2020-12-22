@@ -5,7 +5,7 @@ export DTR=dtr.aws.e1.nwie.net
 export DORG="${DTR}"/mwautomation
 export VISUAL=/usr/local/bin/vim
 export EDITOR="${VISUAL}"
-export POWERLINE_ROOT="/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages"
+export POWERLINE_ROOT="/Users/kincerb/Library/Python/3.9/lib/python/site-packages"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 
 if [ -z "${SSH_CONNECTION}" ]; then

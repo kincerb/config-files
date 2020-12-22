@@ -36,12 +36,12 @@ def get_creds(url):
     :rtype: tuple
     :raises EnvError: When variables are missing
     """
-    if url == 'https://github.nwie.net':
-        id = 'GITHUB_WORK_ID'
-        token = 'GITHUB_WORK_TOKEN'
-    else:
+    if url == 'https://github.com':
         id = 'GITHUB_PERSONAL_ID'
         token = 'GITHUB_PERSONAL_TOKEN'
+    else:
+        id = 'GITHUB_WORK_ID'
+        token = 'GITHUB_WORK_TOKEN'
     reqd_vars = [id, token]
     env_vars = list(os.environ)
     missing_vars = []
