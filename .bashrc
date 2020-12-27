@@ -2,6 +2,15 @@
 umask 027
 export HOST_BASHRC="${HOME}/.config/bash.d/${HOSTNAME%%.*}.sh"
 
+LOCAL_BIN="${HOME}/.local/bin"
+HOME_BIN="${HOME}/bin"
+if [ -n "${PATH##*${LOCAL_BIN}}" ] && [ -n "${PATH##*${LOCAL_BIN}:*}" ]; then
+    export PATH=$PATH:${LOCAL_BIN}
+fi
+if [ -n "${PATH##*${HOME_BIN}}" ] && [ -n "${PATH##*${HOME_BIN}:*}" ]; then
+    export PATH=$PATH:${HOME_BIN}
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
