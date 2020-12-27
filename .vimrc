@@ -36,6 +36,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -232,6 +233,14 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap  =r <Plug>(coc-rename)
 vmap  =r <Plug>(coc-rename)
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug> (coc-funcobj-i)
+xmap af <Plug> (coc-funcobj-a)
+omap if <Plug> (coc-funcobj-i)
+omap af <Plug> (coc-funcobj-a)
+" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <C-d> <Plug> (coc-range-select)
+xmap <silent> <C-d> <Plug> (coc-range-select)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " NERDTree options
