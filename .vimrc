@@ -40,6 +40,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " add fzf to vim runtimepath
@@ -147,9 +148,13 @@ let g:vim_json_conceal=0
 
 " folding
 set foldmethod=indent
-set foldlevel=99
+set foldlevel=99 " start with all folds opened
 " fold with space
 nnoremap <leader><leader> za
+" close all folds
+nnoremap <leader>fc zM
+" open all folds
+nnoremap <leader>fo zR
 " anyfold
 autocmd Filetype * AnyFoldActivate
 let g:anyfold_motion=0
@@ -204,8 +209,6 @@ nmap == <Plug>(coc-codeaction)
 vmap == <Plug>(coc-codeaction-selected)
 xmap == <Plug>(coc-codeaction-selected)
 nmap <leader>qf <Plug>(coc-fix-current)
-" imap <silent><expr> <Tab> coc#refresh()
-" imap <silent><expr> <c-@> coc#refresh()
 " goto mappings
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -293,12 +296,10 @@ augroup HelpInTabs
     autocmd BufEnter *.txt call HelpInNewTab()
 augroup END
 
+" set verbose=12
+" set verbosefile=/Users/kincerb/Documents/log/vim-output.txt
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * wincmd p
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
-
-" python3 from powerline.vim import setup as powerline_setup
-" python3 powerline_setup()
-" python3 del powerline_setup
