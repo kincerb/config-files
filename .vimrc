@@ -40,7 +40,10 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+" file icons
+Plug 'ryanoasis/vim-devicons'
 " Colorschemes
+Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'ParamagicDev/vim-medic_chalk'
