@@ -232,6 +232,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap  =r <Plug>(coc-rename)
 vmap  =r <Plug>(coc-rename)
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " NERDTree options
 map <leader>n :NERDTreeFocus<CR>
