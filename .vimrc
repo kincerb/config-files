@@ -39,14 +39,22 @@ Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'flazz/vim-colorschemes'
 Plug 'sheerun/vim-polyglot'
+" Colorschemes
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'ParamagicDev/vim-medic_chalk'
+Plug 'gryf/wombat256grf'
+Plug 'jdsimcoe/hyper.vim'
 call plug#end()
 
 " add fzf to vim runtimepath
 set rtp+=~/.fzf
 set background=dark
-colorscheme gruvbox
+filetype on
+filetype plugin indent on
+syntax enable
+colorscheme wombat256grf
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
@@ -59,9 +67,6 @@ autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi SignColumn term=bold,nocombi
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
-filetype on
-filetype plugin indent on
-syntax enable
 set cursorline
 set signcolumn=number
 set showmatch
