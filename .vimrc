@@ -27,7 +27,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'frazrepo/vim-rainbow'
 Plug 'yggdroot/indentline'
-Plug 'othree/html5.vim'
+" Plug 'othree/html5.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
@@ -58,7 +58,7 @@ set background=dark
 filetype on
 filetype plugin indent on
 syntax enable
-colorscheme wombat256grf
+colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
@@ -143,7 +143,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <leader>= :vertical resize 32<CR>
+nnoremap <leader>= :vertical resize 42<CR>
 
 " terminal fun
 nnoremap <leader>t :terminal ++close ++shell ++rows=20<CR>
@@ -225,8 +225,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>r <Plug>(coc-format)
 vmap <leader>r <Plug>(coc-format-selected)
-imap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -245,7 +244,7 @@ map <leader>n :NERDTreeFocus<CR>
 map <leader>N :NERDTreeClose<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=0
+let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=42
 
 function! HelpInNewTab()
