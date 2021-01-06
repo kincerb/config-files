@@ -27,7 +27,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'frazrepo/vim-rainbow'
 Plug 'yggdroot/indentline'
-" Plug 'othree/html5.vim'
+Plug 'othree/html5.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
@@ -52,13 +52,12 @@ Plug 'gryf/wombat256grf'
 Plug 'jdsimcoe/hyper.vim'
 call plug#end()
 
+filetype plugin indent on
 " add fzf to vim runtimepath
 set rtp+=~/.fzf
 set background=dark
-filetype on
-filetype plugin indent on
 syntax enable
-colorscheme onedark
+colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
@@ -244,8 +243,8 @@ map <leader>n :NERDTreeFocus<CR>
 map <leader>N :NERDTreeClose<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=1
-let NERDTreeWinSize=42
+let NERDTreeQuitOnOpen=0
+let NERDTreeWinSize=26
 
 function! HelpInNewTab()
     if &buftype == 'help'
@@ -288,11 +287,11 @@ function! SetWebDevOptions()
 endfunction
 
 function! SetPythonOptions()
+    syntax enable
     let b:coc_suggest_disable=1
     " let b:coc_enabled=0
     " let b:kite_documentation_continual=1
     setlocal textwidth=119
-    syntax enable
     nmap <silent><buffer> K <Plug>(kite-docs)
 endfunction
 
