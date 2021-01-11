@@ -24,5 +24,8 @@
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
   "python.linting.pylintEnabled": true,
-  "python.linting.pylintPath": "pylint"
+  "python.linting.pylintPath": "pylint",
+  "markdownlint.config": {
+    "MD033": false
+  }
 }
