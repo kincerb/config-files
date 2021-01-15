@@ -16,6 +16,7 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'mbbill/undotree'
 Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -71,7 +72,17 @@ autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorLine term=underline,no
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
 set cursorline
-set signcolumn=number
+set noswapfile
+set directory=~/.vim/tmp
+set undodir=~/.vim/undodir
+set undofile
+set nobackup
+set nowritebackup
+set colorcolumn=80
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+set scrolloff=8
 set showmatch
 set number
 set relativenumber
@@ -80,8 +91,8 @@ set history=500
 set ignorecase
 set smartcase
 set incsearch " hightlight match while typing
-set hlsearch
-nmap <silent> <BS> :nohlsearch<CR>
+set nohlsearch
+" nmap <silent> <BS> :nohlsearch<CR>
 set encoding=utf-8
 set hidden " don't warn when switching from unsaved buffer
 set clipboard^=unnamed " use system clipboard
@@ -112,11 +123,6 @@ set statusline+=%=
 set statusline+=%{FugitiveStatusline()}
 set statusline+=\ lines:\ %L
 set statusline+=\ buffer:\ %n
-" start recommended coc.nvim settings
-set nobackup
-set nowritebackup
-set updatetime=300
-set shortmess+=c
 " end recommended coc.nvim settings
 
 " split settings
@@ -150,6 +156,7 @@ nnoremap <leader>p :terminal ++close ++rows=20 python<CR>
 
 " reload vimrc
 nnoremap <leader><F5> :source $MYVIMRC<CR>
+nnoremap <F5> :UndotreeToggle<CR>
 
 " remove conceal option for json files to show quotes
 let g:vim_json_conceal=0
