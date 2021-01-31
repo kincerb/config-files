@@ -1,6 +1,7 @@
 export my_ps="oryxpro"
 export POWERLINE_ROOT="${HOME}/.local/lib/python3.8/site-packages"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
+export GOOGLE_CHROME="/opt/google/chrome/google-chrome"
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -47,3 +48,13 @@ if [ -e "${POWERLINE_BASHRC}" ]; then
     # POWERLINE_BASH_SELECT=1
     # source "${POWERLINE_BASHRC}"
 fi
+
+chrome_app() {
+    if [ "${#}" -ne 1 ]; then
+        echo -e "Usage:\n chrome_app [url]"
+        echo -e "\n  chrome_app https://netflix.com"
+        return
+    fi
+    local url="${1}"
+    ("${GOOGLE_CHROME}" --app="${url}" --app-shell-user=dev.bkincer@gmail.com 2>&1 &>/dev/null &)
+}
