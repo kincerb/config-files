@@ -246,12 +246,12 @@ omap af <Plug> (coc-funcobj-a)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " NERDTree options
-map <leader>n :NERDTreeFocus<CR>
-map <leader>N :NERDTreeClose<CR>
+nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+nnoremap <leader>N :NERDTreeClose<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=0
-let NERDTreeWinSize=26
+let NERDTreeWinSize=32
 
 function! HelpInNewTab()
     if &buftype == 'help'
