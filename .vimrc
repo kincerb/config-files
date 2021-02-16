@@ -77,6 +77,7 @@ set directory=~/.vim/tmp
 set undodir=~/.vim/undodir
 set undofile
 set nobackup
+set diffopt=vertical,filler
 set nowritebackup
 set colorcolumn=80
 set updatetime=300
