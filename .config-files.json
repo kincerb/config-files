@@ -1,0 +1,13 @@
+{
+  "force_links": true,
+  "default_destination": "~",
+  "links": {
+    ".bashrc": {},
+    ".vimrc": {},
+    ".ideavimrc": {},
+    ".tmux.conf": {},
+    "vim/coc-settings.json": {
+      "destination": "~/.vim/coc-settings.json"
+    }
+  }
+}

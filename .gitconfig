@@ -1,5 +1,5 @@
 [credential "https://github.com"]
-	helper = /home/kincerb/bin/git-helper.py --url https://github.com
+	helper = /home/kincerb/.local/bin/git-helper.py --url https://github.com
 [user]
 	name = kincerb
 	email = dev.bkincer@gmail.com
