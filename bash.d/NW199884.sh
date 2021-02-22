@@ -1,6 +1,4 @@
 export my_ps="mac"
-export HOMEBREW_GITHUB_API_TOKEN="de80bed57fed2ee501671dafdf22b8ff61d95b63"
-# export PATH=${PATH}:${HOME}/Library/Python/3.8/bin
 export DTR=dtr.aws.e1.nwie.net
 export DORG="${DTR}"/mwautomation
 export VISUAL=/usr/local/bin/vim
