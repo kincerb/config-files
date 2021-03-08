@@ -1,0 +1,12 @@
+ConnectTimeOut 45
+StrictHostKeyChecking no
+ForwardAgent yes
+ServerAliveInterval 30
+ServerAliveCountMax 3
+ControlMaster auto
+ControlPath ~/.ssh/socket/%r_%h
+ControlPersist 4h
+PermitLocalCommand yes
+LocalCommand if ! [ -z "${TMUX}" ]; then printf "\033k%n\033\\"; fi
+Compression yes
+Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
