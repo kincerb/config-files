@@ -51,7 +51,7 @@ git_branch() {
 ssh() {
     TERM=xterm-256color command ssh "$@"
     if ! [ -z "${TMUX}" ]; then
-        printf "\033k$(basename ${PWD})\033\\"
+        printf "\033k${PWD##*/}\033\\"
     fi
 }
 
@@ -124,8 +124,8 @@ ssh_forward() {
 
 tmux_update_ssh () {
     local session="${1:-main}"
-    tSend.sh -s "${session}" "export SSH_AUTH_SOCK=${SSH_AUTH_SOCK}" "c-m";
-    tSend.sh -s "${session}" "c-l"
+    tmux-send-keys.sh -s "${session}" "export SSH_AUTH_SOCK=${SSH_AUTH_SOCK}" "c-m";
+    tmux-send-keys.sh -s "${session}" "c-l"
 }
 
 pip_update() {

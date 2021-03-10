@@ -1,5 +1,7 @@
 # ${HOME}/.bashrc
 umask 027
+# prevent ctrl+s from stopping output
+stty stop ""
 export HOST_BASHRC="${HOME}/.config/bash.d/${HOSTNAME%%.*}.sh"
 
 LOCAL_BIN="${HOME}/.local/bin"
@@ -47,7 +49,17 @@ export HISTSIZE=100000
 export HISTFILESIZE=100000
 export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
-export PROMPT_COMMAND="history -a; history -c; history -r"
+
+case "$TERM" in
+linux|xterm*|rxvt*)
+  export PROMPT_COMMAND='history -a; history -c; history -r; echo -ne "\033]0;${PWD##*/}\007"'
+  ;;
+screen*)
+  export PROMPT_COMMAND='history -a; history -c; history -r; echo -ne "\033k${PWD##*/}\033\\"'
+  ;;
+*)
+  ;;
+esac
 
 # use gpg-agent as ssh agent
 if [ -s /run/user/"${UID}"/gnupg/S.gpg-agent.ssh ]; then
