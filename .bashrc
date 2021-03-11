@@ -1,7 +1,7 @@
 # ${HOME}/.bashrc
 umask 027
 # prevent ctrl+s from stopping output
-stty stop ""
+stty -ixon
 export HOST_BASHRC="${HOME}/.config/bash.d/${HOSTNAME%%.*}.sh"
 
 LOCAL_BIN="${HOME}/.local/bin"
