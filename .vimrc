@@ -207,7 +207,9 @@ vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt+=noselect  " force user selection
-set completeopt+=popup     " switch to 'preview' to load in seperate window
+if hostname != "penguin"
+    set completeopt+=popup     " switch to 'preview' to load in seperate window
+endif
 set completeopt-=longest   " don't insert the longest common text
 set belloff+=ctrlg         " disable beep during completion
 
