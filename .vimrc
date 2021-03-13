@@ -71,6 +71,13 @@ autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi SignColumn term=bold,nocombi
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
+" Host specific options
+if hostname != "penguin"
+    set completeopt+=popup     " switch to 'preview' to load in seperate window
+    nnoremap <leader>t :terminal ++close ++shell ++rows=30<CR>
+else
+    nnoremap <leader>t :terminal ++close ++rows=25<CR>
+endif
 set cursorline
 set noswapfile
 set directory=~/.vim/tmp
@@ -152,7 +159,6 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>= :vertical resize 42<CR>
 
 " terminal fun
-nnoremap <leader>t :terminal ++close ++shell ++rows=20<CR>
 nnoremap <leader>p :terminal ++close ++rows=20 python<CR>
 
 " reload vimrc
@@ -207,9 +213,6 @@ vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
 set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt+=noselect  " force user selection
-if hostname != "penguin"
-    set completeopt+=popup     " switch to 'preview' to load in seperate window
-endif
 set completeopt-=longest   " don't insert the longest common text
 set belloff+=ctrlg         " disable beep during completion
 
