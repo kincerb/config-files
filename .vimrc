@@ -71,6 +71,7 @@ autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi SignColumn term=bold,nocombi
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
+let mapleader=" "
 " Host specific options
 if hostname != "penguin"
     set completeopt+=popup     " switch to 'preview' to load in seperate window
@@ -115,7 +116,6 @@ set pastetoggle=<F2>
 let python_highlight_all=1
 
 inoremap jk <ESC>
-let mapleader=" "
 
 " statusline
 set laststatus=2
