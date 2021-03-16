@@ -55,6 +55,11 @@ ssh() {
     fi
 }
 
+vim() {
+    stty -ixon; command vim "$@"
+    stty -ixoff
+}
+
 rvim() {
     if [ "${#}" -ne 2 ]; then
         echo -e "Usage:\n  rvim [server] [file_path|dir_path/]"
