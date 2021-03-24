@@ -58,6 +58,7 @@ filetype plugin indent on
 set rtp+=~/.fzf
 set background=dark
 syntax enable
+
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
@@ -71,14 +72,25 @@ autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi SignColumn term=bold,nocombi
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
+
 let mapleader=" "
+
 " Host specific options
 if hostname != "penguin"
-    set completeopt+=popup     " switch to 'preview' to load in seperate window
+    set completeopt+=popup     " vim shipped in debian doesn't support 'popup'
     nnoremap <leader>t :terminal ++close ++shell ++rows=30<CR>
 else
+    set completeopt+=preview     " vim shipped in debian doesn't support 'popup'
     nnoremap <leader>t :terminal ++close ++rows=25<CR>
 endif
+
+" autocomplete settings
+set completeopt+=menuone   " show the popup menu even when there is only 1 match
+set completeopt+=noinsert  " don't insert any text until user chooses a match
+set completeopt+=noselect  " force user selection
+set completeopt-=longest   " don't insert the longest common text
+set belloff+=ctrlg         " disable beep during completion
+
 set cursorline
 set noswapfile
 set directory=~/.vim/tmp
@@ -208,13 +220,6 @@ nnoremap <leader>c :Commands<CR>
 " terminal bindings
 nnoremap <leader>e call term_sendkeys(buf, "import \<CR>")
 vnoremap <leader>e call term_sendkeys(buf, "\<C-R>\<C-W>")
-
-" autocomplete settings
-set completeopt+=menuone   " show the popup menu even when there is only 1 match
-set completeopt+=noinsert  " don't insert any text until user chooses a match
-set completeopt+=noselect  " force user selection
-set completeopt-=longest   " don't insert the longest common text
-set belloff+=ctrlg         " disable beep during completion
 
 " kite options
 let g:kite_supported_languages = ['python']
