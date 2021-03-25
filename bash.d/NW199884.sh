@@ -89,7 +89,7 @@ __proxy() {
         if [ "${1}" == "desktop-nw" ]; then
             proxy_var=http://10.200.162.15:8080
         elif [ "${1}" == "nuc" ]; then
-            proxy_var=http://192.168.86.2:3128
+            proxy_var=http://192.168.86.57:3128
         elif [ "${1}" == "cntlm" ]; then
             proxy_var=http://127.0.0.1:3128
         else
