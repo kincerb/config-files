@@ -59,7 +59,7 @@ set rtp+=~/.fzf
 set background=dark
 syntax enable
 
-colorscheme gruvbox
+colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
