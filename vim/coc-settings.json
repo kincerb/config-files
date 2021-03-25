@@ -19,7 +19,11 @@
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "none",
-  "python.formatting.provider": "black",
+  "python.formatting.provider": "autopep8",
+  "python.formatting.blackArgs": [
+    "--line-length 79",
+    "--fast"
+  ],
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
   "python.linting.pylamaEnabled": true,
