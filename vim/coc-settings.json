@@ -20,11 +20,9 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "none",
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/usr/local/bin/black",
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintPath": "pylint",
+  "python.linting.pylamaEnabled": true,
   "markdownlint.config": {
     "MD033": false
   }
