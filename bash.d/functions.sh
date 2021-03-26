@@ -129,8 +129,8 @@ ssh_forward() {
 
 tmux_update_ssh () {
     local session="${1:-main}"
-    tmux-send-keys.sh -s "${session}" "export SSH_AUTH_SOCK=${SSH_AUTH_SOCK}" "c-m";
-    tmux-send-keys.sh -s "${session}" "c-l"
+    tmux-send-keys.sh -p bash -s "${session}" "export SSH_AUTH_SOCK=${SSH_AUTH_SOCK}" "c-m";
+    tmux-send-keys.sh -p bash -s "${session}" "c-l"
 }
 
 pip_update() {
