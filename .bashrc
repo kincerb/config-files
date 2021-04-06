@@ -58,7 +58,11 @@ export HISTFILESIZE=100000
 export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
 
-export PROMPT_COMMAND="${PROMPT_COMMAND}; history -a; history -c; history -r"
+if [ -z "${PROMPT_COMMAND}" ]; then
+    export PROMPT_COMMAND="history -a; history -c; history -r"
+else
+    export PROMPT_COMMAND="${PROMPT_COMMAND}; history -a; history -c; history -r"
+fi
 
 if [ -z "${VIM_TERMINAL}" ]; then
     case "$TERM" in
