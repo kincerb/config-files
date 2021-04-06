@@ -58,20 +58,20 @@ export HISTFILESIZE=100000
 export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
 
-export PROMPT_COMMAND='history -a; history -c; history -r'
+# export PROMPT_COMMAND='history -a; history -c; history -r'
 
-if [ -z "${VIM_TERMINAL}" ]; then
-    case "$TERM" in
-    linux|xterm*|rxvt*)
-      export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${PWD##*/}\007"'
-      ;;
-    screen*)
-      export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${PWD##*/}\033"'
-      ;;
-    *)
-      ;;
-    esac
-fi
+# if [ -z "${VIM_TERMINAL}" ]; then
+#     case "$TERM" in
+#     linux|xterm*|rxvt*)
+#       export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${PWD##*/}\007"'
+#       ;;
+#     screen*)
+#       export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${PWD##*/}\033"'
+#       ;;
+#     *)
+#       ;;
+#     esac
+# fi
 
 # use gpg-agent as ssh agent
 if [ -S /run/user/"${UID}"/gnupg/S.gpg-agent.ssh ]; then
