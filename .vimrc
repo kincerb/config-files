@@ -230,7 +230,8 @@ let g:kite_auto_complete=1
 let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 
     \ 'coc-angular', 'coc-json', 'coc-css', 'coc-html', 'coc-marketplace',
-    \ 'coc-pyright', 'coc-markdownlint', 'coc-sh', 'coc-yaml', 'coc-vimlsp' ]
+    \ 'coc-pyright', 'coc-markdownlint', 'coc-sh', 'coc-yaml', 'coc-vimlsp',
+    \ 'coc-go' ]
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nmap == <Plug>(coc-codeaction)
 vmap == <Plug>(coc-codeaction-selected)
