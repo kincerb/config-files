@@ -258,13 +258,15 @@ omap if <Plug> (coc-funcobj-i)
 omap af <Plug> (coc-funcobj-a)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" NERDTree options
+" left vertical window config
 nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <leader>N :NERDTreeClose<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=0
 let NERDTreeWinSize=32
+
+nnoremap <leader><C-n> :TagbarToggle<CR>
 
 function! HelpInNewTab()
     if &buftype == 'help'
