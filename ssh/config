@@ -5,8 +5,8 @@ ServerAliveInterval 30
 ServerAliveCountMax 3
 ControlMaster auto
 ControlPath ~/.ssh/socket/%r_%h
-ControlPersist 4h
+ControlPersist 30m
 PermitLocalCommand yes
-LocalCommand if ! [ -z "${TMUX}" ]; then printf "\033k%n\033\\"; fi
+LocalCommand echo -en "\033k%h\033\\"; echo -en "\033]0;%h\007\\"
 Compression yes
 Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
