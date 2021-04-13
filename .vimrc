@@ -290,6 +290,15 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction   
 
+" Update to take filter argument
+function! PasteIntoTermBuffer(term_type) range
+    let term_buffer_num = bufnr(a:term_type)
+    if term_buffer_num == -1
+        return
+    endif
+    " call term_sendkeys(term_buffer_num, "\<C-R>\<C-W>")
+endfunction
+
 function! SetWebDevOptions()
     setlocal shiftwidth=2
     setlocal tabstop=2
@@ -311,7 +320,7 @@ endfunction
 function! SetPythonOptions()
     syntax enable
     let b:coc_suggest_disable=1
-    setlocal textwidth=119
+    setlocal textwidth=79
     nmap <silent><buffer> K <Plug>(kite-docs)
 endfunction
 
