@@ -62,6 +62,7 @@ syntax enable
 colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
+hi Terminal guibg=NONE ctermbg=NONE
 hi SignColumn term=bold,nocombine guibg=NONE ctermbg=NONE
 hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
