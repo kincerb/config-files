@@ -58,19 +58,23 @@ export HISTFILESIZE=100000
 export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
 
-if [ -z "${PROMPT_COMMAND}" ]; then
-    export PROMPT_COMMAND="history -a; history -c; history -r"
-else
-    export PROMPT_COMMAND="${PROMPT_COMMAND}; history -a; history -c; history -r"
-fi
+export PROMPT_COMMAND="history -a; history -c; history -r"
 
 if [ -z "${VIM_TERMINAL}" ]; then
     case "$TERM" in
     linux|xterm*|rxvt*)
-      export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${PWD##*/}\007"'
+        if [ -z "${SSH_CLIENT}" ]; then
+            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${PWD##*/}\007"'
+        else
+            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${HOSTNAME%%.*}: ${PWD##*/}\007"'
+        fi
       ;;
     screen*)
-      export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${PWD##*/}\033"'
+        if [ -z "${SSH_CLIENT}" ]; then
+            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${PWD##*/}\033"'
+        else
+            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${HOSTNAME%%.*}: ${PWD##*/}\033"'
+        fi
       ;;
     *)
       ;;
