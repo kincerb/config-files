@@ -192,8 +192,9 @@ nnoremap <leader>fc zM
 nnoremap <leader>fo zR
 " anyfold
 autocmd Filetype * AnyFoldActivate
+let g:anyfold_fold_toplevel=1
 let g:anyfold_motion=0
-let g:anyfold_fold_display=0
+let g:anyfold_fold_display=1
 
 let g:rainbow_active=1
 
