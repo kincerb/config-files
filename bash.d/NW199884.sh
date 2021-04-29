@@ -6,12 +6,6 @@ export EDITOR="${VISUAL}"
 export POWERLINE_ROOT="/usr/local/lib/python3.9/site-packages"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 
-if [ -z "${SSH_CONNECTION}" ]; then
-    if [ -e ~/.gnupg/S.gpg-agent.ssh ]; then
-        export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
-    fi
-fi
-
 launchctl setenv SSH_AUTH_SOCK "${SSH_AUTH_SOCK}"
 
 alias socket='ssh -Nf elvmt0048 2>/dev/null'

@@ -81,9 +81,12 @@ if [ -z "${VIM_TERMINAL}" ]; then
     esac
 fi
 
-# use gpg-agent as ssh agent
-if [ -S /run/user/"${UID}"/gnupg/S.gpg-agent.ssh ]; then
-    export SSH_AUTH_SOCK=/run/user/"${UID}"/gnupg/S.gpg-agent.ssh
+if [ -z "${SSH_CONNECTION}" ]; then
+    if [ -S /run/user/"${UID}"/gnupg/S.gpg-agent.ssh ]; then
+        export SSH_AUTH_SOCK=/run/user/"${UID}"/gnupg/S.gpg-agent.ssh
+    elif [ -S ~/.gnupg/S.gpg-agent.ssh ]; then
+        export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
+    fi
 fi
 
 # Source in all shared configs
