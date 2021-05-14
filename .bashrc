@@ -63,17 +63,17 @@ export PROMPT_COMMAND="history -a; history -c; history -r"
 if [ -z "${VIM_TERMINAL}" ]; then
     case "$TERM" in
     linux|xterm*|rxvt*)
-        if [ -z "${SSH_CLIENT}" ]; then
-            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${PWD##*/}\007"'
-        else
+        if [ -n "${SSH_CLIENT}" ] && [ -z "${TMUX}" ]; then
             export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${HOSTNAME%%.*}: ${PWD##*/}\007"'
+        else
+            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033]0;${PWD##*/}\007"'
         fi
       ;;
     screen*)
-        if [ -z "${SSH_CLIENT}" ]; then
-            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${PWD##*/}\033"'
-        else
+        if [ -n "${SSH_CLIENT}" ] && [ -z "${TMUX}" ]; then
             export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${HOSTNAME%%.*}: ${PWD##*/}\033"'
+        else
+            export PROMPT_COMMAND=${PROMPT_COMMAND}'; printf "\033k${PWD##*/}\033"'
         fi
       ;;
     *)
@@ -83,11 +83,12 @@ fi
 
 if [ -z "${SSH_CONNECTION}" ]; then
     if [ -S /run/user/"${UID}"/gnupg/S.gpg-agent.ssh ]; then
-        export SSH_AUTH_SOCK=/run/user/"${UID}"/gnupg/S.gpg-agent.ssh
+        SSH_AUTH_SOCK=/run/user/"${UID}"/gnupg/S.gpg-agent.ssh
     elif [ -S ~/.gnupg/S.gpg-agent.ssh ]; then
-        export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
+        SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
     fi
 fi
+export SSH_AUTH_SOCK
 
 # Source in all shared configs
 for x in ~/.config/bash.d/{colors,secrets,aliases,functions}.sh; do
