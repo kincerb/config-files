@@ -9,8 +9,8 @@ export HOST_BASHRC="${HOME}/.config/bash.d/${HOSTNAME%%.*}.sh"
 
 LOCAL_BIN="${HOME}/.local/bin"
 
-if [ -n "${PATH##*${LOCAL_BIN}}" ] && [ -n "${PATH##*${LOCAL_BIN}:*}" ]; then
-    export PATH=$PATH:${LOCAL_BIN}
+if ! [[ "${PATH}" =~ "${HOME}/.local/bin"  ]]; then
+    export PATH=$PATH:$HOME/.local/bin
 fi
 
 # If not running interactively, don't do anything

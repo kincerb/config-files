@@ -8,6 +8,10 @@ export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 
 launchctl setenv SSH_AUTH_SOCK "${SSH_AUTH_SOCK}"
 
+if ! [[ "${PATH}" =~ "/usr/local/sbin" ]]; then
+    export PATH=$PATH:/usr/local/sbin
+fi
+
 alias socket='ssh -Nf elvmt0048 2>/dev/null'
 alias hulu='chrome_app https://hulu.com'
 alias chrome='(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
@@ -31,9 +35,6 @@ alias sed=/usr/local/bin/gsed
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 if [ -e "${POWERLINE_BASHRC}" ]; then
     powerline-daemon -q
-    # POWERLINE_BASH_CONTINUATION=1
-    # POWERLINE_BASH_SELECT=1
-    # source "${POWERLINE_BASHRC}"
 fi
 
 d_push() {
