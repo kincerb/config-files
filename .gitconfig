@@ -19,3 +19,4 @@
     cp = cherry-pick
     bls = branch --list -a
     fp = fetch --prune
+    up = pull --rebase
