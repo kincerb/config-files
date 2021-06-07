@@ -84,7 +84,7 @@ __proxy() {
     fi
     if [[ "${1}" =~ ^http://|cntlm|home ]]; then
         if [ "${1}" == "home" ]; then
-            proxy_var=http://wireguard01.lan:3128
+            proxy_var=http://192.168.86.4:3128
         elif [ "${1}" == "cntlm" ]; then
             proxy_var=http://127.0.0.1:3128
         else
