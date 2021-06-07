@@ -76,15 +76,15 @@ chrome_app() {
 
 __proxy() {
     local proxy_var x
+    local _usage
+    _usage="Usage:\n  proxy [ home | cntlm | off | status | http:// ]"
     if [ "${#}" -ne 1 ]; then
-        echo -e "Usage:\n  proxy [ desktop-nw | nuc | cntlm | off | status | http:// ]"
+        echo -e "${_usage}"
         return
     fi
-    if [[ "${1}" =~ ^http://|desktop-nw|cntlm|nuc ]]; then
-        if [ "${1}" == "desktop-nw" ]; then
-            proxy_var=http://10.200.162.15:8080
-        elif [ "${1}" == "nuc" ]; then
-            proxy_var=http://192.168.86.57:3128
+    if [[ "${1}" =~ ^http://|cntlm|home ]]; then
+        if [ "${1}" == "home" ]; then
+            proxy_var=http://wireguard01.lan:3128
         elif [ "${1}" == "cntlm" ]; then
             proxy_var=http://127.0.0.1:3128
         else
@@ -105,7 +105,6 @@ __proxy() {
         for x in https http all ftp no; do
             unset ${x}_proxy
         done
-        #unset GIT_PROXY_COMMAND
     elif [ "${1}" == "status" ]; then
         for x in HTTPS HTTP ALL FTP NO; do
             echo "  ${x}_PROXY=$(eval echo \$${x}_PROXY)"
@@ -116,7 +115,7 @@ __proxy() {
         done
         echo "  GIT_PROXY_COMMAND=${GIT_PROXY_COMMAND}"
     else
-        echo -e "Usage:\n  __proxy [ squid | cntlm | off | status ]"
+        echo -e "${_usage}"
     fi
 }
 
