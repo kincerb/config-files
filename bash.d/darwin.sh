@@ -1,4 +1,3 @@
-export my_ps="mac"
 export DTR=dtr.aws.e1.nwie.net
 export DORG="${DTR}"/mwautomation
 export VISUAL=/usr/local/bin/vim
@@ -106,12 +105,8 @@ __proxy() {
             unset ${x}_proxy
         done
     elif [ "${1}" == "status" ]; then
-        for x in HTTPS HTTP ALL FTP NO; do
+        for x in HTTPS HTTP ALL NO; do
             echo "  ${x}_PROXY=$(eval echo \$${x}_PROXY)"
-        done
-        echo ""
-        for x in https http all ftp no; do
-            echo "  ${x}_proxy=$(eval echo \$${x}_proxy)"
         done
         echo "  GIT_PROXY_COMMAND=${GIT_PROXY_COMMAND}"
     else
@@ -146,5 +141,5 @@ reverse_nuc_proxy() {
     fi
     local host_listen_address="${1}"
     local host="${2}"
-    ssh -tt -NfR "${host_listen_address}":192.168.86.2:3128 "${host}"
+    ssh -tt -NfR "${host_listen_address}":192.168.86.4:3128 "${host}"
 }

@@ -5,7 +5,11 @@ if [ "${TILIX_ID}" ] || [ "${VTE_VERSION}" ]; then
     source /etc/profile.d/vte.sh
 fi
 
-export HOST_BASHRC="${HOME}/.config/bash.d/${HOSTNAME%%.*}.sh"
+if [[ "${OSTYPE}" =~ ^linux ]]; then
+    export PLATFORM_BASHRC="${HOME}/.config/bash.d/linux.sh"
+elif [[ "${OSTYPE}" =~ ^darwin ]]; then
+    export PLATFORM_BASHRC="${HOME}/.config/bash.d/darwin.sh"
+fi
 
 LOCAL_BIN="${HOME}/.local/bin"
 
@@ -100,18 +104,14 @@ done
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Source host specific stuff
-if [ -e "${HOST_BASHRC}" ]; then
-  source "${HOST_BASHRC}"
+if [ -e "${PLATFORM_BASHRC}" ]; then
+  source "${PLATFORM_BASHRC}"
 fi
 
 if [ "${UID}" -ne 0 ]; then
-    if [ ! -z "${my_ps}"  ]; then
-        export PS1="${__LIGHT_BLUE}${my_ps} ${__LIGHT_ORANGE}\W${__LIGHT_RED}\$(git_branch)${__BLUE_GREEN} \$ ${__RESET}"
-    else
-        export PS1="\[\e[0;32m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\$\[\e[m\] ${__RESET}"
-    fi
+    export PS1="${__DARK_PURPLE}${HOSTNAME%%.*} ${__ORANGE}\W${__DARK_GREY}\$(git_branch)${__BLUE_GREEN} \$ ${__RESET}"
 else
-    export PS1="\[\e[0;31m\]\h\[\e[m\] \[\e[0;34m\]\W\[\e[m\] \[\e[0;32m\]\#\[\e[m\] ${__RESET}"
+    export PS1="${__NEON_RED}${HOSTNAME%%.*} ${__NEON_YELLOW}\W${__DARK_GREY}\$(git_branch)${__BLUE_GREEN} \$ ${__RESET}"
 fi
 
 # If this is a subshell under a virtual env, source it again

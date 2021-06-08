@@ -1,4 +1,3 @@
-export my_ps="titan"
 export POWERLINE_ROOT="${HOME}/.local/lib/python3.8/site-packages"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 export GOOGLE_CHROME="/opt/google/chrome/google-chrome"
@@ -44,9 +43,6 @@ fi
 
 if [ -e "${POWERLINE_BASHRC}" ]; then
     powerline-daemon -q
-    # POWERLINE_BASH_CONTINUATION=1
-    # POWERLINE_BASH_SELECT=1
-    # source "${POWERLINE_BASHRC}"
 fi
 
 chrome_app() {
