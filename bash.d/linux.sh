@@ -1,4 +1,6 @@
-export POWERLINE_ROOT="${HOME}/.local/lib/python3.8/site-packages"
+export PYTHON_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+export PYTHON_USER_SITE="${HOME}/.local/lib/python${PYTHON_VER}/site-packages"
+export POWERLINE_ROOT="${PYTHON_USER_SITE}"
 export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
 export GOOGLE_CHROME="/opt/google/chrome/google-chrome"
 
