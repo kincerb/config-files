@@ -103,15 +103,15 @@ done
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+if [ "${UID}" -ne 0 ]; then
+    export PS1="${__NEON_YELLOW}${HOSTNAME%%.*} ${__ORANGE}\W${__DARK_GREY}\$(git_branch)${__BLUE_GREEN} \$ ${__RESET}"
+else
+    export PS1="${__NEON_RED}${HOSTNAME%%.*} ${__NEON_YELLOW}\W${__DARK_GREY}\$(git_branch)${__BLUE_GREEN} \$ ${__RESET}"
+fi
+
 # Source host specific stuff
 if [ -e "${PLATFORM_BASHRC}" ]; then
   source "${PLATFORM_BASHRC}"
-fi
-
-if [ "${UID}" -ne 0 ]; then
-    export PS1="${__DARK_PURPLE}${HOSTNAME%%.*} ${__ORANGE}\W${__DARK_GREY}\$(git_branch)${__BLUE_GREEN} \$ ${__RESET}"
-else
-    export PS1="${__NEON_RED}${HOSTNAME%%.*} ${__NEON_YELLOW}\W${__DARK_GREY}\$(git_branch)${__BLUE_GREEN} \$ ${__RESET}"
 fi
 
 # If this is a subshell under a virtual env, source it again
