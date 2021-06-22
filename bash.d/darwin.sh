@@ -1,5 +1,3 @@
-export DTR=dtr.aws.e1.nwie.net
-export DORG="${DTR}"/mwautomation
 export VISUAL=/usr/local/bin/vim
 export EDITOR="${VISUAL}"
 export POWERLINE_ROOT="/usr/local/lib/python3.9/site-packages"
@@ -11,20 +9,6 @@ if ! [[ "${PATH}" =~ "/usr/local/sbin" ]]; then
     export PATH=$PATH:/usr/local/sbin
 fi
 
-alias socket='ssh -Nf elvmt0048 2>/dev/null'
-alias hulu='chrome_app https://hulu.com'
-alias chrome='(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
-alias chrome_canary='(/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)'
-alias music='chrome_app https://music.youtube.com'
-alias amazon='chrome_app https://amazon.com'
-alias google_play='chrome_app https://play.google.com'
-alias netflix='chrome_app https://netflix.com'
-alias reset_dns_cache="TERM=xterm sudo killall -HUP mDNSResponder"
-alias iboss_stop="TERM=xterm sudo -- launchctl unload /Library/LaunchDaemons/com.iboss.gen4agent.plist"
-alias iboss_start="TERM=xterm sudo -- launchctl load /Library/LaunchDaemons/com.iboss.gen4agent.plist"
-alias iboss_restart="TERM=xterm sudo -- /usr/local/bin/bash -c 'launchctl unload /Library/LaunchDaemons/com.iboss.gen4agent.plist; sleep 5; launchctl load /Library/LaunchDaemons/com.iboss.gen4agent.plist'"
-alias backup_lifecycle_db="socket; rsync -av elvmt0048:/webdata/backups/mysql_backup/ /Volumes/google/devbkincer/Work/lifecycle-db-backups/"
-alias dlogin="docker login ${DTR}"
 alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(x) ^ ord('_')) for x in base64.b64decode(sys.argv[1].replace('{xor}', '')).decode()))\""
 alias awk=/usr/local/bin/gawk
 alias sed=/usr/local/bin/gsed
@@ -33,11 +17,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 if [ -e "${POWERLINE_BASHRC}" ]; then
     powerline-daemon -q
 fi
-
-d_push() {
-    local repo="${1}"
-    docker push "${DORG}"/"${repo}"
-}
 
 brew_cleanup() {
     for x in /usr/local/Cellar/*; do
@@ -58,86 +37,4 @@ datagrip() {
 webstorm() {
     unset TMUX
     open "/Users/kincerb/Applications/JetBrains Toolbox/WebStorm.app"
-}
-
-chrome_app() {
-    if [ "${#}" -ne 1 ]; then
-        echo -e "Usage:\n chrome_app [url]"
-        echo -e "\n  chrome_app https://netflix.com"
-        return
-    fi
-    local url="${1}"
-    (/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --app="${url}"
-    --app-shell-user=dev.bkincer@gmail.com --proxy-pac-url=http://127.0.0.1:8010/iboss.pac 2>&1 &>/dev/null &)
-}
-
-__proxy() {
-    local proxy_var x
-    local _usage
-    _usage="Usage:\n  proxy [ home | cntlm | off | status | http:// ]"
-    if [ "${#}" -ne 1 ]; then
-        echo -e "${_usage}"
-        return
-    fi
-    if [[ "${1}" =~ ^http://|cntlm|home ]]; then
-        if [ "${1}" == "home" ]; then
-            proxy_var=http://192.168.86.4:3128
-        elif [ "${1}" == "cntlm" ]; then
-            proxy_var=http://127.0.0.1:3128
-        else
-            proxy_var="${1}"
-        fi
-        for x in HTTPS HTTP ALL FTP; do
-            export ${x}_PROXY="${proxy_var}"
-        done
-        for x in https http all ftp; do
-            export ${x}_proxy="${proxy_var}"
-        done
-        export NO_PROXY=localhost,127.0.0.0/8,nwie.net,nwideweb.net,nwielab.net,ent.nwie.net,192.168.0.0/16,10.0.0.0/8
-        export no_proxy=localhost,127.0.0.0/8,nwie.net,nwideweb.net,nwielab.net,ent.nwie.net,192.168.0.0/16,10.0.0.0/8
-    elif [ "${1}" == "off" ]; then
-        for x in HTTPS HTTP ALL FTP NO; do
-            unset ${x}_PROXY
-        done
-        for x in https http all ftp no; do
-            unset ${x}_proxy
-        done
-    elif [ "${1}" == "status" ]; then
-        for x in HTTPS HTTP ALL NO; do
-            echo "  ${x}_PROXY=$(eval echo \$${x}_PROXY)"
-        done
-        echo "  GIT_PROXY_COMMAND=${GIT_PROXY_COMMAND}"
-    else
-        echo -e "${_usage}"
-    fi
-}
-
-dmgr() {
-    local server="${1}"
-    local domains="nwie.net server.nwie.net server.nwielab.net"
-    local found=false
-    for domain in ${domains}; do
-        if (nslookup "${server}.${domain}" &>/dev/null); then
-            found=true
-            chrome_app "https://${server}.${domain}:9043/ibm/console/logon.jsp"
-            break
-        fi
-    done
-    if ! "${found}"; then
-        say ERROR "Could not find ${server}'s IP address"
-    fi
-}
-
-reverse_nuc_proxy() {
-    if [ "${#}" -ne 2 ]; then
-        echo -e "Usage:    reverse_nuc_proxy host_[interface:]port host"
-        echo -e "\n  Direct traffic on the all of the remote's interfaces"
-        echo -e "    reverse_nuc_proxy 3128 ljtp000063"
-        echo -e "\n  Only direct traffic on the remote's localhost"
-        echo -e "    reverse_nuc_proxy 127.0.0.1:3128 ljtp000063"
-        return
-    fi
-    local host_listen_address="${1}"
-    local host="${2}"
-    ssh -tt -NfR "${host_listen_address}":192.168.86.4:3128 "${host}"
 }
