@@ -1,7 +1,7 @@
 export PYTHON_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
 export PYTHON_USER_SITE="${HOME}/.local/lib/python${PYTHON_VER}/site-packages"
-export POWERLINE_ROOT="${PYTHON_USER_SITE}"
-export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
+export POWERLINE_ROOT="${PYTHON_USER_SITE}/powerline"
+export POWERLINE_BASHRC="${POWERLINE_ROOT}/bindings/bash/powerline.sh"
 export GOOGLE_CHROME="/opt/google/chrome/google-chrome"
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -41,10 +41,6 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
-fi
-
-if [ -e "${POWERLINE_BASHRC}" ]; then
-    powerline-daemon -q
 fi
 
 chrome_app() {
