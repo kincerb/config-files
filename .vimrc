@@ -56,6 +56,7 @@ call plug#end()
 filetype plugin indent on
 " add fzf to vim runtimepath
 set rtp+=~/.fzf
+set rtp+=$POWERLINE_ROOT/bindings/vim
 set background=dark
 syntax enable
 
@@ -349,3 +350,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * wincmd p
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
+
+" powerline setup
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
