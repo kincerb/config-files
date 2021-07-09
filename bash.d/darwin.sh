@@ -1,7 +1,9 @@
 export VISUAL=/usr/local/bin/vim
 export EDITOR="${VISUAL}"
-export POWERLINE_ROOT="/usr/local/lib/python3.9/site-packages"
-export POWERLINE_BASHRC="${POWERLINE_ROOT}/powerline/bindings/bash/powerline.sh"
+export PYTHON_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+export PYTHON_SITE_PACKAGES="/usr/local/lib/python${PYTHON_VER}/site-packages"
+export POWERLINE_ROOT="${PYTHON_SITE_PACKAGES}/powerline"
+export POWERLINE_BASHRC="${POWERLINE_ROOT}/bindings/bash/powerline.sh"
 
 launchctl setenv SSH_AUTH_SOCK "${SSH_AUTH_SOCK}"
 
