@@ -57,7 +57,7 @@ call plug#end()
 filetype plugin indent on
 " add fzf to vim runtimepath
 set rtp+=~/.fzf
-set rtp+=$POWERLINE_ROOT/bindings/vim
+" set rtp+=$POWERLINE_ROOT/bindings/vim
 set background=dark
 syntax enable
 
@@ -134,7 +134,8 @@ inoremap jk <ESC>
 
 " statusline
 set laststatus=2
-set showtabline=2
+" Two lines below were put in as documented in powerline's setup.
+set showtabline=1
 set noshowmode
 set statusline=
 set statusline+=%f
@@ -352,7 +353,8 @@ autocmd VimEnter * wincmd p
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 
+" I'm disabling powerline in vim until I get a chance to fix the fzf popup causing it to crash.
 " powerline setup
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
