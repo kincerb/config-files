@@ -46,7 +46,11 @@ shopt -s extglob
 shopt -s checkwinsize
 
 # Environment variables
-export PAGER=bat
+if ! (which bat &>/dev/null); then
+    export PAGER=less
+else
+    export PAGER=bat
+fi
 export EDITOR=/usr/bin/vim
 export GPG_TTY=$(tty)
 export VISUAL=/usr/bin/vim
