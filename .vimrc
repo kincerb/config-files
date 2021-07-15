@@ -135,20 +135,19 @@ inoremap jk <ESC>
 " statusline
 set laststatus=2
 " Two lines below were put in as documented in powerline's setup.
-set showtabline=1
-set noshowmode
+set showtabline=2
 set statusline=
-set statusline+=%f
+set statusline+=%t
 set statusline+=\%m
 set statusline+=\ %y
-set statusline+=\ pos:\ %l,%c
+set statusline+=\ pos:\ %l:%c
+set statusline+=\ lines:\ %L
 set statusline+=\ %{coc#status()}
 set statusline+=\ %{kite#statusline()}
 " switch to the right side
 set statusline+=%=
 set statusline+=%{FugitiveStatusline()}
-set statusline+=\ lines:\ %L
-set statusline+=\ buffer:\ %n
+set statusline+=\ buf:\ %n
 " end recommended coc.nvim settings
 
 " split settings
@@ -265,7 +264,7 @@ omap if <Plug> (coc-funcobj-i)
 omap af <Plug> (coc-funcobj-a)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" left vertical window config
+" NerdTree config
 nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <leader>N :NERDTreeClose<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
