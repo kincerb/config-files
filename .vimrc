@@ -128,6 +128,7 @@ set expandtab
 set autoindent
 set backspace=indent,eol,start "allow backspace to delete as expected
 set pastetoggle=<F2>
+set concealcursor=nc
 let python_highlight_all=1
 
 inoremap jk <ESC>
@@ -183,7 +184,7 @@ nnoremap <leader><F5> :source $MYVIMRC<CR>
 nnoremap <F5> :UndotreeToggle<CR>
 
 " remove conceal option for json files to show quotes
-let g:vim_json_conceal=0
+" let g:vim_json_conceal=0
 
 " folding
 set foldmethod=indent
