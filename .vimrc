@@ -128,7 +128,8 @@ set expandtab
 set autoindent
 set backspace=indent,eol,start "allow backspace to delete as expected
 set pastetoggle=<F2>
-set concealcursor=nc
+set concealcursor=""
+set conceallevel=3
 let python_highlight_all=1
 
 inoremap jk <ESC>
