@@ -75,6 +75,12 @@ autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi SignColumn term=bold,nocombi
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorLine term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi CursorColumn term=underline,nocombine cterm=underline,nocombine gui=underline,nocombine ctermbg=NONE guibg=NONE
 autocmd BufEnter,BufNewFile,BufRead,SourcePost * hi Folded term=strikethrough,nocombine cterm=strikethrough,nocombine gui=strikethrough,nocombine ctermbg=NONE guibg=NONE
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * wincmd p 
+autocmd VimEnter * AnyFoldActivate
+autocmd CompleteDone * if !pumvisible() | pclose | endif
+autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 
 let mapleader=" "
 
@@ -128,9 +134,13 @@ set expandtab
 set autoindent
 set backspace=indent,eol,start "allow backspace to delete as expected
 set pastetoggle=<F2>
-set concealcursor=""
-set conceallevel=3
 let python_highlight_all=1
+let g:anyfold_fold_toplevel=1
+let g:anyfold_motion=0
+let g:anyfold_fold_display=1
+let g:indentLine_setConceal=0
+set conceallevel=3
+set concealcursor=""
 
 inoremap jk <ESC>
 
@@ -195,13 +205,6 @@ nnoremap <leader><leader> za
 " close all folds
 nnoremap <leader>fc zM
 " open all folds
-nnoremap <leader>fo zR
-" anyfold
-autocmd Filetype * AnyFoldActivate
-let g:anyfold_fold_toplevel=1
-let g:anyfold_motion=0
-let g:anyfold_fold_display=1
-
 let g:rainbow_active=1
 
 " fzf settings
@@ -311,7 +314,7 @@ function! SetWebDevOptions()
     setlocal shiftwidth=2
     setlocal tabstop=2
     setlocal softtabstop=2
-    syntax enable
+    " syntax enable
 
     " Use tab for trigger completion with characters ahead and navigate.
     " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -326,7 +329,7 @@ function! SetWebDevOptions()
 endfunction
 
 function! SetPythonOptions()
-    syntax enable
+    " syntax enable
     let b:coc_suggest_disable=1
     setlocal textwidth=79
     nmap <silent><buffer> K <Plug>(kite-docs)
@@ -341,6 +344,7 @@ augroup Python
     autocmd!
     au BufNewFile,BufRead *.py call SetPythonOptions()
 augroup END
+
 augroup HelpInTabs
     autocmd!
     autocmd BufEnter *.txt call HelpInNewTab()
@@ -348,11 +352,6 @@ augroup END
 
 " set verbose=12
 " set verbosefile=/Users/kincerb/Documents/log/vim-output.txt
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * wincmd p
-autocmd CompleteDone * if !pumvisible() | pclose | endif
-autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 
 " I'm disabling powerline in vim until I get a chance to fix the fzf popup causing it to crash.
 " powerline setup
