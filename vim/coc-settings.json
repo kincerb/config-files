@@ -28,6 +28,9 @@
   "python.linting.lintOnSave": true,
   "python.linting.pylamaEnabled": true,
   "markdownlint.config": {
+    "MD013": {
+      "line_length": 120
+    },
     "MD033": false
   }
 }
