@@ -129,7 +129,6 @@ set clipboard^=unnamed " use system clipboard
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set textwidth=119
 set expandtab
 set autoindent
 set backspace=indent,eol,start "allow backspace to delete as expected
@@ -331,7 +330,8 @@ endfunction
 function! SetPythonOptions()
     " syntax enable
     let b:coc_suggest_disable=1
-    setlocal textwidth=79
+    setlocal colorcolumn=120
+    setlocal conceallevel=0
     nmap <silent><buffer> K <Plug>(kite-docs)
 endfunction
 

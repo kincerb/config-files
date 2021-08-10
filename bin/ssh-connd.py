@@ -1,14 +1,18 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.9
 import argparse
+import getpass
 import logging
 import logging.config
 import os
 import sys
+
 from pathlib import Path
 from time import sleep
+
 import sshtunnel
 
-LOG_DIR = Path(os.environ.get('HOME')).joinpath('Documents', 'log')
+LOG_DIR = Path(
+    os.environ.get('HOME', '/Users/kincerb')).joinpath('Documents', 'log')
 logger = logging.getLogger(__name__)
 logger = sshtunnel.create_logger(logger)
 
@@ -16,107 +20,87 @@ logger = sshtunnel.create_logger(logger)
 def main():
     args = get_args()
     configure_logging(args.verbosity)
-    create_tunnel(args.hostname, args.private_key, args.remote_port, args.local_port, username=args.user)
+    create_tunnel(args.gateway, args.destination_address, args.destination_port,
+                  args.private_key, gateway_ssh_port=args.gateway_ssh_port, username=args.user,
+                  local_address=args.local_address, local_port=args.local_port)
 
 
-def create_tunnel(hostname, private_key,
-                  remote_bind_port, local_bind_port,
-                  username=None, remote_bind_ip='127.0.0.1', local_bind_ip='0.0.0.0'):
-    """
-    Establish tunnel for remote port forwading
+def create_tunnel(gateway_host, destination_address, destination_port, private_key,
+                  gateway_ssh_port=22, username=getpass.getuser(), local_address='127.0.0.1', local_port=8888):
+    """Establish tunnel for remote port forwading
 
     Arguments:
-        hostname (str):
-            Target host to create tunnel
+        gateway_host (str):
+            Host to use as gateway to reach destination
+        destination_address (str):
+            Address of final destination
+        destination_port (int):
+            Final destination port of tunnel
         private_key (str):
             Path to private key file
-        remote_bind_port (int):
-            Port to forward on remote server
-        local_bind_port (int):
-            Port to listen to locally, forwarding to remote port
 
     Keyword Arguments:
+        gateway_ssh_port (int):
+            SSH listening port of gateway
+            Default: 22
         username (str):
             Username for authentication
-            Default: ``None``
-        remote_bind_ip (str):
-            IP to bind to on remote server
+            Default: ``getpass.getuser()``
+        local_address (str):
+            IP to bind to on local machine
             Default: '127.0.0.1'
-        local_bind_ip (str):
-            IP to bind to on local server
-            Default: '0.0.0.0'
-
-    Example:
-        >>> create_tunnel('nuc', '~/.ssh/kincerb_forward', 443, 8888)
+        local_port (int):
+            Port to bind on local machine
+            Default: 8888
     """
-    if not _private_key_verified(private_key):
-        return
+    full_key_path, key_exists = _private_key_verify(private_key)
 
-    while True:
+    if not key_exists:
+        logger.critical(f'Key {full_key_path} not found.')
+        sys.exit(3)
+
+    with sshtunnel.open_tunnel(
+        (gateway_host, gateway_ssh_port),
+        ssh_username=username,
+        ssh_pkey=full_key_path,
+        remote_bind_address=(destination_address, destination_port),
+        local_bind_address=(local_address, local_port),
+        allow_agent=False,
+    ) as tunnel:
         try:
-            tunnel = sshtunnel.open_tunnel(
-                hostname,
-                ssh_username=username,
-                ssh_pkey=private_key,
-                allow_agent=False,
-                remote_bind_address=(remote_bind_ip, remote_bind_port),
-                local_bind_address=(local_bind_ip, local_bind_port),
-                set_keepalive=120.0
-            )
+            tunnel.start()
         except (sshtunnel.BaseSSHTunnelForwarderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
             logger.error(err)
-            sleep(60)
-            continue
-        except KeyboardInterrupt:
-            logger.info('CTRL-C caught, exiting.')
-            tunnel.close()
-            sys.exit(0)
-        except Exception as err:
-            logger.error(err)
-            sleep(60)
-            continue
-        else:
-            logger.info(f'Initial tunnel established')
+            sys.exit(4)
+
+        logger.info(f'Tunnel established to {destination_address}:{destination_port}')
+        logger.info(f'Access {destination_address} at {local_address}:{local_port}')
 
         while True:
             try:
                 tunnel.check_tunnels()
-                success_msg = 'restarted'
-                try:
-                    if not any(tunnel.tunnel_is_up.values()):
-                        tunnel.start()
-                    else:
-                        success_msg = 'still up'
-                except (sshtunnel.BaseSSHTunnelForwarderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
-                    logger.error(err)
-                    sleep(60)
-                    continue
-                except Exception as err:
-                    logger.error(err)
-                    tunnel.close()
-                    sleep(60)
-                    break
-                else:
-                    logger.info(f'Tunnel {success_msg}')
-                    sleep(300)
+                if not any(tunnel.tunnel_is_up.values()):
+                    raise sshtunnel.BaseSSHTunnelForwarderError('Tunnel is not up, exicting.')
+                sleep(5)
             except KeyboardInterrupt:
                 logger.info('CTRL-C caught, exiting.')
-                tunnel.close()
-                sys.exit(0)
+            except sshtunnel.BaseSSHTunnelForwarderError as err:
+                logger.error(err)
+                sys.exit(5)
 
 
-def _private_key_verified(key_path):
-    """
-    Verify private key exists
+def _private_key_verify(key_path):
+    """Returns absolute path to key and if key exists
 
     Arguments:
         key_path (str):
             Path to private key
+
     Return:
-        boolean
+        tuple: (str, bool)
     """
     private_key = Path(key_path).expanduser()
-    return private_key.exists()
+    return (str(private_key), private_key.exists())
 
 
 def get_args():
@@ -127,31 +111,45 @@ def get_args():
     """
     parser = argparse.ArgumentParser(
         description='Create ssh tunnel for remote port forwarding',
-        epilog='Example: %(prog)s'
+        epilog='''
+Example:
+    ssh-connd.py ~/.ssh/kincerb_forwarder access.nucocer.io 443
+        '''
     )
+    parser.add_argument('private_key',
+                        help='Path to private key')
+    parser.add_argument('destination_address',
+                        help='Address of destination interface')
+    parser.add_argument('destination_port',
+                        type=int,
+                        help='Port on destination interface')
     parser.add_argument('-u', '--user',
                         dest='user',
                         required=False,
-                        default=None,
+                        default=getpass.getuser(),
                         help='Username')
-    parser.add_argument('-s', '--server',
-                        dest='hostname',
-                        required=True,
-                        help='Hostname of server')
-    parser.add_argument('-p', '--private-key',
-                        dest='private_key',
-                        required=True,
-                        help='Path to private key')
-    parser.add_argument('--remote-port',
-                        dest='remote_port',
-                        required=True,
+    parser.add_argument('-g', '--gateway',
+                        dest='gateway',
+                        required=False,
+                        default='wireguard01.lan',
+                        help='Hostname of gateway server')
+    parser.add_argument('--gateway-port',
+                        dest='gateway_ssh_port',
                         type=int,
-                        help='Port to forward from server')
+                        default=22,
+                        required=False,
+                        help='SSH port of gateway server')
+    parser.add_argument('--local-address',
+                        dest='local_address',
+                        required=False,
+                        default='127.0.0.1',
+                        help='Address of local interface')
     parser.add_argument('--local-port',
                         dest='local_port',
-                        required=True,
+                        required=False,
+                        default=8888,
                         type=int,
-                        help='Port to forward from localhost')
+                        help='Port on local interface')
     parser.add_argument('-v', '--verbose',
                         required=False,
                         dest='verbosity',
@@ -164,9 +162,13 @@ def get_args():
 def configure_logging(verbosity=0):
     """Configure logging
 
-    :param verbosity: integer representing level of verbosity, starting at 0
-    :type verbosity: int
-    :returns: None
+    Keyword Arguments:
+        verbosity (int):
+            Integer representing level of verbosity
+            Default: 0
+
+    Return:
+        argparse.Namespace
     """
     level = 'INFO' if verbosity == 0 else 'DEBUG'
     config = {
