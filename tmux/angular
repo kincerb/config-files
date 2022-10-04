@@ -1,0 +1,6 @@
+new -A -c ~/Projects/Learning-Angular -s angular
+selectw -t angular:1
+neww -d -t angular:
+neww -d -t angular:
+neww -d -t angular:
+neww -d -t angular:

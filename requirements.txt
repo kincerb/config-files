@@ -1,0 +1,10 @@
+aiodns
+aiohttp
+cchardet
+colorama
+coloredlogs
+python-gnupg
+paramiko
+requests
+sshtunnel
+twine

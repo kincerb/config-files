@@ -1,0 +1,12 @@
+ConnectTimeOut 45
+StrictHostKeyChecking no
+ForwardAgent yes
+ServerAliveInterval 30
+ServerAliveCountMax 3
+ControlMaster auto
+ControlPath ~/.ssh/socket/%r_%h
+ControlPersist 30m
+PermitLocalCommand yes
+LocalCommand echo -en "\033k%h\033\\"; echo -en "\033]0;%h\007\\"
+Compression yes
+Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"

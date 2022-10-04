@@ -1,0 +1,41 @@
+let mapleader=" "
+inoremap jk <ESC>
+unmap <A-i>
+set iskeyword-=_
+map zM <Action>(CollapseAll)
+map zm <Action>(ExpandAll)
+nnoremap gcc :action CommentByLineComment<CR>
+nnoremap <leader><leader> :action CollapseRegion<CR>
+nnoremap <leader>e :action ExpandRegion<CR>
+nnoremap <leader>f :action Find<CR>
+map K <Action>(QuickJavaDoc)
+map ]g <Action>(GotoNextError)
+map [g <Action>(GotoPreviousError)
+map <leader>R <Action>(RefactoringMenu)
+nnoremap <leader>g :action ActivateCommitToolWindow<CR>
+nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>p :action ActivatePythonConsoleToolWindow<CR>
+nnoremap <leader>s :action ActivateRemoteHostToolWindow<CR>
+nnoremap <leader>n :action ActivateProjectToolWindow<CR>
+nnoremap <leader>j :action ActivateJIRAToolWindow<CR>
+nnoremap <C-j> :action NextSplitter<CR>
+nnoremap <C-k> :action PrevSplitter<CR>
+nnoremap <C-w>- :action SplitHorizontally<CR>
+nnoremap <C-w>\ :action SplitVertically<CR>
+nnoremap <C-w>m :action MoveEditorToOppositeTabGroup<CR>
+nnoremap <leader>j :action NextTab<CR>
+nnoremap <leader>k :action PreviousTab<CR>
+nnoremap <Tab> :action EditorIndentLineOrSelection<CR>
+nnoremap <S-Tab> :action EditorUnindentSelection<CR>
+nnoremap <leader>r :action ReformatCode<CR>
+vnoremap <leader>r :action ReformatCode<CR>
+vnoremap <leader>R :action RefactoringMenu<CR>
+nnoremap == :action ShowIntentionActions<CR>
+vnoremap == :action ShowIntentionActions<CR>
+nnoremap <leader><Tab> :action Switcher<CR>
+vnoremap <leader><Tab> :action Switcher<CR>
+nnoremap <leader>. :action GotoFile<CR>
+nnoremap <leader>C :action CompareActions<CR>
+nnoremap <leader><CR> :action NewFile<CR>
+nnoremap <leader>ga :action Git.Add<CR>
+nnoremap <leader>gs :action Git.Stash<CR>

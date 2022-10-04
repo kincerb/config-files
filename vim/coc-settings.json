@@ -1,0 +1,82 @@
+{
+  "diagnostic-languageserver.mergeConfig": true,
+  "diagnostic-languageserver.filetypes": {
+    "python": "flake8"
+  },
+  "diagnostic-languageserver.linters": {
+    "flake8": {
+      "sourceName": "flake8",
+      "command": "flake8",
+      "debounce": 200,
+      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
+      "args": ["--max-line-length=120", "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s", "-"],
+      "formatPattern": [
+        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
+        }
+      ],
+      "securities": {
+        "N": "hint",
+        "W": "info",
+        "F": "info",
+        "C": "info",
+        "E": "warning"
+      },
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "formatLines": 1
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": ["black", "isort", "docformatter"]
+  },
+  "diagnostic-languageserver.formatters": {
+    "black": {
+      "command": "black",
+      "args": ["--quiet", "--line-length 120", "-"]
+    },
+    "isort": {
+      "command": "isort",
+      "args": ["-q", "-"]
+    },
+    "docformatter": {
+      "command": "docformatter",
+      "args": ["-"]
+    }
+  },
+  "jedi.enable": true,
+  "jedi.markupKindPreferred": "markdown",
+  "jedi.jediSettings.caseInsensitiveCompletion": true,
+  "snippets.loadFromExtensions": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "python"
+  ],
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "tslint.autoFixOnSave": false,
+  "tslint.jsEnable": true,
+  "prettier.printWidth": 120,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "markdownlint.config": {
+    "MD004": {
+      "style": "sublist"
+    },
+    "MD013": {
+      "line_length": 120
+    },
+    "MD033": false
+  },
+  "sh.enable": true
+}

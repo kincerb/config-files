@@ -1,0 +1,9 @@
+new -A -c ~/ -s main
+selectw -t main:1
+splitw -h -p 50 -t main:1
+neww -t main:
+neww -t main:
+neww -t main:
+selectw -t main:1
+selectp -t 1
+rename-window -t main:1 "|"

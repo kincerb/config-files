@@ -1,0 +1,23 @@
+new -A -c ~/ -s aux
+selectw -t aux:1
+splitw -v -p 50 -t aux:1
+neww -t aux:
+neww -t aux:
+neww -t aux:
+selectw -t aux:1
+selectp -t 1
+rename-window -t aux:1 "-"
+neww -n "lifecycle" -t aux: "ssh elvmt0048"
+run-shell "sleep 0.25"
+setw -q -t aux:5 allow-rename off
+splitw -v -p 50 -t aux:5 "ssh nlvmt0043"   # Pane 1.2
+run-shell "sleep 0.25"
+splitw -h -p 50 -t aux:5.1 "ssh elvmt0049" # Pane 1.3
+run-shell "sleep 0.25"
+splitw -h -p 50 -t aux:5.2 "ssh nlvmt0042" # Pane 1.4
+run-shell "sleep 0.25"
+# Set layouts and options for each window / pane
+select-layout -t aux:5 tiled 
+# Set main focus on first window, first pane
+selectp -t 1
+selectw -t aux:1

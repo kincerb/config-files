@@ -1,0 +1,11 @@
+new -A -c ~/ -s shared
+selectw -t shared:1
+splitw -h -p 50 -t shared:1
+neww -t shared:
+neww -t shared:
+neww -t shared:
+neww -t shared:
+selectw -t shared:1
+selectp -t 1
+rename-window -t shared:1 "|"
+setw -q -t shared:1
