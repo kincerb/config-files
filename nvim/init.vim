@@ -138,9 +138,13 @@ set list listchars=tab:>>.,trail:.,nbsp:.
 
 "------- Plugin variables --------"
 let g:airline_powerline_fonts=1
-let g:airline_theme='powerlineish'
+let g:airline_theme='google_dark'
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail_improved'
+let airline#extensions#coc#error_symbol = 'ℰ'
+let airline#extensions#coc#warning_symbol = ''
 let g:loaded_golden_ratio=0
 let g:golden_ratio_exclude_nonmodifiable=1
 let g:anyfold_fold_toplevel=1
