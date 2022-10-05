@@ -143,6 +143,7 @@ let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail_improved'
+let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let airline#extensions#coc#error_symbol = 'ℰ'
 let airline#extensions#coc#warning_symbol = ''
 let g:loaded_golden_ratio=0
