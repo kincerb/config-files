@@ -187,6 +187,13 @@ let g:indent_blankline_char_highlight_list = [
     \ 'IndentBlanklineIndent5',
     \ 'IndentBlanklineIndent6']
 
+let g:indent_blankline_buftype_exclude = [
+    \ 'terminal',
+    \ 'help',
+    \ 'nofile',
+    \ 'quickfix',
+    \ 'prompt']
+
 "------- Keymaps --------"
 nnoremap <CR> :noh
 nnoremap <leader><leader> za
