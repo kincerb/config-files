@@ -225,7 +225,13 @@ nnoremap <leader>= :vertical resize 42<CR>
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>t :split term://bash<CR>
 
+" quickfix list navigation
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+
 "------- Keymaps for plugins --------"
+nnoremap <leader>gl :0Gclog<CR>
+vmap <leader>gl :Gclog<CR>
 nnoremap <leader><C-n> :TagbarToggle<CR>
 nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <leader>N :NERDTreeClose<CR>
