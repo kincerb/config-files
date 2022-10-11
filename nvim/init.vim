@@ -62,6 +62,9 @@ hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine
 hi IndentBlanklineIndent4 guifg=#F56451 gui=nocombine
 hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine
 hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine
+hi GitGutterChange guifg=#e1e3e8 guibg=#1c3757 gui=nocombine
+hi GitGutterAdd guifg=#e1e3e8 guibg=#1b5e24 gui=nocombine
+hi GitGutterDelete guifg=#e1e3e8 guibg=#380c0c gui=nocombine
 
 "------- Autocommands  --------"
 autocmd StdinReadPre * let s:std_in=1
@@ -147,6 +150,9 @@ let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let airline#extensions#coc#error_symbol = 'ℰ'
 let airline#extensions#coc#warning_symbol = ''
 let g:loaded_golden_ratio=0
+let g:gitgutter_sign_modified='≋'
+let g:gitgutter_sign_added=''
+let g:gitgutter_sign_removed=''
 let g:golden_ratio_exclude_nonmodifiable=1
 let g:anyfold_fold_toplevel=1
 let g:anyfold_motion=0
