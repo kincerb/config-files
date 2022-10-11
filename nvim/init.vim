@@ -170,7 +170,7 @@ let g:mta_filetypes = { 'html': 1, 'typescriptreact': 1 }
 let python_highlight_all=1
 let g:rainbow_active=1
 
-let g:fzf_action = { 'enter': 'tab split', 'ctrl-s': 'vsplit', 'ctrl-i': 'split'}
+let g:fzf_action = { 'enter': 'edit', 'ctrl-t': 'tab split', 'ctrl-s': 'vsplit', 'ctrl-i': 'split'}
 " let g:fzf_layout = { 'down': '40%' }
 let g:fzf_buffers_jump = 1
 let g:coc_filetype_map = {
