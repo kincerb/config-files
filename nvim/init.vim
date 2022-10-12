@@ -53,7 +53,7 @@ set termguicolors
 colorscheme molokai
 
 " Highlight colors for matchpairs
-hi MatchParen guibg=yellow guifg=red
+hi MatchParen guibg=#9805ed guifg=#b3b0b5
 hi CocMenuSel guibg=#243e4f gui=nocombine
 autocmd ColorScheme * hi CocMenuSel guibg=#243e4f gui=nocombine
 hi IndentBlanklineIndent1 guifg=#98D5FA gui=nocombine
