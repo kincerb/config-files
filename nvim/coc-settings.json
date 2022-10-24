@@ -105,7 +105,8 @@
       "style": "sublist"
     },
     "MD013": {
-      "line_length": 120
+      "line_length": 120,
+      "code_blocks": false
     },
     "MD033": false
   },
