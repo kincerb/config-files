@@ -31,14 +31,15 @@ def main():
 
 
 def create_tunnel(
-    gateway_host,
-    destination_address,
-    destination_port,
-    private_key,
-    gateway_ssh_port=22,
-    username=getpass.getuser(),
-    local_address="127.0.0.1",
-    local_port=8888,
+    gateway_host: str,
+    destination_address: str,
+    destination_port: int,
+    private_key: str,
+    gateway_ssh_port: int = 22,
+    username: str = getpass.getuser(),
+    local_address: str = "127.0.0.1",
+    local_port: int = 8888,
+    max_tries: int = 10,
 ):
     """Establish tunnel for remote port forwading.
 
@@ -65,6 +66,9 @@ def create_tunnel(
         local_port (int):
             Port to bind on local machine
             Default: 8888
+        max_tries (int):
+            Number of attempts to make connection before exiting
+            Default: 10
     """
     full_key_path, key_exists = _private_key_verify(private_key)
 
@@ -72,37 +76,46 @@ def create_tunnel(
         logger.critical(f"Key {full_key_path} not found.")
         sys.exit(3)
 
-    with sshtunnel.open_tunnel(
-        (gateway_host, gateway_ssh_port),
-        ssh_username=username,
-        ssh_pkey=full_key_path,
-        remote_bind_address=(destination_address, destination_port),
-        local_bind_address=(local_address, local_port),
-        allow_agent=False,
-    ) as tunnel:
-        try:
-            tunnel.start()
-        except (sshtunnel.BaseSSHTunnelForwarderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
-            logger.error(err)
-            sys.exit(4)
+    fails = 0
 
-        logger.info(f"Tunnel established to {destination_address}:{destination_port}")
-        logger.info(f"Access {destination_address} at {local_address}:{local_port}")
-
-        while True:
+    while fails < 10:
+        with sshtunnel.open_tunnel(
+            (gateway_host, gateway_ssh_port),
+            ssh_username=username,
+            ssh_pkey=full_key_path,
+            remote_bind_address=(destination_address, destination_port),
+            local_bind_address=(local_address, local_port),
+            allow_agent=False,
+        ) as tunnel:
             try:
-                tunnel.check_tunnels()
-                if not any(tunnel.tunnel_is_up.values()):
-                    raise sshtunnel.BaseSSHTunnelForwarderError("Tunnel is not up, exiting.")
-                sleep(5)
-            except KeyboardInterrupt:
-                logger.info("CTRL-C caught, exiting.")
-            except sshtunnel.BaseSSHTunnelForwarderError as err:
+                tunnel.start()
+            except (sshtunnel.BaseSSHTunnelForwarderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
+                fails += 1
                 logger.error(err)
-                sys.exit(5)
+                sleep(30)
+                continue
+
+            fails = 0
+            logger.info(f"Tunnel established to {destination_address}:{destination_port}")
+
+            while True:
+                try:
+                    tunnel.check_tunnels()
+                    if not any(tunnel.tunnel_is_up.values()):
+                        raise sshtunnel.BaseSSHTunnelForwarderError("Tunnel is not up.")
+                    fails = 0
+                    sleep(5)
+                except KeyboardInterrupt:
+                    logger.info("CTRL-C caught, exiting.")
+                except sshtunnel.BaseSSHTunnelForwarderError as err:
+                    logger.error(err)
+                    fails += 1
+                    break
+    if fails > 0:
+        sys.exit(4)
 
 
-def _private_key_verify(key_path):
+def _private_key_verify(key_path: str) -> tuple[str, bool]:
     """Returns absolute path to key and if key exists.
 
     Arguments:
@@ -116,7 +129,7 @@ def _private_key_verify(key_path):
     return (str(private_key), private_key.exists())
 
 
-def get_args():
+def get_args() -> argparse.Namespace:
     """Parse arguments passed at invocation.
 
     Return:
@@ -156,7 +169,7 @@ def get_args():
     return parser.parse_args()
 
 
-def configure_logging(verbosity=0):
+def configure_logging(verbosity: int = 0) -> None:
     """Configure logging.
 
     Keyword Arguments:
@@ -180,7 +193,7 @@ def configure_logging(verbosity=0):
                 "filename": str(LOG_DIR.joinpath("ssh-connd.log")),
                 "level": level,
                 "formatter": "file",
-                "maxBytes": 1048576,
+                "maxBytes": 48576,
                 "backupCount": 2,
             },
         },
