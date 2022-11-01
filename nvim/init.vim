@@ -85,10 +85,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
-
 "------- VIM variables --------"
 let mapleader=" "
 set clipboard^=unnamed " use system register
@@ -162,6 +158,10 @@ let g:anyfold_fold_toplevel=1
 let g:anyfold_motion=0
 let g:anyfold_fold_display=1
 let g:webdevicons_conceal_nerdtree_brackets=1
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
 
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
