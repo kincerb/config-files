@@ -132,6 +132,7 @@ set expandtab
 set autoindent
 set backspace=indent,eol,start "allow backspace to delete as expected
 set pastetoggle=<F2>
+set conceallevel=3
 " statusline
 set laststatus=2
 set showtabline=2
@@ -158,10 +159,6 @@ let g:anyfold_fold_toplevel=1
 let g:anyfold_motion=0
 let g:anyfold_fold_display=1
 let g:webdevicons_conceal_nerdtree_brackets=1
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
-
 
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
@@ -392,3 +389,7 @@ augroup Python
     autocmd!
     autocmd FileType python call SetPythonOptions()
 augroup END
+
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
