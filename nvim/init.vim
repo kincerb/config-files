@@ -20,11 +20,11 @@ Plug 'mbbill/undotree'
 " syntax highlighting, code display
 Plug 'pseewald/vim-anyfold'
 Plug 'frazrepo/vim-rainbow'
-" Plug 'yggdroot/indentline' " show vertical line at each indent level
 Plug 'lukas-reineke/indent-blankline.nvim' " show vertical line at each indent level
 Plug 'tpope/vim-rhubarb'
 Plug 'sheerun/vim-polyglot'
 Plug 'valloric/MatchTagAlways'
+Plug 'ap/vim-css-color'
 " formatting
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -84,6 +84,10 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
 
 "------- VIM variables --------"
 let mapleader=" "
@@ -157,6 +161,7 @@ let g:golden_ratio_exclude_nonmodifiable=1
 let g:anyfold_fold_toplevel=1
 let g:anyfold_motion=0
 let g:anyfold_fold_display=1
+let g:webdevicons_conceal_nerdtree_brackets=1
 
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
