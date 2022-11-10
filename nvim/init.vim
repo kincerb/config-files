@@ -9,6 +9,9 @@ Plug 'roman/golden-ratio' " auto-expand current split
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-peekaboo' " displays split with all registers
+" statusline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " plugins for git
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -32,18 +35,15 @@ Plug 'tpope/vim-repeat'
 " find all the things
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
-" file icons
-Plug 'ryanoasis/vim-devicons'
 " code completion / navigation
 Plug 'andymass/vim-matchup'
 Plug 'jiangmiao/auto-pairs' " basic auto-close
 Plug 'tpope/vim-endwise' " auto-close for shells, ruby
 Plug 'alvan/vim-closetag' " auto-close html
-" statusline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 " syntax highlighting for kitty conf files
 Plug 'fladson/vim-kitty'
+" file icons
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 filetype plugin indent on
