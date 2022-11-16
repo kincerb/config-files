@@ -27,6 +27,7 @@ def main():
         username=args.user,
         local_address=args.local_address,
         local_port=args.local_port,
+        max_tries=args.retries,
     )
 
 
@@ -78,7 +79,7 @@ def create_tunnel(
 
     fails = 0
 
-    while fails < 10:
+    while fails < max_tries:
         with sshtunnel.open_tunnel(
             (gateway_host, gateway_ssh_port),
             ssh_username=username,
@@ -87,30 +88,41 @@ def create_tunnel(
             local_bind_address=(local_address, local_port),
             allow_agent=False,
         ) as tunnel:
+
             try:
                 tunnel.start()
+            except KeyboardInterrupt:
+                logger.info("CTRL-C caught, exiting.")
             except (sshtunnel.BaseSSHTunnelForwarderError, sshtunnel.HandlerSSHTunnelForwarderError) as err:
                 fails += 1
                 logger.error(err)
                 sleep(30)
                 continue
-
-            fails = 0
-            logger.info(f"Tunnel established to {destination_address}:{destination_port}")
+            except Exception as e:
+                fails += 1
+                logger.error(e)
+                sleep(30)
+                continue
 
             while True:
                 try:
                     tunnel.check_tunnels()
                     if not any(tunnel.tunnel_is_up.values()):
                         raise sshtunnel.BaseSSHTunnelForwarderError("Tunnel is not up.")
-                    fails = 0
-                    sleep(5)
                 except KeyboardInterrupt:
                     logger.info("CTRL-C caught, exiting.")
                 except sshtunnel.BaseSSHTunnelForwarderError as err:
                     logger.error(err)
                     fails += 1
                     break
+                except Exception as e:
+                    logger.error(e)
+                    fails += 1
+                    break
+                else:
+                    fails = 0
+                    sleep(30)
+
     if fails > 0:
         sys.exit(4)
 
@@ -156,6 +168,9 @@ def get_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--local-port", dest="local_port", required=False, default=8888, type=int, help="Port on local interface"
+    )
+    parser.add_argument(
+        "--retries", dest="retries", required=False, default=10, type=int, help="Max tries before exiting"
     )
     parser.add_argument(
         "-v",
