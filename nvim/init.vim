@@ -140,6 +140,11 @@ set foldlevel=99 " start with all folds opened
 " display extra whitespace
 set list listchars=tab:>>.,trail:.,nbsp:.
 
+"------- Builtin variables --------"
+let g:netrw_keepdir=0
+let g:netrw_winsize=30
+let g:netrw_banner=0
+
 "------- Plugin variables --------"
 let g:airline_powerline_fonts=1
 let g:airline_theme='google_dark'
@@ -169,6 +174,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.id
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=32
+let NERDTreeHijackNetrw=1
 
 let g:mta_filetypes = { 'html': 1, 'typescriptreact': 1 }
 let python_highlight_all=1
