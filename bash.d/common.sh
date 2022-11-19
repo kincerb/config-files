@@ -19,6 +19,10 @@ for _path in "${HOME}/.local/bin" /usr/local/go/bin "${GOPATH}/bin"; do
 done
 unset _path
 
+if [ -d "${HOME}/.local/pipx/venvs/ranger-fm/share/man" ]; then
+    export MANPATH=":${HOME}/.local/pipx/venvs/ranger-fm/share/man"
+fi
+
 # use screen-256color for tmux sessions
 if (compgen -v KITTY &>/dev/null); then
     export TERM=xterm-kitty
