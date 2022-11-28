@@ -9,15 +9,16 @@ disabled = true
 [username]
 format = "[$user]($style)"
 show_always = true
-style_root = "bold fg:196"
-style_user = "bold fg:27"
+style_root = "fg:196"
+style_user = "fg:27"
 
 # Second param
 [hostname]
 disabled = false
-# format = "[$hostname]($style):"
+ssh_symbol = "   "
+style = "dimmed fg:24"
+format = "[$ssh_symbol](dimmed green)[$hostname]($style)"
 ssh_only = true
-style = "bold dimmed fg:24"
 trim_at = "."
 
 # Third param
@@ -90,8 +91,8 @@ format = '\[[$time]($style)\]'
 
 # Prompt: param 2
 [character]
-success_symbol = "[ 🙮 ](bold green)"
-error_symbol = "[ 🙮 ](bold red)"
+success_symbol = "[  ](bold green)"
+error_symbol = "[  ](bold red)"
 # success_symbol = "[ ⮚](bold green)"
 # error_symbol = "[ ⮚](bold red)"
 
