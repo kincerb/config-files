@@ -1,5 +1,13 @@
 export EDITOR=/usr/local/bin/nvim
 export VISUAL="${VISUAL}"
+bash_helpers=("profile.d/bash_completion.sh" "bash_completion.d/ag.bashcomp.sh")
+bash_helpers+=("bash_completion.d/bash-builtins" "bash_completion.d/bat" "bash_completion.d/brew")
+bash_helpers+=("bash_completion.d/brew-services")
+bash_helpers+=("bash_completion.d/docker" "bash_completion.d/docker-compose" "bash_completion.d/fly")
+bash_helpers+=("bash_completion.d/git-completion.bash")
+bash_helpers+=("bash_completion.d/helm" "bash_completion.d/kubectl")
+bash_helpers+=("bash_completion.d/pipx")
+bash_helpers+=("bash_completion.d/tmux" "bash_completion.d/starship")
 
 launchctl setenv SSH_AUTH_SOCK "${SSH_AUTH_SOCK}"
 
@@ -17,10 +25,9 @@ alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(
 alias awk=/usr/local/bin/gawk
 alias sed=/usr/local/bin/gsed
 
-for bash_helper in "/usr/local/etc/profile.d/bash_completion.sh" \
-    $(compgen -f /usr/local/etc/bash_completion.d/); do
-    if [ -e "${bash_helper}" ]; then
-        source "${bash_helper}"
+for bash_helper in ${bash_helpers[@]}; do
+    if [ -e "/usr/local/etc/${bash_helper}" ] && [ -f "/usr/local/etc/${bash_helper}" ]; then
+        source "/usr/local/etc/${bash_helper}"
     fi
 done
 unset bash_helper
