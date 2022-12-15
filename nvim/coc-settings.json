@@ -1,7 +1,7 @@
 {
   "hover.floatConfig": { "rounded": true },
   "coc.preferences.willSaveHandlerTimeout": 1500,
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "diagnostic-languageserver.enable": true,
   "diagnostic-languageserver.mergeConfig": true,
   "diagnostic-languageserver.filetypes": {
@@ -77,13 +77,12 @@
     }
   },
   "jedi.enable": true,
-  "jedi.markupKindPreferred": "markdown",
   "jedi.jediSettings.caseInsensitiveCompletion": true,
-  "jedi.jediSettings.debug": false,
   "jedi.diagnostics.enable": false,
   "jedi.trace.server": "off",
   "snippets.loadFromExtensions": true,
   "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSave": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
