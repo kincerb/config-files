@@ -42,6 +42,7 @@
         "--no-error-summary",
         "--show-column-numbers",
         "--follow-imports=silent",
+        "--implicit-reexport",
         "--show-error-codes",
         "%file"
       ],
