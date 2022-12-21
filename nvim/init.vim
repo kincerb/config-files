@@ -114,9 +114,10 @@ set colorcolumn=120
 set updatetime=300
 set shortmess+=c
 set signcolumn=number
-set scrolloff=8
+set scrolloff=16
 set showmatch
 set number
+set relativenumber
 set history=500
 " search settings
 set ignorecase
