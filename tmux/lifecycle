@@ -1,13 +1,14 @@
 set-option visual-activity off
 set-option visual-bell off
 set-option allow-rename off
-# set-option default-command "/usr/local/bin/bash -i -c \"source ~/.local/venvs/lc3.10/bin/activate;\$SHELL\""
-new-session -A -c ~/Projects/Middleware-Lifecycle-Server/app/src -s lifecycle -n Services "source ~/.local/venvs/lc3.10/bin/activate; \
-~/.local/venvs/lc3.10/bin/python manage.py runserver 8080"
+new-session -A -c ~/Projects/Middleware-Lifecycle-Server -s lifecycle -n Services "source ~/.local/venvs/lc3.10/bin/activate; \
+docker compose -f docker-compose.services.yml up"
 selectw -t lifecycle:1
-split-window -d -v -l 20 -t lifecycle:1 "source ~/.local/venvs/lc3.10/bin/activate; \
+split-window -d -h -t lifecycle:1 -c ~/Projects/Middleware-Lifecycle-Server/app/src "source ~/.local/venvs/lc3.10/bin/activate; \
+~/.local/venvs/lc3.10/bin/python manage.py runserver 8080"
+split-window -d -v -l 40% -t lifecycle:1.1 "source ~/.local/venvs/lc3.10/bin/activate; \
 ~/.local/venvs/lc3.10/bin/celery --app=lifecycle_server beat --loglevel=INFO"
-split-window -d -h -t lifecycle:1.2 "source ~/.local/venvs/lc3.10/bin/activate; \
+split-window -d -v -l 40% -t lifecycle:1.3 "source ~/.local/venvs/lc3.10/bin/activate; \
 ~/.local/venvs/lc3.10/bin/celery --app=lifecycle_server worker --loglevel=INFO --concurrency=2 --hostname=worker1 --task-events"
 set-option -w -t lifecycle:1 remain-on-exit on
 new-window -d -t lifecycle: -c ~/Projects/Middleware-Lifecycle-Core -n Core "source ~/.local/venvs/lc3.10/bin/activate; nvim ."
