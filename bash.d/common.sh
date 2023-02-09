@@ -62,7 +62,7 @@ export HISTSIZE=100000
 export HISTFILESIZE=100000
 export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
-
+export FZF_DEFAULT_OPTS='--color=light'
 
 if [ -z "${SSH_CONNECTION}" ]; then
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
