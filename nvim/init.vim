@@ -48,7 +48,7 @@ call plug#end()
 
 filetype plugin indent on
 syntax enable
-set background=dark
+set background=light
 set termguicolors
 colorscheme PaperColor " prev: molokai
 
