@@ -50,7 +50,7 @@ filetype plugin indent on
 syntax enable
 set background=dark
 set termguicolors
-colorscheme molokai
+colorscheme PaperColor " prev: molokai
 
 " Highlight colors for matchpairs
 hi Normal guibg=NONE ctermbg=NONE
