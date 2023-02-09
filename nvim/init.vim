@@ -149,7 +149,7 @@ let g:netrw_banner=0
 
 "------- Plugin variables --------"
 let g:airline_powerline_fonts=1
-let g:airline_theme='google_dark'
+let g:airline_theme='papercolor'
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
 let g:airline#extensions#tabline#enabled=1
