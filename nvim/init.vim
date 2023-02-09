@@ -55,6 +55,8 @@ colorscheme PaperColor " prev: molokai
 " Highlight colors for matchpairs
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
+hi LineNr guibg=NONE ctermbg=NONE guifg=#b3b0b5
+hi ColorColumn guibg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#9805ed guifg=#b3b0b5
 hi CocMenuSel guibg=#243e4f gui=nocombine
