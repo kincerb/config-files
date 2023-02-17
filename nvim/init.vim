@@ -57,19 +57,20 @@ hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#b3b0b5
 hi ColorColumn guibg=NONE
+hi VertSplit guibg=#005f87 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#9805ed guifg=#b3b0b5
 hi CocMenuSel guibg=#243e4f gui=nocombine
-autocmd ColorScheme * hi CocMenuSel guibg=#243e4f gui=nocombine
+autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
 hi IndentBlanklineIndent1 guifg=#98D5FA gui=nocombine
 hi IndentBlanklineIndent2 guifg=#E5C078 gui=nocombine
 hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine
 hi IndentBlanklineIndent4 guifg=#F56451 gui=nocombine
 hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine
 hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine
-hi GitGutterChange guifg=#e1e3e8 guibg=#1c3757 gui=nocombine
-hi GitGutterAdd guifg=#e1e3e8 guibg=#1b5e24 gui=nocombine
-hi GitGutterDelete guifg=#e1e3e8 guibg=#380c0c gui=nocombine
+hi GitGutterChange guifg=NONE guifg=#1c3757 gui=nocombine
+hi GitGutterAdd guibg=NONE guifg=#1b5e24 gui=nocombine
+hi GitGutterDelete guibg=NONE guifg=#380c0c gui=nocombine
 
 "------- Autocommands  --------"
 autocmd StdinReadPre * let s:std_in=1
