@@ -60,8 +60,8 @@ hi ColorColumn guibg=NONE
 hi VertSplit guibg=#005f87 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#9805ed guifg=#b3b0b5
-hi CocMenuSel guibg=#243e4f gui=nocombine
-autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
+hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
+" autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
 hi IndentBlanklineIndent1 guifg=#98D5FA gui=nocombine
 hi IndentBlanklineIndent2 guifg=#E5C078 gui=nocombine
 hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine
