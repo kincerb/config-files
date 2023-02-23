@@ -93,7 +93,7 @@ augroup end
 
 "------- VIM variables --------"
 let mapleader=" "
-set clipboard^=unnamed " use system register
+set clipboard^=unnamedplus " use system register
 " add fzf to vim runtimepath
 set rtp+=~/.fzf
 " set fillchars=vert:|
