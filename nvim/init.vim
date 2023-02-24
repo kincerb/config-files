@@ -219,7 +219,7 @@ let g:indent_blankline_buftype_exclude = [
 
 "------- Keymaps --------"
 nnoremap <CR> :noh
-nnoremap <leader><leader> za
+nnoremap <leader><leader> zA
 nnoremap <leader>fc zM
 inoremap jk <ESC>
 " use very magic mode by default for searching
@@ -265,7 +265,7 @@ nnoremap <leader>f :Ag <C-R><C-W><cr>
 " [visual] search for word under cursor
 vnoremap <leader>f y:Ag <C-R><cr>
 " enter search pattern
-nnoremap <C-F> :Ag<Space>
+nnoremap <leader>/ :Ag<Space>
 " search vim command history
 nnoremap <leader>h :History:<CR>
 " normal mode mappings
