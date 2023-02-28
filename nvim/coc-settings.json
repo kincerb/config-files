@@ -66,7 +66,7 @@
   "diagnostic-languageserver.formatters": {
     "black": {
       "command": "black",
-      "args": ["--quiet", "--line-length", "120", "-"]
+      "args": ["--quiet", "--line-length", "79", "-"]
     },
     "isort": {
       "command": "isort",
@@ -84,15 +84,7 @@
   "snippets.loadFromExtensions": true,
   "suggest.maxCompleteItemCount": 20,
   "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx",
-    "python"
-  ],
+  "coc.preferences.formatOnType": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "tslint.autoFixOnSave": false,
   "tslint.jsEnable": true,
