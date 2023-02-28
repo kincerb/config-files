@@ -54,6 +54,7 @@ colorscheme PaperColor " prev: molokai
 
 " Highlight colors for matchpairs
 hi Normal guibg=NONE ctermbg=NONE
+hi Folded guifg=#000000 guibg=#616161
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#b3b0b5
 hi ColorColumn guibg=NONE
@@ -62,7 +63,7 @@ hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#9805ed guifg=#b3b0b5
 hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
 " autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
-hi IndentBlanklineIndent1 guifg=#98D5FA gui=nocombine
+hi IndentBlanklineIndent1 guifg=#6b1c18 gui=nocombine
 hi IndentBlanklineIndent2 guifg=#E5C078 gui=nocombine
 hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine
 hi IndentBlanklineIndent4 guifg=#F56451 gui=nocombine
