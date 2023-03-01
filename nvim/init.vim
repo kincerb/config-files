@@ -221,7 +221,7 @@ let g:indent_blankline_buftype_exclude = [
 "------- Keymaps --------"
 nnoremap <CR> :noh
 nnoremap <leader><leader> zA
-nnoremap <leader>fc zM
+nnoremap <leader>z za
 inoremap jk <ESC>
 " use very magic mode by default for searching
 nnoremap / /\v
