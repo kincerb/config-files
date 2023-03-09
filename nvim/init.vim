@@ -56,7 +56,8 @@ colorscheme PaperColor " prev: molokai
 hi Normal guibg=NONE ctermbg=NONE
 hi Folded guifg=#000000 guibg=#616161
 hi EndOfBuffer guibg=NONE ctermbg=NONE
-hi LineNr guibg=NONE ctermbg=NONE guifg=#b3b0b5
+hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
+hi CursorLineNr guibg=#89858c ctermbg=NONE guifg=#d5d4d6
 hi ColorColumn guibg=NONE
 hi VertSplit guibg=#005f87 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
