@@ -173,7 +173,6 @@ let g:golden_ratio_exclude_nonmodifiable=1
 let g:anyfold_fold_toplevel=1
 let g:anyfold_motion=0
 let g:anyfold_fold_display=1
-let g:webdevicons_conceal_nerdtree_brackets=1
 
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
@@ -420,5 +419,6 @@ augroup Python
 augroup END
 
 if exists('g:loaded_webdevicons')
+    let g:webdevicons_conceal_nerdtree_brackets=1
     call webdevicons#refresh()
 endif
