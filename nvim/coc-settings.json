@@ -92,6 +92,7 @@
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "none",
+  "prettier.enable": false,
   "markdownlint.config": {
     "MD004": {
       "style": "sublist"
