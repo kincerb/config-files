@@ -1,5 +1,3 @@
-let g:python3_host_prog = '~/.local/venvs/neovim/bin/python'
-" ---------
 "  Plugins
 " ---------
 call plug#begin('~/.vim/plugged')
@@ -99,7 +97,7 @@ augroup neovim_terminal
     " Disables number lines on terminal buffers
     autocmd TermOpen * :set nonumber norelativenumber
     " allows you to use Ctrl-c on terminal window
-    autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
+    " autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
 augroup END
 
 "------- VIM variables --------"
