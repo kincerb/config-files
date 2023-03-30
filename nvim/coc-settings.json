@@ -1,19 +1,32 @@
 {
-  "hover.floatConfig": { "rounded": true },
+  "hover.floatConfig": {
+    "rounded": true
+  },
   "coc.preferences.willSaveHandlerTimeout": 1500,
   "codeLens.enable": false,
   "diagnostic-languageserver.enable": true,
   "diagnostic-languageserver.mergeConfig": true,
   "diagnostic-languageserver.filetypes": {
-    "python": ["flake8", "mypy"]
+    "python": [
+      "flake8",
+      "mypy"
+    ]
   },
   "diagnostic-languageserver.linters": {
     "flake8": {
       "sourceName": "flake8",
       "command": "flake8",
       "debounce": 200,
-      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
-      "args": ["--max-line-length=120", "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s", "-"],
+      "rootPatterns": [
+        ".git",
+        "pyproject.toml",
+        "setup.py"
+      ],
+      "args": [
+        "--max-line-length=120",
+        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
+        "-"
+      ],
       "formatPattern": [
         "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
         {
@@ -61,20 +74,34 @@
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
-    "python": ["black", "isort", "docformatter"]
+    "python": [
+      "black",
+      "isort",
+      "docformatter"
+    ]
   },
   "diagnostic-languageserver.formatters": {
     "black": {
       "command": "black",
-      "args": ["--quiet", "--line-length", "79", "-"]
+      "args": [
+        "--quiet",
+        "--line-length",
+        "119",
+        "-"
+      ]
     },
     "isort": {
       "command": "isort",
-      "args": ["-q", "-"]
+      "args": [
+        "-q",
+        "-"
+      ]
     },
     "docformatter": {
       "command": "docformatter",
-      "args": ["-"]
+      "args": [
+        "-"
+      ]
     }
   },
   "jedi.enable": true,
@@ -103,5 +130,6 @@
     },
     "MD033": false
   },
-  "sh.enable": true
+  "sh.enable": true,
+  "snippets.ultisnips.pythonPrompt": false
 }
