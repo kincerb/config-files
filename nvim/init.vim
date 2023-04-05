@@ -263,6 +263,9 @@ nnoremap ]q :cnext<CR>
 "------- Keymaps for plugins --------"
 nnoremap <leader>gl :0Gclog<CR>
 vmap <leader>gl :Gclog<CR>
+nnoremap <leader>gf :Gdiffsplit!<CR>
+nnoremap <leader>ga :Gwrite!|:Git add %<CR>
+nnoremap <leader>gR :Git rebase --continue<CR>
 nnoremap <leader><C-n> :TagbarToggle<CR>
 nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <leader>N :NERDTreeClose<CR>
@@ -282,6 +285,7 @@ nnoremap <leader>. :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>c :Commands<CR>
+nnoremap <leader>bt :BTags<CR>
 nnoremap <expr> <leader>C ConstructCommit()
 
 nmap == <Plug>(coc-codeaction-line)
