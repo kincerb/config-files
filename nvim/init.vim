@@ -264,7 +264,7 @@ nnoremap ]q :cnext<CR>
 nnoremap <leader>gl :0Gclog<CR>
 vmap <leader>gl :Gclog<CR>
 nnoremap <leader>gf :Gdiffsplit!<CR>
-nnoremap <leader>ga :Gwrite!|:Git add %<CR>
+nnoremap <expr> <leader>ga WriteAndAdd()
 nnoremap <leader>gR :Git rebase --continue<CR>
 nnoremap <leader><C-n> :TagbarToggle<CR>
 nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
@@ -351,6 +351,10 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 command! -nargs=0 Org :call CocAction('runCommand', 'editor.action.organizeImport')
+
+function! WriteAndAdd() abort
+    return ":Gwrite! |:Git add % \<CR>"
+endfunction
 
 function! ConstructCommit() abort
     let branch = FugitiveHead()
