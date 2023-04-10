@@ -128,7 +128,8 @@
       "line_length": 120,
       "code_blocks": false
     },
-    "MD033": false
+    "MD033": false,
+    "MD041": false
   },
   "sh.enable": true,
   "snippets.ultisnips.pythonPrompt": false
