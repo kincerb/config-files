@@ -414,6 +414,30 @@ function! SetPythonOptions()
     iabbrev <buffer> ifmain if __name__ == "__main__":<cr><tab>main()<cr><esc>
 endfunction
 
+function! NERDTreeHighlightFile(extension, guifg, guibg)
+    exec 'autocmd FileType nerdtree highlight ' . a:extension .' guibg='. a:guibg .' guifg='. a:guifg
+    exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none')
+" call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+" call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+" call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashrc', '#686868', 'none')
+call NERDTreeHighlightFile('bashprofile', '#686868', 'none')
+
 augroup Markdown
     autocmd!
     au BufNewFile,BufRead *.md call SetMarkdownOptions()
@@ -436,5 +460,6 @@ augroup END
 
 if exists('g:loaded_webdevicons')
     let g:webdevicons_conceal_nerdtree_brackets=1
+    let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
     call webdevicons#refresh()
 endif
