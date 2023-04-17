@@ -435,8 +435,8 @@ call NERDTreeHighlightFile('json', 'yellow', 'none')
 " call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
 " call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
 " call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashrc', '#686868', 'none')
-call NERDTreeHighlightFile('bashprofile', '#686868', 'none')
+" call NERDTreeHighlightFile('bashrc', '#686868', 'none')
+" call NERDTreeHighlightFile('bashprofile', '#686868', 'none')
 
 augroup Markdown
     autocmd!
