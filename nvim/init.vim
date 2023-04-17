@@ -82,6 +82,7 @@ autocmd BufNewFile,BufRead *.yml :set filetype=yaml.ansible " create function or
 autocmd FileType * AnyFoldActivate
 autocmd FileType javascript setlocal commentstring=/*%s*/
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -89,6 +90,7 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
 augroup neovim_terminal
     autocmd!
     " Enter Terminal-mode (insert) automatically
@@ -138,7 +140,7 @@ set smartcase
 set incsearch " hightlight match while typing
 set nohlsearch
 set encoding=utf-8
-set cmdheight=2
+set cmdheight=1
 set hidden " don't warn when switching from unsaved buffer
 set tabstop=4
 set softtabstop=4
@@ -162,6 +164,11 @@ let g:netrw_banner=0
 
 "------- Plugin variables --------"
 let g:airline_powerline_fonts=1
+let g:airline_highlighting_cache=1
+let g:airline_skip_empty_sections=1
+let g:airline_exclude_preview = 0
+let g:airline_symbols.dirty=' '
+let g:airline_symbols.notexists=' '
 let g:airline_theme='papercolor'
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
@@ -170,11 +177,11 @@ let g:airline#extensions#tabline#formatter='unique_tail_improved'
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline#extensions#tabline#show_buffers=0
 let g:airline#extensions#tabline#ignore_bufadd_pat='nerd_tree|tagbar|buffhidden|quickfix|hidden'
-let airline#extensions#coc#error_symbol='🖕 '
-let airline#extensions#coc#warning_symbol=' '
+let airline#extensions#coc#error_symbol=''
+let airline#extensions#coc#warning_symbol=''
 let g:loaded_golden_ratio=0
-let g:gitgutter_sign_modified='≋'
-let g:gitgutter_sign_added=''
+let g:gitgutter_sign_modified='󰜥'
+let g:gitgutter_sign_added=''
 let g:gitgutter_sign_removed=''
 let g:golden_ratio_exclude_nonmodifiable=1
 let g:anyfold_fold_display=0
