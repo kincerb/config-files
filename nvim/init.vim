@@ -59,7 +59,7 @@ hi CursorLineNr guibg=#89858c ctermbg=NONE guifg=#d5d4d6
 hi ColorColumn guibg=NONE
 hi VertSplit guibg=#005f87 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
-hi MatchParen guibg=#9805ed guifg=#b3b0b5
+hi MatchParen guibg=#b3b0b5 guifg=#9805ed 
 hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
 " autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
 hi IndentBlanklineIndent1 guifg=#6b1c18 gui=nocombine
@@ -76,7 +76,6 @@ hi GitGutterDelete guibg=NONE guifg=#380c0c gui=nocombine
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * wincmd p
-autocmd VimEnter * AnyFoldActivate
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 autocmd BufNewFile,BufRead *.yml :set filetype=yaml.ansible " create function or script to inspect first line
@@ -178,9 +177,10 @@ let g:gitgutter_sign_modified='≋'
 let g:gitgutter_sign_added=''
 let g:gitgutter_sign_removed=''
 let g:golden_ratio_exclude_nonmodifiable=1
-let g:anyfold_fold_toplevel=1
-let g:anyfold_motion=0
-let g:anyfold_fold_display=1
+let g:anyfold_fold_display=0
+let g:anyfold_fold_comments=2
+let g:anyfold_fold_toplevel=0
+let g:anyfold_motion=1
 
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
@@ -425,7 +425,7 @@ endfunction
 " call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
 " call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
 " call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none')
+" call NERDTreeHighlightFile('json', 'yellow', 'none')
 " call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
 " call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 " call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
