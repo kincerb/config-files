@@ -167,8 +167,9 @@ let g:airline_powerline_fonts=1
 let g:airline_highlighting_cache=1
 let g:airline_skip_empty_sections=1
 let g:airline_exclude_preview = 0
-let g:airline_symbols.dirty=' '
-let g:airline_symbols.notexists=' '
+" Need to set these after the dictionary has been created
+" let g:airline_symbols.dirty=' '
+" let g:airline_symbols.notexists=' '
 let g:airline_theme='papercolor'
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
