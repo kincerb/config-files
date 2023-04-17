@@ -49,6 +49,7 @@ syntax enable
 set background=light
 set termguicolors
 colorscheme PaperColor " prev: molokai
+let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 
 " Highlight colors for matchpairs
 hi Normal guibg=NONE ctermbg=NONE
