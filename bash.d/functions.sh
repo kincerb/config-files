@@ -38,11 +38,7 @@ set_window_title() {
         return
     fi
     if [ -n "${TMUX}" ]; then
-        if [ -n "${SSH_CLIENT}" ]; then
-            printf "\033k ${HOSTNAME%%.*}: ${PWD##*/} \033"
-        else
-            printf "\033k ${PWD##*/} \033"
-        fi
+        printf "\033k ${PWD##*/} \033"
     else
         if [ -n "${SSH_CLIENT}" ]; then
             printf "\033]0; ${HOSTNAME%%.*}: ${PWD##*/} \007"
