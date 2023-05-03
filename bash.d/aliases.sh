@@ -1,4 +1,4 @@
-alias cat=batcat
+alias cat=bat
 alias geom='echo "${COLUMNS}x${LINES}"'
 alias conv_utf8='iconv -f ISO-8859-1 -t UTF-8'
 alias gpg_update_tty='gpg-connect-agent updatestartuptty /bye'
