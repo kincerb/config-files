@@ -64,10 +64,6 @@ export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
 export FZF_DEFAULT_OPTS='--color=light'
 
-if [ -z "${SSH_CONNECTION}" ]; then
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-fi
-
 # Source in all shared configs
 for x in ~/.config/bash.d/{colors,secrets,aliases,functions}.sh; do
   if [ -e "${x}" ]; then
@@ -80,6 +76,11 @@ unset x
 if [ -e "${PLATFORM_BASHRC}" ]; then
   source "${PLATFORM_BASHRC}"
 fi
+
+if [ -z "${SSH_CONNECTION}" ]; then
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+fi
+
 
 # If this is a subshell under a virtual env, source it again
 # TODO: Fix the path nightmare that this causes

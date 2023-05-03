@@ -6,6 +6,7 @@ import logging.handlers
 import os
 import sys
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -52,7 +53,9 @@ def get_creds(url):
         if var not in env_vars:
             missing_vars.append(var)
     if missing_vars:
-        raise EnvError("Missing environment variables: {}".format(", ".join(missing_vars)))
+        raise EnvError(
+            "Missing environment variables: {}".format(", ".join(missing_vars))
+        )
 
     return (os.environ.get(id), os.environ.get(token))
 
@@ -69,9 +72,15 @@ def get_args():
     :returns: arguments parsed namespace
     :rtype: argparse.Namespace
     """
-    parser = argparse.ArgumentParser(description="Git credential helper", epilog="Example: %(prog)s get")
-    parser.add_argument("operation", action="store", type=str, help="Git action (get|store|erase)")
-    parser.add_argument("-u", "--url", required=True, dest="url", action="store", help="Repo base url")
+    parser = argparse.ArgumentParser(
+        description="Git credential helper", epilog="Example: %(prog)s get"
+    )
+    parser.add_argument(
+        "operation", action="store", type=str, help="Git action (get|store|erase)"
+    )
+    parser.add_argument(
+        "-u", "--url", required=True, dest="url", action="store", help="Repo base url"
+    )
     parser.add_argument(
         "-v",
         "--verbose",
@@ -103,7 +112,9 @@ def configure_logging(verbosity=0):
                 "formatter": "console",
             }
         },
-        "loggers": {"root": {"level": level, "handlers": ["console"], "propagate": False}},
+        "loggers": {
+            "root": {"level": level, "handlers": ["console"], "propagate": False}
+        },
     }
     logging.config.dictConfig(config)
 
