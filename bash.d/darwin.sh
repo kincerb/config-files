@@ -1,7 +1,5 @@
 export BREW_PREFIX=/opt/homebrew
 export BREW_BIN="${BREW_PREFIX}/bin"
-export BREW_ETC="${BREW_PREFIX}/etc"
-export BREW_BASH_COMPL_DIR="${BREW_PREFIX}/etc/bash_completion.d"
 export EDITOR="${BREW_BIN}/nvim"
 export VISUAL="${EDITOR}"
 
