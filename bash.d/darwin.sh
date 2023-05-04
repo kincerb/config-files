@@ -19,7 +19,7 @@ bin_paths+=("${HOME}/.local/fzf/bin")
 
 for bin_path in  ${bin_paths[@]}; do
     if [ -d "${bin_path}" ]; then
-        if ! [[ "${PATH}" =~ "${bin_path}" ]]; then
+        if ! [[ "${PATH}" =~ :?"${bin_path}":? ]]; then
             export PATH="${bin_path}:$PATH"
         fi
     fi
@@ -31,7 +31,7 @@ if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash"
     source "${HOME}/.iterm2_shell_integration.bash"
 fi
 
-alias chrome_canary='(/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --proxy-server=http://wireguard01.lan:3128 2>&1 &>/dev/null &)'
+alias chrome_canary='(/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --proxy-server=http://127.0.0.1:3128 &>/dev/null &)'
 alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(x) ^ ord('_')) for x in base64.b64decode(sys.argv[1].replace('{xor}', '')).decode()))\""
 alias awk="${BREW_BIN}/awk"
 alias sed="${BREW_BIN}/gsed"
