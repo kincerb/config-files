@@ -12,7 +12,7 @@ fi
 
 for _path in "${HOME}/.local/bin" /usr/local/go/bin "${GOPATH}/bin" "${HOME}/.fzf/bin"; do
     if [ -d "${_path}" ]; then
-        if ! [[ "${PATH}" =~ "${_path}" ]]; then
+        if ! [[ "${PATH}" =~ :?"${_path}":? ]]; then
             export PATH=$_path:$PATH
         fi
     fi
