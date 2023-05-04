@@ -1,9 +1,8 @@
 "  Plugins
 " ---------
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rafi/awesome-vim-colorschemes'
 " plugins that provide or manage splits
-Plug 'roman/golden-ratio' " auto-expand current split
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-peekaboo' " displays split with all registers
@@ -16,22 +15,19 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 " autocomplete
 Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
-"
 Plug 'mbbill/undotree'
 " syntax highlighting, code display
 Plug 'pseewald/vim-anyfold'
 Plug 'frazrepo/vim-rainbow'
 Plug 'lukas-reineke/indent-blankline.nvim' " show vertical line at each indent level
 Plug 'tpope/vim-rhubarb'
-Plug 'sheerun/vim-polyglot'
-Plug 'valloric/MatchTagAlways'
 Plug 'ap/vim-css-color'
 " formatting
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " find all the things
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
+Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 " code completion / navigation
 Plug 'andymass/vim-matchup'
@@ -46,9 +42,14 @@ call plug#end()
 
 filetype plugin indent on
 syntax enable
+
 set background=light
 set termguicolors
 colorscheme PaperColor " prev: molokai
+
+" add fzf to vim runtimepath
+set rtp+=~/.local/fzf
+set rtp+=~/.local/venvs/neovim
 let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 
 " Highlight colors for matchpairs
@@ -84,7 +85,7 @@ autocmd FileType * AnyFoldActivate
 autocmd FileType javascript setlocal commentstring=/*%s*/
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-augroup mygroup
+augroup json_files
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
@@ -94,9 +95,7 @@ augroup end
 
 augroup neovim_terminal
     autocmd!
-    " Enter Terminal-mode (insert) automatically
     autocmd TermOpen * startinsert
-    " Disables number lines on terminal buffers
     autocmd TermOpen * :set nonumber norelativenumber
     " allows you to use Ctrl-c on terminal window
     " autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
@@ -105,8 +104,6 @@ augroup END
 "------- VIM variables --------"
 let mapleader=" "
 set clipboard^=unnamedplus " use system register
-" add fzf to vim runtimepath
-set rtp+=~/.fzf
 " set fillchars=vert:|
 set splitright
 set splitbelow
@@ -120,8 +117,8 @@ set belloff+=ctrlg         " disable beep during completion
 set cursorline
 set cursorlineopt=number
 set noswapfile
-set directory=~/.nvim/tmp
-set undodir=~/.nvim/undodir
+set directory=~/.local/share/nvim/tmp
+set undodir=~/.local/share/nvim/undodir
 set undofile
 set nobackup
 set diffopt=vertical,filler
@@ -181,11 +178,10 @@ let g:airline#extensions#tabline#show_buffers=0
 let g:airline#extensions#tabline#ignore_bufadd_pat='nerd_tree|tagbar|buffhidden|quickfix|hidden'
 let airline#extensions#coc#error_symbol=''
 let airline#extensions#coc#warning_symbol=''
-let g:loaded_golden_ratio=0
+
 let g:gitgutter_sign_modified='󰜥'
 let g:gitgutter_sign_added=''
 let g:gitgutter_sign_removed=''
-let g:golden_ratio_exclude_nonmodifiable=1
 let g:anyfold_fold_display=0
 let g:anyfold_fold_comments=2
 let g:anyfold_fold_toplevel=0
@@ -200,7 +196,6 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=32
 let NERDTreeHijackNetrw=1
 
-let g:mta_filetypes = { 'html': 1, 'typescriptreact': 1 }
 let python_highlight_all=1
 let g:rainbow_active=1
 
@@ -213,11 +208,12 @@ let g:coc_filetype_map = {
     \ }
 
 let g:coc_disable_startup_warning = 1
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier',
-    \ 'coc-angular', 'coc-json', 'coc-css', 'coc-html', 'coc-marketplace',
-    \ 'coc-markdownlint', 'coc-sh', 'coc-yaml', 'coc-vimlsp', '@yaegassy/coc-ansible',
-    \ 'coc-go', 'coc-jedi', 'coc-diagnostic', 'coc-snippets', 'coc-htmldjango',
-    \ 'coc-docker' ]
+
+let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff',
+    \ 'coc-json', 'coc-marketplace',
+    \ 'coc-yaml', 'coc-sh', 'coc-vimlsp', '@yaegassy/coc-ansible',
+    \ 'coc-go', 'coc-snippets', 'coc-htmldjango', 'coc-docker',
+    \ 'coc-css', 'coc-html', 'coc-markdownlint' ]
 
 let g:indent_blankline_char_highlight_list = [
     \ 'IndentBlanklineIndent1',

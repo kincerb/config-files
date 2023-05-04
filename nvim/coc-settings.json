@@ -3,123 +3,14 @@
     "rounded": true
   },
   "coc.preferences.willSaveHandlerTimeout": 1500,
-  "codeLens.enable": false,
-  "diagnostic-languageserver.enable": true,
-  "diagnostic-languageserver.mergeConfig": true,
-  "diagnostic-languageserver.filetypes": {
-    "python": [
-      "flake8",
-      "mypy"
-    ]
-  },
-  "diagnostic-languageserver.linters": {
-    "flake8": {
-      "sourceName": "flake8",
-      "command": "flake8",
-      "debounce": 200,
-      "rootPatterns": [
-        ".git",
-        "pyproject.toml",
-        "setup.py"
-      ],
-      "args": [
-        "--max-line-length=120",
-        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
-        "-"
-      ],
-      "formatPattern": [
-        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
-        {
-          "line": 1,
-          "column": 2,
-          "security": 3,
-          "message": 4
-        }
-      ],
-      "securities": {
-        "N": "hint",
-        "W": "info",
-        "F": "info",
-        "C": "info",
-        "E": "warning"
-      },
-      "offsetLine": 0,
-      "offsetColumn": 0,
-      "formatLines": 1
-    },
-    "mypy": {
-      "sourceName": "mypy",
-      "command": "mypy",
-      "args": [
-        "--no-color-output",
-        "--no-error-summary",
-        "--show-column-numbers",
-        "--follow-imports=silent",
-        "--implicit-reexport",
-        "--show-error-codes",
-        "%file"
-      ],
-      "formatPattern": [
-        "^.*:(\\d+?):(\\d+?): ([a-z]+?): (.*)$",
-        {
-          "line": 1,
-          "column": 2,
-          "security": 3,
-          "message": 4
-        }
-      ],
-      "securities": {
-        "error": "error"
-      }
-    }
-  },
-  "diagnostic-languageserver.formatFiletypes": {
-    "python": [
-      "black",
-      "isort",
-      "docformatter"
-    ]
-  },
-  "diagnostic-languageserver.formatters": {
-    "black": {
-      "command": "black",
-      "args": [
-        "--quiet",
-        "--line-length",
-        "119",
-        "-"
-      ]
-    },
-    "isort": {
-      "command": "isort",
-      "args": [
-        "-q",
-        "-"
-      ]
-    },
-    "docformatter": {
-      "command": "docformatter",
-      "args": [
-        "-"
-      ]
-    }
-  },
-  "jedi.enable": true,
-  "jedi.jediSettings.caseInsensitiveCompletion": true,
-  "jedi.diagnostics.enable": false,
-  "jedi.trace.server": "off",
+  "codeLens.enable": true,
   "snippets.loadFromExtensions": true,
   "suggest.maxCompleteItemCount": 20,
   "coc.preferences.formatOnSave": true,
   "coc.preferences.formatOnType": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "tslint.autoFixOnSave": false,
-  "tslint.jsEnable": true,
-  "prettier.printWidth": 120,
-  "prettier.tabWidth": 2,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "none",
-  "prettier.enable": false,
+  "sh.enable": true,
+  "snippets.ultisnips.pythonPrompt": false,
   "markdownlint.config": {
     "MD004": {
       "style": "sublist"
@@ -131,6 +22,19 @@
     "MD033": false,
     "MD041": false
   },
-  "sh.enable": true,
-  "snippets.ultisnips.pythonPrompt": false
+  "pylsp.enable": true,
+  "pylsp.plugins.flake8.enabled": false,
+  "pylsp.plugins.pycodestyle.enabled": false,
+  "pylsp.plugins.pyflakes.enabled": false,
+  "pylsp.plugins.flake8.ignore": [
+    "F401",
+    "F403",
+    "F405",
+    "E501"
+  ],
+  "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
+  "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
+  "pylsp.plugins.ruff.lineLength": 119,
+  "ruff.enable": false,
+  "ruff.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3"
 }
