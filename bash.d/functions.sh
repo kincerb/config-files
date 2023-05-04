@@ -54,6 +54,10 @@ ssh() {
     set_window_title
 }
 
+btail() {
+    command tail -f "$@" | bat --plain --paging=never --language=log
+}
+
 vim() {
     stty -ixon; command vim "$@"
     stty -ixoff
