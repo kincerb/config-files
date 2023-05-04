@@ -51,7 +51,8 @@ if ! (which bat &>/dev/null); then
     export PAGER=less
 else
     export PAGER="bat -p"
-    export BAT_THEME="Coldark-Cold"
+    alias cat="bat -p"
+    export BAT_THEME="Monokai Extended Light"
     export MANPAGER="sh -c 'col -bx |bat -l man -p'"
 fi
 export PROMPT_DIRTRIM=2
