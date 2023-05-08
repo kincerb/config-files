@@ -5,13 +5,6 @@ export VISUAL="${EDITOR}"
 
 launchctl setenv SSH_AUTH_SOCK "${SSH_AUTH_SOCK}"
 
-for _helper in $(compgen -f "${HOME}/.local/share/bash_completion.d/"); do
-    if [ -e "${_helper}" ]; then
-        source "${_helper}"
-    fi
-done
-unset _helper
-
 bin_paths=("${BREW_BIN}" "${BREW_PREFIX}/sbin")
 bin_paths+=("${HOME}/Library/Python/3.10/bin")
 bin_paths+=("${HOME}/Library/Python/3.11/bin")
@@ -27,6 +20,14 @@ done
 unset bin_path
 unset bin_paths
 
+for _helper in $(compgen -f "${HOME}/.local/share/bash_completion.d/"); do
+    if [ -e "${_helper}" ]; then
+        source "${_helper}"
+    fi
+done
+unset _helper
+
+
 if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
     source "${HOME}/.iterm2_shell_integration.bash"
 fi
@@ -36,6 +37,22 @@ alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(
 alias awk="${BREW_BIN}/awk"
 alias sed="${BREW_BIN}/gsed"
 alias pg_dump="${BREW_PREFIX}/Cellar/postgresql@12/12.14/bin/pg_dump"
+
+set_env() {
+    local env_name="${1:-venv}"
+    local shared_envs="${HOME}/.local/venvs"
+    local env_path
+
+    if [ -d "${PWD}/${env_name}" ]; then
+        env_path="${PWD}/${env_name}"
+    elif [ -d "${shared_envs}/${env_name}" ]; then
+        env_path="${shared_envs}/${env_name}"
+    else
+        echo "Could not find environment: ${env_name}."
+        return
+    fi
+    source "${env_path}/bin/activate"
+}
 
 chrome_app() {
     if [ "${#}" -ne 1 ]; then
