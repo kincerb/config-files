@@ -271,6 +271,7 @@ vmap <leader>gl :Gclog<CR>
 nnoremap <leader>gf :Gdiffsplit!<CR>
 nnoremap <expr> <leader>ga WriteAndAdd()
 nnoremap <leader>gR :Git rebase --continue<CR>
+nnoremap <leader>gP :silent Git push<CR>
 nnoremap <leader><C-n> :TagbarToggle<CR>
 nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <leader>N :NERDTreeClose<CR>
