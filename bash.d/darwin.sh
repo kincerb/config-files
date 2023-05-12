@@ -28,9 +28,9 @@ done
 unset _helper
 
 
-if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
-    source "${HOME}/.iterm2_shell_integration.bash"
-fi
+# if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
+#     source "${HOME}/.iterm2_shell_integration.bash"
+# fi
 
 alias chrome_canary='(/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --proxy-server=http://127.0.0.1:3128 &>/dev/null &)'
 alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(x) ^ ord('_')) for x in base64.b64decode(sys.argv[1].replace('{xor}', '')).decode()))\""
