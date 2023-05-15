@@ -1,3 +1,4 @@
+sethandler a:vim
 let mapleader=" "
 inoremap jk <ESC>
 unmap <A-i>
