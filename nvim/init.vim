@@ -153,7 +153,7 @@ set laststatus=2
 set showtabline=2
 set foldlevel=99 " start with all folds opened
 " display extra whitespace
-set list listchars=tab:>>.,trail:.,nbsp:.
+set list listchars=tab:⟾●,trail:◎,nbsp:●
 
 "------- Builtin variables --------"
 let g:netrw_keepdir=0
@@ -231,7 +231,8 @@ let g:indent_blankline_buftype_exclude = [
     \ 'prompt']
 
 "------- Keymaps --------"
-nnoremap <CR> :noh
+nnoremap <expr> <CR> &diff ? ']c' : ':noh'
+" nnoremap <CR> :noh
 nnoremap <leader><leader> za
 nnoremap <leader>z zA
 inoremap jk <ESC>
