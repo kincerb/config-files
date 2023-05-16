@@ -11,7 +11,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " plugins for git
 Plug 'tpope/vim-fugitive'
-Plug 'christoomey/vim-conflicted'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 " autocomplete
