@@ -38,6 +38,9 @@ Plug 'alvan/vim-closetag' " auto-close html
 Plug 'fladson/vim-kitty'
 " file icons
 Plug 'ryanoasis/vim-devicons'
+
+" general UI stuff
+Plug 'rcarriga/nvim-notify'
 call plug#end()
 
 filetype plugin indent on
