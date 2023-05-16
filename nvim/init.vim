@@ -102,7 +102,7 @@ augroup neovim_terminal
 augroup END
 
 "------- VIM variables --------"
-let mapleader=" "
+let mapleader="\<Space>"
 set clipboard^=unnamedplus " use system register
 " set fillchars=vert:|
 set splitright
