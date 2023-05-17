@@ -61,6 +61,7 @@ hi Folded guifg=#000000 guibg=#616161
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
 hi CursorLineNr guibg=#89858c ctermbg=NONE guifg=#d5d4d6
+hi CursorLine gui=underline cterm=underline
 hi ColorColumn guibg=NONE
 hi VertSplit guibg=#005f87 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
@@ -129,7 +130,7 @@ set nowritebackup
 set colorcolumn=120
 set updatetime=300
 set shortmess+=c
-set signcolumn=number
+set signcolumn=auto
 set scrolloff=16
 set showmatch
 set number
@@ -185,6 +186,7 @@ let airline#extensions#coc#warning_symbol=''
 let g:gitgutter_sign_modified='󰜥'
 let g:gitgutter_sign_added=''
 let g:gitgutter_sign_removed=''
+let g:gitgutter_git_args='--no-optional-locks'
 let g:anyfold_fold_display=0
 let g:anyfold_fold_comments=2
 let g:anyfold_fold_toplevel=0
