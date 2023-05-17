@@ -4,6 +4,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rafi/awesome-vim-colorschemes'
 " plugins that provide or manage splits
 Plug 'preservim/nerdtree'
+Plug 'kincerb/nerdtree-git-plugin'
+" file icons
+Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-peekaboo' " displays split with all registers
 " statusline
@@ -11,7 +14,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " plugins for git
 Plug 'tpope/vim-fugitive'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 " autocomplete
 Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
@@ -36,8 +38,6 @@ Plug 'tpope/vim-endwise' " auto-close for shells, ruby
 Plug 'alvan/vim-closetag' " auto-close html
 " syntax highlighting for kitty conf files
 Plug 'fladson/vim-kitty'
-" file icons
-Plug 'ryanoasis/vim-devicons'
 
 " general UI stuff
 Plug 'rcarriga/nvim-notify'
@@ -193,6 +193,7 @@ let g:anyfold_motion=1
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
 
+let g:NERDTreeGitStatusConcealBrackets=0
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
@@ -363,7 +364,7 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 command! -nargs=0 Org :call CocAction('runCommand', 'editor.action.organizeImport')
 
 function! WriteAndAdd() abort
-    return ":Gwrite! |:Git add % \<CR>"
+    return ":Gwrite! |:Git add % \<CR>\<CR>"
 endfunction
 
 function! ConstructCommit() abort
@@ -470,6 +471,6 @@ augroup END
 
 if exists('g:loaded_webdevicons')
     let g:webdevicons_conceal_nerdtree_brackets=1
-    let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
+    " let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
     call webdevicons#refresh()
 endif
