@@ -80,8 +80,8 @@ hi GitGutterDelete guibg=NONE guifg=#380c0c gui=nocombine
 
 "------- Autocommands  --------"
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * wincmd p
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * wincmd p
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
 autocmd BufNewFile,BufRead *.yml :set filetype=yaml.ansible " create function or script to inspect first line
