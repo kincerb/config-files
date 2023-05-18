@@ -38,7 +38,7 @@ alias awk="${BREW_BIN}/awk"
 alias sed="${BREW_BIN}/gsed"
 alias pg_dump="${BREW_PREFIX}/Cellar/postgresql@12/12.14/bin/pg_dump"
 
-set_env() {
+workon() {
     local env_name="${1:-venv}"
     local shared_envs="${HOME}/.local/venvs"
     local env_path
