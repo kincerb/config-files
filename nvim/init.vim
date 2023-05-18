@@ -243,6 +243,7 @@ nnoremap <expr> <leader>x &diff ? ':tabclose<CR>' : ''
 nnoremap <leader><leader> za
 nnoremap <leader>z zA
 inoremap jk <ESC>
+inoremap <C-o> <ESC>o<ESC>
 " use very magic mode by default for searching
 nnoremap / /\v
 " Indent with tab
