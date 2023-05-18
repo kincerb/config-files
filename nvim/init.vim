@@ -65,7 +65,7 @@ hi ColorColumn guibg=NONE
 hi CursorLine gui=underline cterm=underline
 hi VertSplit guibg=#005f87 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
-hi MatchParen guibg=#b3b0b5 guifg=#9805ed 
+hi MatchParen guibg=#b3b0b5 guifg=#9805ed
 hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
 " autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
 hi IndentBlanklineIndent1 guifg=#6b1c18 gui=nocombine
