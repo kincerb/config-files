@@ -239,7 +239,7 @@ let g:indent_blankline_buftype_exclude = [
 "------- Keymaps --------"
 nnoremap <expr> <CR> &diff ? ']c' : ':noh'
 " nnoremap <CR> :noh
-nnoremap <expr> <leader>x &diff ? ':tabclose<CR>' : ''
+nnoremap <expr> <leader>x ':tabclose<CR>'
 nnoremap <leader><leader> za
 nnoremap <leader>z zA
 inoremap jk <ESC>
