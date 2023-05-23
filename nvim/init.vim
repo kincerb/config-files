@@ -215,11 +215,11 @@ let g:coc_filetype_map = {
 
 let g:coc_disable_startup_warning = 1
 
-let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff',
-    \ 'coc-json', 'coc-marketplace', 'coc-highlight',
-    \ 'coc-yaml', 'coc-sh', 'coc-vimlsp', '@yaegassy/coc-ansible',
-    \ 'coc-go', 'coc-snippets', 'coc-htmldjango', 'coc-docker',
-    \ 'coc-css', 'coc-html', 'coc-markdownlint' ]
+let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff', 'coc-htmldjango', '@yaegassy/coc-ansible',
+    \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker',
+    \ 'coc-css', 'coc-markdownlint',
+    \ 'coc-sh', 'coc-go', 'coc-vimlsp',
+    \ 'coc-snippets', 'coc-marketplace', 'coc-highlight']
 
 let g:indent_blankline_char_highlight_list = [
     \ 'IndentBlanklineIndent1',
