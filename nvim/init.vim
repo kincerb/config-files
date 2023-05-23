@@ -216,7 +216,7 @@ let g:coc_filetype_map = {
 let g:coc_disable_startup_warning = 1
 
 let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff',
-    \ 'coc-json', 'coc-marketplace',
+    \ 'coc-json', 'coc-marketplace', 'coc-highlight',
     \ 'coc-yaml', 'coc-sh', 'coc-vimlsp', '@yaegassy/coc-ansible',
     \ 'coc-go', 'coc-snippets', 'coc-htmldjango', 'coc-docker',
     \ 'coc-css', 'coc-html', 'coc-markdownlint' ]
