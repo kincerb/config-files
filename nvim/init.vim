@@ -219,7 +219,8 @@ let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff', 'co
     \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker',
     \ 'coc-css', 'coc-markdownlint',
     \ 'coc-sh', 'coc-go', 'coc-vimlsp',
-    \ 'coc-snippets', 'coc-marketplace', 'coc-highlight']
+    \ 'coc-snippets', 'coc-marketplace', 'coc-highlight',
+    \ 'https://github.com/andys8/vscode-jest-snippets']
 
 let g:indent_blankline_char_highlight_list = [
     \ 'IndentBlanklineIndent1',
