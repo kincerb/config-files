@@ -30,14 +30,23 @@
   "pylsp.plugins.pyflakes.enabled": false,
   "pylsp.plugins.mccabe.enabled": false,
   "pylsp.plugins.ruff.enabled": true,
-  "pylsp.plugins.ruff.lineLength": 119,
   "pylsp.plugins.ruff.extendSelect": [
     "I"
   ],
+  "pylsp.plugins.ruff.lineLength": 119,
   "pylsp.plugins.flake8.ignore": [
     "F401",
     "F403",
     "F405",
     "E501"
   ],
+  "ruff.enable": true,
+  "ruff.path": [
+    "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff"
+  ],
+  "ruff.serverPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff-lsp",
+  "ruff.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
+  "ruff.autoFixOnSave": true,
+  "ruff.fixAll": true,
+  "ruff.organizeImports": true
 }
