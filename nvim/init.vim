@@ -426,7 +426,7 @@ endfunction
 
 function! SetPythonOptions()
     let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
-    setlocal formatprg=black\ --line-length\ 120\ --quiet
+    " setlocal formatprg=black\ --line-length\ 120\ --quiet
     iabbrev <buffer> ifmain if __name__ == "__main__":<cr><tab>main()<cr><esc>
 endfunction
 

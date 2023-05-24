@@ -23,18 +23,21 @@
     "MD041": false
   },
   "pylsp.enable": true,
+  "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
+  "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
   "pylsp.plugins.flake8.enabled": false,
   "pylsp.plugins.pycodestyle.enabled": false,
   "pylsp.plugins.pyflakes.enabled": false,
+  "pylsp.plugins.mccabe.enabled": false,
+  "pylsp.plugins.ruff.enabled": true,
+  "pylsp.plugins.ruff.lineLength": 119,
+  "pylsp.plugins.ruff.extendSelect": [
+    "I"
+  ],
   "pylsp.plugins.flake8.ignore": [
     "F401",
     "F403",
     "F405",
     "E501"
   ],
-  "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
-  "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
-  "pylsp.plugins.ruff.lineLength": 119,
-  "ruff.enable": false,
-  "ruff.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3"
 }

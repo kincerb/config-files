@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import argparse
-import asyncio
-import datetime
 import logging
+import datetime
+import asyncio
 import logging.config
 import logging.handlers
 from pathlib import Path
@@ -22,7 +22,9 @@ def main():
     start_time = datetime.datetime.now()
 
     loop = asyncio.get_event_loop()
-    results = loop.run_until_complete(download_issues_requested(args.issue_number, args.download_dir))
+    results = loop.run_until_complete(
+        download_issues_requested(args.issue_number, args.download_dir)
+    )
     loop.close()
 
     total_run_time = datetime.datetime.now() - start_time
@@ -37,15 +39,21 @@ async def download_issues_requested(issues: str, download_directory: Path) -> tu
         if "-" in issues:
             start_issue, stop_issue = issues.split("-")
             for issue_number in range(int(start_issue), int(stop_issue) + 1):
-                tasks.append(download_single_issue(session, download_directory, issue_number))
+                tasks.append(
+                    download_single_issue(session, download_directory, issue_number)
+                )
         else:
-            tasks.append(download_single_issue(session, download_directory, int(issues)))
+            tasks.append(
+                download_single_issue(session, download_directory, int(issues))
+            )
 
         results = await asyncio.gather(*tasks)
     return results
 
 
-async def download_single_issue(session: aiohttp.ClientSession, download_directory: Path, issue: int):
+async def download_single_issue(
+    session: aiohttp.ClientSession, download_directory: Path, issue: int
+):
     download_filename = download_directory.joinpath(f"{issue}.pdf")
     params = {"PDF": f"LXF{issue}.complete.pdf"}
 
@@ -65,7 +73,9 @@ async def download_single_issue(session: aiohttp.ClientSession, download_directo
         logging.error(e)
     else:
         total_run_time = datetime.datetime.now() - start_time
-        logging.info(f"Downloaded issue {issue} to {download_filename} in {total_run_time.total_seconds():.2f}s.")
+        logging.info(
+            f"Downloaded issue {issue} to {download_filename} in {total_run_time.total_seconds():.2f}s."
+        )
         return download_filename
 
 
@@ -126,7 +136,9 @@ def configure_logging(verbosity: int = 0) -> None:
                 "formatter": "console",
             }
         },
-        "loggers": {"root": {"level": level, "handlers": ["console"], "propagate": False}},
+        "loggers": {
+            "root": {"level": level, "handlers": ["console"], "propagate": False}
+        },
     }
     logging.config.dictConfig(config)
 
