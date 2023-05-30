@@ -22,6 +22,14 @@
     "MD033": false,
     "MD041": false
   },
+  "languageserver": {
+    "ruff-lsp": {
+      "command": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff-lsp",
+      "filetypes": [
+        "python"
+      ]
+    }
+  },
   "pylsp.enable": true,
   "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
   "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
@@ -29,7 +37,7 @@
   "pylsp.plugins.pycodestyle.enabled": false,
   "pylsp.plugins.pyflakes.enabled": false,
   "pylsp.plugins.mccabe.enabled": false,
-  "pylsp.plugins.ruff.enabled": true,
+  "pylsp.plugins.ruff.enabled": false,
   "pylsp.plugins.ruff.executable": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff",
   "pylsp.plugins.ruff.extendSelect": [
     "I"
@@ -41,7 +49,9 @@
     "F405",
     "E501"
   ],
+  "ruff.enable": true,
   "ruff.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
+  "ruff.serverPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff-lsp",
   "ruff.autoFixOnSave": true,
   "ruff.fixAll": true,
   "ruff.organizeImports": true,
