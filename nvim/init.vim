@@ -59,6 +59,7 @@ let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 hi Normal guibg=NONE ctermbg=NONE
 hi Folded guifg=#000000 guibg=#616161
 hi EndOfBuffer guibg=NONE ctermbg=NONE
+hi Whitespace guibg=#9c4b4f ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
 hi CursorLineNr guibg=#89858c ctermbg=NONE guifg=#d5d4d6
 hi ColorColumn guibg=NONE
@@ -77,6 +78,7 @@ hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine
 hi GitGutterChange guifg=NONE guifg=#1c3757 gui=nocombine
 hi GitGutterAdd guibg=NONE guifg=#1b5e24 gui=nocombine
 hi GitGutterDelete guibg=NONE guifg=#380c0c gui=nocombine
+
 
 "------- Autocommands  --------"
 autocmd StdinReadPre * let s:std_in=1
@@ -157,7 +159,7 @@ set laststatus=2
 set showtabline=2
 set foldlevel=99 " start with all folds opened
 " display extra whitespace
-set list listchars=tab:⟾●,trail:◎,nbsp:●
+set listchars=tab:⟪⋯⟫,trail:●,nbsp:●
 
 "------- Builtin variables --------"
 let g:netrw_keepdir=0
