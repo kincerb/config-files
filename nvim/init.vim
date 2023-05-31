@@ -79,7 +79,6 @@ hi GitGutterChange guifg=NONE guifg=#1c3757 gui=nocombine
 hi GitGutterAdd guibg=NONE guifg=#1b5e24 gui=nocombine
 hi GitGutterDelete guibg=NONE guifg=#380c0c gui=nocombine
 
-
 "------- Autocommands  --------"
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
