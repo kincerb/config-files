@@ -1,10 +1,13 @@
 sethandler a:vim
-set scrolloff=15
-set clipboard^=unnamedplus,unnamed
 let mapleader="\<Space>"
+set scrolloff=15
+set clipboard^=unnamedplus,unnamed,ideaput
+set showmode
+set iskeyword-=_
 inoremap jk <ESC>
 unmap <A-i>
-set iskeyword-=_
+map <F5> <Action>(IdeaVim.ReloadVimRc.reload)
+map <leader>E <Action>(ExecuteInPyConsoleAction)
 map zM <Action>(CollapseAll)
 map zm <Action>(ExpandAll)
 map gcc <Action>(CommentByLineComment)
@@ -33,8 +36,8 @@ map <leader>j <Action>(NextTab)
 map <leader>k <Action>(PreviousTab)
 map <Tab> <Action>(EditorIndentLineOrSelection)
 map <S-Tab> <Action>(EditorUnindentSelection)
-map <leader>r <Action>(ReformatCode)
-vmap <leader>r <Action>(ReformatCode)
+map <leader>r V<Action>(ReformatCode)
+vmap <leader>r V<Action>(ReformatCode)
 vmap <leader>R <Action>(RefactoringMenu)
 map == <Action>(ShowIntentionActions)
 vmap == <Action>(ShowIntentionActions)
@@ -50,4 +53,3 @@ map <leader>gd <Action>(GitShowDiffWithBranchAction)
 " map gd <Action>(QuickImplementations)
 map gd <Action>(GotoDeclaration)
 map <leader>x <Action>(CloseActiveTab)
-map <leader><F5> <Action>(IdeaVim.ReloadVimRc.reload)
