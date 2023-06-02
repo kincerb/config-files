@@ -16,6 +16,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " autocomplete
+Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
 Plug 'mbbill/undotree'
 " syntax highlighting, code display

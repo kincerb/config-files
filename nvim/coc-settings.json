@@ -27,7 +27,12 @@
       "command": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff-lsp",
       "filetypes": [
         "python"
-      ]
+      ],
+      "settings": {
+        "organizeImports": "true",
+        "fixAll": "true",
+        "path": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff"
+      }
     }
   },
   "pylsp.enable": true,

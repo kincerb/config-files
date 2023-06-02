@@ -4,10 +4,12 @@ set scrolloff=15
 set clipboard^=unnamedplus,unnamed,ideaput
 set showmode
 set iskeyword-=_
+set incsearch
+set belloff=all
 inoremap jk <ESC>
 unmap <A-i>
 map <F5> <Action>(IdeaVim.ReloadVimRc.reload)
-map <leader>E <Action>(ExecuteInPyConsoleAction)
+map <leader>E <Action>(ExecuteInPyConsoleAction)\|<ESC>
 map zM <Action>(CollapseAll)
 map zm <Action>(ExpandAll)
 map gcc <Action>(CommentByLineComment)
