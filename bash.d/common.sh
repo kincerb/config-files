@@ -63,7 +63,7 @@ export HISTSIZE=100000
 export HISTFILESIZE=100000
 export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
-export FZF_DEFAULT_OPTS='--color=light'
+export FZF_DEFAULT_OPTS='--color=dark'
 
 # Source in all shared configs
 for x in ~/.config/bash.d/{colors,secrets,aliases,functions}.sh; do
