@@ -23,6 +23,7 @@
     "MD041": false
   },
   "pylsp.enable": true,
+  "pylsp.builtin.enableInstallPythonLspRuff": false,
   "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
   "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
   "pylsp.plugins.flake8.enabled": false,
@@ -30,11 +31,6 @@
   "pylsp.plugins.pyflakes.enabled": false,
   "pylsp.plugins.mccabe.enabled": false,
   "pylsp.plugins.ruff.enabled": false,
-  "pylsp.plugins.ruff.executable": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff",
-  "pylsp.plugins.ruff.extendSelect": [
-    "I"
-  ],
-  "pylsp.plugins.ruff.lineLength": 119,
   "pylsp.plugins.flake8.ignore": [
     "F401",
     "F403",
