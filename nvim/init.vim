@@ -49,7 +49,11 @@ syntax enable
 
 set background=light
 set termguicolors
-colorscheme PaperColor " prev: molokai
+" colorscheme PaperColor " prev: molokai
+colorscheme jellybeans
+" colorscheme onedark
+" colorscheme onehalfdark
+" colorscheme seoul256
 
 " add fzf to vim runtimepath
 set rtp+=~/.local/fzf
@@ -60,25 +64,25 @@ let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 hi Normal guibg=NONE ctermbg=NONE
 hi Folded guifg=#000000 guibg=#616161
 hi EndOfBuffer guibg=NONE ctermbg=NONE
-hi Whitespace guibg=#9c4b4f ctermbg=NONE
+hi Whitespace guibg=#a9b0ab ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
 hi CursorLineNr guibg=#89858c ctermbg=NONE guifg=#d5d4d6
 hi ColorColumn guibg=NONE
 hi CursorLine gui=underline cterm=underline
-hi VertSplit guibg=#005f87 guifg=#005f87
+hi VertSplit guibg=#959ea1 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#b3b0b5 guifg=#9805ed
 hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
 " autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
-hi IndentBlanklineIndent1 guifg=#6b1c18 gui=nocombine
-hi IndentBlanklineIndent2 guifg=#E5C078 gui=nocombine
-hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine
-hi IndentBlanklineIndent4 guifg=#F56451 gui=nocombine
-hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine
-hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine
-hi GitGutterChange guifg=NONE guifg=#1c3757 gui=nocombine
-hi GitGutterAdd guibg=NONE guifg=#1b5e24 gui=nocombine
-hi GitGutterDelete guibg=NONE guifg=#380c0c gui=nocombine
+hi IndentBlanklineIndent1 guifg=#f0dbc7 gui=nocombine
+hi IndentBlanklineIndent2 guifg=#f5f2f0 gui=nocombine
+hi IndentBlanklineIndent3 guifg=#a9d6a5 gui=nocombine
+hi IndentBlanklineIndent4 guifg=#e6a1a1 gui=nocombine
+hi IndentBlanklineIndent5 guifg=#a1b9e6 gui=nocombine
+hi IndentBlanklineIndent6 guifg=#d6b5e8 gui=nocombine
+hi GitGutterChange guifg=NONE guifg=#9eb8d9 gui=nocombine
+hi GitGutterAdd guibg=NONE guifg=#c4ebc0 gui=nocombine
+hi GitGutterDelete guibg=NONE guifg=#de9b95 gui=nocombine
 
 "------- Autocommands  --------"
 autocmd StdinReadPre * let s:std_in=1
