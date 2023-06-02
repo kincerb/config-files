@@ -178,7 +178,7 @@ let g:airline_exclude_preview = 0
 " Need to set these after the dictionary has been created
 " let g:airline_symbols.dirty=' '
 " let g:airline_symbols.notexists=' '
-let g:airline_theme='google-dark'
+let g:airline_theme='google_dark'
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
 let g:airline#extensions#tabline#enabled=1
