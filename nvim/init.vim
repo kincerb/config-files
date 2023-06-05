@@ -281,6 +281,7 @@ nnoremap ]q :cnext<CR>
 
 "------- Keymaps for plugins --------"
 nnoremap <expr> <leader>gb ToggleBlames()
+nnoremap <leader>go :CocCommand git.browserOpen<CR>
 nnoremap <leader>gl :0Gclog<CR>
 vmap <leader>gl :Gclog<CR>
 nnoremap <leader>gf :Gdiffsplit!<CR>
