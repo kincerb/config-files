@@ -14,7 +14,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " plugins for git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'lewis6991/gitsigns.nvim' " alt to gitgutter
 " autocomplete
 Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
@@ -189,10 +190,6 @@ let g:airline#extensions#tabline#ignore_bufadd_pat='nerd_tree|tagbar|buffhidden|
 let airline#extensions#coc#error_symbol=''
 let airline#extensions#coc#warning_symbol=''
 
-let g:gitgutter_sign_modified='󰜥'
-let g:gitgutter_sign_added=''
-let g:gitgutter_sign_removed=''
-let g:gitgutter_git_args='--no-optional-locks'
 let g:anyfold_fold_display=0
 let g:anyfold_fold_comments=2
 let g:anyfold_fold_toplevel=0
@@ -223,7 +220,7 @@ let g:coc_disable_startup_warning = 1
 
 let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff', 'coc-htmldjango', '@yaegassy/coc-ansible',
     \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker',
-    \ 'coc-css', 'coc-markdownlint',
+    \ 'coc-css', 'coc-markdownlint', 'coc-git',
     \ 'coc-sh', 'coc-go', 'coc-vimlsp',
     \ 'coc-snippets', 'coc-marketplace', 'coc-highlight',
     \ 'https://github.com/andys8/vscode-jest-snippets']
@@ -282,6 +279,7 @@ nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 
 "------- Keymaps for plugins --------"
+" nnoremap <leader>gb :let g:coc_git_hide
 nnoremap <leader>gl :0Gclog<CR>
 vmap <leader>gl :Gclog<CR>
 nnoremap <leader>gf :Gdiffsplit!<CR>
