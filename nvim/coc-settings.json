@@ -9,6 +9,11 @@
   "coc.preferences.formatOnSave": true,
   "coc.preferences.formatOnType": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "git.addGBlameToVirtualText": true,
+  "git.enableGutters": true,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
   "sh.enable": true,
   "snippets.ultisnips.pythonPrompt": false,
   "markdownlint.config": {
