@@ -48,7 +48,7 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-set background=light
+set background=dark
 set termguicolors
 " colorscheme PaperColor " prev: molokai
 colorscheme jellybeans
@@ -74,11 +74,12 @@ hi VertSplit guibg=#959ea1 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#b3b0b5 guifg=#9805ed
 hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
+hi Visual guibg=#346b69 guifg=#f5f2f0
 " autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
 hi IndentBlanklineIndent1 guifg=#f0dbc7 gui=nocombine
-hi IndentBlanklineIndent2 guifg=#f5f2f0 gui=nocombine
+hi IndentBlanklineIndent2 guifg=#e6a1a1 gui=nocombine
 hi IndentBlanklineIndent3 guifg=#a9d6a5 gui=nocombine
-hi IndentBlanklineIndent4 guifg=#e6a1a1 gui=nocombine
+hi IndentBlanklineIndent4 guifg=#dbeb34 gui=nocombine
 hi IndentBlanklineIndent5 guifg=#a1b9e6 gui=nocombine
 hi IndentBlanklineIndent6 guifg=#d6b5e8 gui=nocombine
 hi GitGutterChange guifg=NONE guifg=#9eb8d9 gui=nocombine
@@ -109,7 +110,7 @@ augroup neovim_terminal
     autocmd TermOpen * startinsert
     autocmd TermOpen * :set nonumber norelativenumber
     " allows you to use Ctrl-c on terminal window
-    " autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
+    autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
 augroup END
 
 "------- VIM variables --------"
@@ -279,7 +280,7 @@ nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 
 "------- Keymaps for plugins --------"
-" nnoremap <leader>gb :let g:coc_git_hide
+nnoremap <expr> <leader>gb ToggleBlames()
 nnoremap <leader>gl :0Gclog<CR>
 vmap <leader>gl :Gclog<CR>
 nnoremap <leader>gf :Gdiffsplit!<CR>
@@ -374,6 +375,10 @@ command! -nargs=0 Org :call CocAction('runCommand', 'editor.action.organizeImpor
 
 function! WriteAndAdd() abort
     return ":Gwrite! |:Git add % \<CR>\<CR>"
+endfunction
+
+function! ToggleBlames() abort
+    let g:coc_git_hide_blame_virtual_text = !get(g:, 'coc_git_hide_blame_virtual_text', 0)
 endfunction
 
 function! ConstructCommit() abort
