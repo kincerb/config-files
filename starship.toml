@@ -28,13 +28,13 @@ style = "purple"
 truncate_to_repo = true
 truncation_length = 3
 truncation_symbol = "/"
-home_symbol = ""
-read_only = " "
+home_symbol = ""
+read_only = """
 
 [directory.substitutions]
-"Documents" = " "
+"Documents" = """
 "Downloads" = " "
-"Music" = " "
+"Music" = " "
 "Pictures" = " "
 
 # Fourth param
@@ -65,10 +65,10 @@ min_time = 1
 ## SECOND LINE/ROW: Prompt
 # Somethere at the beginning
 [battery]
-charging_symbol = ""
+charging_symbol = "󰂄"
 disabled = true
-discharging_symbol = ""
-full_symbol = ""
+discharging_symbol = "󰂌"
+full_symbol = "󰂏"
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 10%
 style = "bold red"
