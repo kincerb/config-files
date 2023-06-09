@@ -188,7 +188,7 @@ let g:airline#extensions#tabline#formatter='unique_tail_improved'
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline#extensions#tabline#show_buffers=0
 let g:airline#extensions#tabline#ignore_bufadd_pat='nerd_tree|tagbar|buffhidden|quickfix|hidden'
-let airline#extensions#coc#error_symbol=''
+let airline#extensions#coc#error_symbol='󰅝'
 let airline#extensions#coc#warning_symbol=''
 
 let g:anyfold_fold_display=0
