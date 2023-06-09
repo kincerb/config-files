@@ -29,7 +29,7 @@ truncate_to_repo = true
 truncation_length = 3
 truncation_symbol = "/"
 home_symbol = ""
-read_only = """
+read_only = ""
 
 [directory.substitutions]
 "Documents" = """
