@@ -446,6 +446,7 @@ endfunction
 
 function! SetPythonOptions()
     let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
+    setlocal formatprg=black\ --quiet
     setlocal fileformat=unix fixeol
     iabbrev <buffer> ifmain if __name__ == "__main__":<cr><tab>main()<cr><esc>
 endfunction
