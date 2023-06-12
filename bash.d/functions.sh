@@ -71,7 +71,7 @@ rvim() {
     fi
     local server="${1}"
     local file="${2}"
-    vim rsync://"${server}"/"${file}"
+    nvim rsync://"${server}"/"${file}"
 }
 
 clean_up_sockets() {
@@ -129,3 +129,20 @@ pip_update() {
         "${pip_bin}" install --upgrade "${x}"
     done
 }
+
+workon() {
+    local env_name="${1:-venv}"
+    local shared_envs="${HOME}/.local/venvs"
+    local env_path
+
+    if [ -d "${PWD}/${env_name}" ]; then
+        env_path="${PWD}/${env_name}"
+    elif [ -d "${shared_envs}/${env_name}" ]; then
+        env_path="${shared_envs}/${env_name}"
+    else
+        echo "Could not find environment: ${env_name}."
+        return
+    fi
+    source "${env_path}/bin/activate"
+}
+
