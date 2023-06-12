@@ -180,7 +180,7 @@ let g:airline_exclude_preview = 0
 " Need to set these after the dictionary has been created
 " let g:airline_symbols.dirty=' '
 " let g:airline_symbols.notexists=' '
-let g:airline_theme='jellybeans'
+let g:airline_theme='molokai'
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
 let g:airline#extensions#tabline#enabled=1
@@ -280,6 +280,12 @@ nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 
 "------- Keymaps for plugins --------"
+nnoremap [c <Plug>(coc-git-prevchunk)
+nnoremap ]c <Plug>(coc-git-nextchunk)
+nnoremap [cc <Plug>(coc-git-prevconflict)
+nnoremap ]cc <Plug>(coc-git-nextconflict)
+nnoremap gs <Plug>(coc-git-chunkinfo)
+nnoremap gc <Plug>(coc-git-commit)
 nnoremap <expr> <leader>gb ToggleBlames()
 nnoremap <leader>go :CocCommand git.browserOpen<CR>
 nnoremap <leader>gO :CocCommand git.copyUrl<CR>
