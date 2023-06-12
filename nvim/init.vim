@@ -300,6 +300,7 @@ nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <leader>N :NERDTreeClose<CR>
 
 nnoremap <F5> :UndotreeToggle<CR>
+" ------- FZF mappings ----------- "
 " search for word under cursor
 nnoremap <leader>f :Ag <C-R><C-W><cr>
 " [visual] search for word under cursor
@@ -315,6 +316,8 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>c :Commands<CR>
 nnoremap <leader>bt :BTags<CR>
+nnoremap <leader>gm :GFiles --modified<CR>
+" ------- END FZF mappings ----------- "
 nnoremap <expr> <leader>C ConstructCommit()
 
 nmap == <Plug>(coc-codeaction-line)
@@ -443,7 +446,7 @@ endfunction
 
 function! SetPythonOptions()
     let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
-    " setlocal formatprg=black\ --line-length\ 120\ --quiet
+    setlocal fileformat=unix fixeol
     iabbrev <buffer> ifmain if __name__ == "__main__":<cr><tab>main()<cr><esc>
 endfunction
 
@@ -493,6 +496,5 @@ augroup END
 
 if exists('g:loaded_webdevicons')
     let g:webdevicons_conceal_nerdtree_brackets=1
-    " let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
     call webdevicons#refresh()
 endif
