@@ -38,22 +38,6 @@ alias awk="${BREW_BIN}/awk"
 alias sed="${BREW_BIN}/gsed"
 alias pg_dump="${BREW_PREFIX}/Cellar/postgresql@12/12.14/bin/pg_dump"
 
-workon() {
-    local env_name="${1:-venv}"
-    local shared_envs="${HOME}/.local/venvs"
-    local env_path
-
-    if [ -d "${PWD}/${env_name}" ]; then
-        env_path="${PWD}/${env_name}"
-    elif [ -d "${shared_envs}/${env_name}" ]; then
-        env_path="${shared_envs}/${env_name}"
-    else
-        echo "Could not find environment: ${env_name}."
-        return
-    fi
-    source "${env_path}/bin/activate"
-}
-
 chrome_app() {
     if [ "${#}" -ne 1 ]; then
         echo -e "Usage:\n chrome_app [url]"
