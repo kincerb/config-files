@@ -8,6 +8,7 @@
   "suggest.maxCompleteItemCount": 20,
   "coc.preferences.formatOnSave": true,
   "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveTimeout": 1500,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "git.addGBlameToVirtualText": true,
   "git.enableGutters": true,
@@ -28,7 +29,7 @@
     "MD041": false
   },
   "pylsp.enable": true,
-  "pylsp.builtin.enableInstallPythonLspRuff": false,
+  "pylsp.builtin.enableInstallPythonLspBlack": false,
   "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
   "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
   "pylsp.plugins.flake8.enabled": false,
