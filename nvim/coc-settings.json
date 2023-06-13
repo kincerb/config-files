@@ -29,9 +29,12 @@
     "MD041": false
   },
   "pylsp.enable": true,
+  "pylsp.trace.server": "off",
   "pylsp.builtin.enableInstallPythonLspBlack": false,
   "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
   "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
+  "pylsp.plugins.autopep8.enabled": false,
+  "pylsp.plugins.yapf.enabled": false,
   "pylsp.plugins.flake8.enabled": false,
   "pylsp.plugins.pycodestyle.enabled": false,
   "pylsp.plugins.pyflakes.enabled": false,
