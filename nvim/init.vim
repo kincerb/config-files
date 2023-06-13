@@ -393,6 +393,13 @@ function! ToggleBlames() abort
 endfunction
 
 function! ConstructCommit() abort
+    if (!get(b:, 'coc_git_status', 0) == 0)
+        echom "No modifications made to commit."
+        return
+    endif
+
+    execute "write"
+
     let branch = FugitiveHead()
     if branch =~ 'MWAUTO'
         return ":Git commit % -m \"" . branch . " #comment \"\<Left>"
