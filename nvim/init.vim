@@ -50,11 +50,7 @@ syntax enable
 
 set background=dark
 set termguicolors
-" colorscheme PaperColor " prev: molokai
 colorscheme jellybeans
-" colorscheme onedark
-" colorscheme onehalfdark
-" colorscheme seoul256
 
 " add fzf to vim runtimepath
 set rtp+=~/.local/fzf
@@ -210,7 +206,6 @@ let python_highlight_all=1
 let g:rainbow_active=1
 
 let g:fzf_action = { 'enter': 'edit', 'ctrl-t': 'tab split', 'ctrl-s': 'vsplit', 'ctrl-i': 'split'}
-" let g:fzf_layout = { 'down': '40%' }
 let g:fzf_buffers_jump = 1
 let g:coc_filetype_map = {
     \ 'jinja.html': 'htmldjango',
@@ -243,7 +238,6 @@ let g:indent_blankline_buftype_exclude = [
 
 "------- Keymaps --------"
 nnoremap <expr> <CR> &diff ? ']c' : ':noh'
-" nnoremap <CR> :noh
 nnoremap <expr> <leader>x ':tabclose<CR>'
 nnoremap <leader><leader> za
 nnoremap <leader>z zA
