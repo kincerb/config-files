@@ -278,8 +278,8 @@ nnoremap [c <Plug>(coc-git-prevchunk)
 nnoremap ]c <Plug>(coc-git-nextchunk)
 nnoremap [cc <Plug>(coc-git-prevconflict)
 nnoremap ]cc <Plug>(coc-git-nextconflict)
-nnoremap gs <Plug>(coc-git-chunkinfo)
-nnoremap gc <Plug>(coc-git-commit)
+nnoremap <leader>gc <Plug>(coc-git-chunkinfo)
+nnoremap <leader>gcc <Plug>(coc-git-commit)
 nnoremap <expr> <leader>gb ToggleBlames()
 nnoremap <leader>go :CocCommand git.browserOpen<CR>
 nnoremap <leader>gO :CocCommand git.copyUrl<CR>
@@ -447,7 +447,6 @@ endfunction
 
 function! SetPythonOptions()
     let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
-    setlocal formatprg=/Users/kincerbnationwide.com/.local/venvs/neovim/bin/black\ --quiet
     setlocal fileformat=unix fixeol
     iabbrev <buffer> ifmain if __name__ == "__main__":<cr><tab>main()<cr><esc>
 endfunction
