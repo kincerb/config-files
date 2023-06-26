@@ -216,7 +216,7 @@ let g:coc_disable_startup_warning = 1
 
 let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff', 'coc-htmldjango', '@yaegassy/coc-ansible',
     \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker',
-    \ 'coc-css', 'coc-markdownlint', 'coc-git',
+    \ 'coc-css', 'coc-markdownlint', 'coc-git', 'coc-fzf-preview',
     \ 'coc-sh', 'coc-go', 'coc-vimlsp',
     \ 'coc-snippets', 'coc-marketplace', 'coc-highlight',
     \ 'https://github.com/andys8/vscode-jest-snippets']
