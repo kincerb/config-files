@@ -196,15 +196,22 @@ let g:anyfold_motion=1
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
 
-let g:NERDTreeGitStatusConcealBrackets=0
-let g:webdevicons_conceal_nerdtree_brackets=1
-let g:webdevicons_enable_nerdtree=1
-
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=32
 let NERDTreeHijackNetrw=1
+let g:NERDTreeGitStatusConcealBrackets=0
+let g:NERDTreeDirArrowExpandable=' '
+let g:NERDTreeDirArrowCollapsible=' '
+
+let g:webdevicons_enable_nerdtree=1
+let g:webdevicons_conceal_nerdtree_brackets=1
+let g:WebDevIconsUnicodeDecorateFolderNodes=1
+let g:DevIconsEnableFoldersOpenClose=1
+
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
+let g:DevIconsDefaultFolderOpenSymbol=' '
 
 let python_highlight_all=1
 let g:rainbow_active=1
