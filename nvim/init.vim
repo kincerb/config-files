@@ -197,20 +197,22 @@ let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal op
 let g:indentLine_fileTypeExclude = ['markdown']
 
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
+" let NERDTreeNodeDelimiter="\u00a0"
+let NERDTreeNodeDelimiter="\x07"
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=32
 let NERDTreeHijackNetrw=1
-let g:NERDTreeGitStatusConcealBrackets=0
-let g:NERDTreeDirArrowExpandable=' '
-let g:NERDTreeDirArrowCollapsible=' '
+let g:NERDTreeGitStatusConcealBrackets=1
+let g:NERDTreeDirArrowExpandable=''
+let g:NERDTreeDirArrowCollapsible=''
 
 let g:webdevicons_enable_nerdtree=1
 let g:webdevicons_conceal_nerdtree_brackets=1
 let g:WebDevIconsUnicodeDecorateFolderNodes=1
 let g:DevIconsEnableFoldersOpenClose=1
 
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=' '
 let g:DevIconsDefaultFolderOpenSymbol=' '
 
 let python_highlight_all=1
@@ -453,8 +455,8 @@ function! SetPythonOptions()
 endfunction
 
 function! NERDTreeHighlightFile(extension, fg, bg)
-    exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
     exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:bg .' guifg='. a:fg
+    exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
 " call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
