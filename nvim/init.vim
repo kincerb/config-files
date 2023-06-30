@@ -6,7 +6,6 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'preservim/nerdtree'
 Plug 'kincerb/nerdtree-git-plugin'
 " file icons
-Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-peekaboo' " displays split with all registers
 " statusline
@@ -43,6 +42,7 @@ Plug 'fladson/vim-kitty'
 
 " general UI stuff
 Plug 'rcarriga/nvim-notify'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 filetype plugin indent on
@@ -51,6 +51,7 @@ syntax enable
 set background=dark
 set termguicolors
 colorscheme jellybeans
+set guifont=FantasqueSansM\ Nerd\ Font:h12
 
 " add fzf to vim runtimepath
 set rtp+=~/.local/fzf
@@ -196,6 +197,9 @@ let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal op
 let g:indentLine_fileTypeExclude = ['markdown']
 
 let g:NERDTreeGitStatusConcealBrackets=0
+let g:webdevicons_conceal_nerdtree_brackets=1
+let g:webdevicons_enable_nerdtree=1
+
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
@@ -424,20 +428,10 @@ function! CheckBackSpace() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Update to take filter argument
-function! PasteIntoTermBuffer(term_type) range
-    let term_buffer_num = bufnr(a:term_type)
-    if term_buffer_num == -1
-        return
-    endif
-    " call term_sendkeys(term_buffer_num, "\<C-R>\<C-W>")
-endfunction
-
 function! SetShortTabs()
     setlocal shiftwidth=2
     setlocal tabstop=2
     setlocal softtabstop=2
-    " setlocal conceallevel=0
 endfunction
 
 function! SetMarkdownOptions()
@@ -451,9 +445,9 @@ function! SetPythonOptions()
     iabbrev <buffer> ifmain if __name__ == "__main__":<cr><tab>main()<cr><esc>
 endfunction
 
-function! NERDTreeHighlightFile(extension, guifg, guibg)
-    exec 'autocmd FileType nerdtree highlight ' . a:extension .' guibg='. a:guibg .' guifg='. a:guifg
+function! NERDTreeHighlightFile(extension, fg, bg)
     exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+    exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:bg .' guifg='. a:fg
 endfunction
 
 " call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
@@ -496,6 +490,6 @@ augroup Python
 augroup END
 
 if exists('g:loaded_webdevicons')
-    let g:webdevicons_conceal_nerdtree_brackets=1
+    " call NERDTreeHighlightFile('py', 'cyan', 'NONE')
     call webdevicons#refresh()
 endif
