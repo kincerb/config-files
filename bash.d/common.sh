@@ -52,7 +52,7 @@ if ! (which bat &>/dev/null); then
 else
     export PAGER="bat -p"
     alias cat="bat -p"
-    export BAT_THEME="Monokai Extended"
+    export BAT_THEME="gruvbox-dark"
     export MANPAGER="sh -c 'col -bx |bat -l man -p'"
 fi
 export PROMPT_DIRTRIM=2
