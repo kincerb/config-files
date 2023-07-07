@@ -15,6 +15,7 @@
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
   "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.conflict.enabled": true,
   "sh.enable": true,
   "snippets.ultisnips.pythonPrompt": false,
   "markdownlint.config": {
