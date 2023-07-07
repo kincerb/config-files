@@ -1,6 +1,6 @@
 #!/opt/homebrew/bin/bash
 
-FORWARDERS=("forward-to-vm" "forward-to-wireguard")
+FORWARDERS=("forward-to-nuc" "forward-to-wireguard")
 
 
 stop() {
