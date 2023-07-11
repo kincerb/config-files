@@ -60,7 +60,7 @@ let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 
 " Highlight colors for matchpairs
 hi Normal guibg=NONE ctermbg=NONE
-hi Folded guifg=#000000 guibg=#616161
+hi Folded guibg=#111117 guifg=#45615c "#38544e 
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Whitespace guibg=#a9b0ab ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
@@ -296,6 +296,8 @@ nnoremap <leader>gcc <Plug>(coc-git-commit)
 nnoremap <expr> <leader>gb ToggleBlames()
 nnoremap <leader>go :CocCommand git.browserOpen<CR>
 nnoremap <leader>gO :CocCommand git.copyUrl<CR>
+vnoremap <leader>go :CocCommand git.browserOpen<CR>
+vnoremap <leader>gO :CocCommand git.copyUrl<CR>
 nnoremap <leader>gl :0Gclog<CR>
 vmap <leader>gl :Gclog<CR>
 nnoremap <leader>gf :Gdiffsplit!<CR>
