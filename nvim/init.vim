@@ -170,13 +170,17 @@ let g:netrw_winsize=30
 let g:netrw_banner=0
 
 "------- Plugin variables --------"
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.dirty=' '
+let g:airline_symbols.notexists=' '
+let g:airline_symbols.whitespace='󱪶 '
+
 let g:airline_powerline_fonts=1
 let g:airline_highlighting_cache=1
 let g:airline_skip_empty_sections=1
 let g:airline_exclude_preview = 0
-" Need to set these after the dictionary has been created
-" let g:airline_symbols.dirty=' '
-" let g:airline_symbols.notexists=' '
 let g:airline_theme='molokai'
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#coc#show_coc_status=1
@@ -185,8 +189,8 @@ let g:airline#extensions#tabline#formatter='unique_tail_improved'
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline#extensions#tabline#show_buffers=0
 let g:airline#extensions#tabline#ignore_bufadd_pat='nerd_tree|tagbar|buffhidden|quickfix|hidden'
-let airline#extensions#coc#error_symbol='󰅝'
-let airline#extensions#coc#warning_symbol=''
+let airline#extensions#coc#error_symbol='  '
+let airline#extensions#coc#warning_symbol='  '
 
 let g:anyfold_fold_display=0
 let g:anyfold_fold_comments=2
