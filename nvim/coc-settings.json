@@ -1,15 +1,16 @@
 {
-  "hover.floatConfig": {
-    "rounded": true
-  },
   "coc.preferences.willSaveHandlerTimeout": 1500,
-  "codeLens.enable": true,
-  "snippets.loadFromExtensions": true,
-  "suggest.maxCompleteItemCount": 20,
   "coc.preferences.formatOnSave": true,
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveTimeout": 1500,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "hover.floatConfig": {
+    "rounded": true
+  },
+  "codeLens.enable": true,
+  "snippets.loadFromExtensions": true,
+  "suggest.maxCompleteItemCount": 20,
   "git.addGBlameToVirtualText": true,
   "git.enableGutters": true,
   "git.addedSign.hlGroup": "GitGutterAdd",
