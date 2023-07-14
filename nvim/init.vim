@@ -58,7 +58,6 @@ set rtp+=~/.local/fzf
 set rtp+=~/.local/venvs/neovim
 let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 
-" Highlight colors for matchpairs
 hi Normal guibg=NONE ctermbg=NONE
 hi Folded guibg=#111117 guifg=#45615c "#38544e 
 hi EndOfBuffer guibg=NONE ctermbg=NONE
@@ -70,9 +69,14 @@ hi CursorLine gui=underline cterm=underline
 hi VertSplit guibg=#959ea1 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#b3b0b5 guifg=#9805ed
-hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
 hi Visual guibg=#346b69 guifg=#f5f2f0
-" autocmd ColorScheme * hi CocMenuSel guifg=#243e4f gui=nocombine
+" Colors for diffs
+hi DiffAdd guibg=#447856
+hi DiffChange guibg=#446778
+hi DiffDelete guibg=#784744
+hi DiffText guibg=#676d8f
+" Colors for plugins
+hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
 hi IndentBlanklineIndent1 guifg=#f0dbc7 gui=nocombine
 hi IndentBlanklineIndent2 guifg=#e6a1a1 gui=nocombine
 hi IndentBlanklineIndent3 guifg=#a9d6a5 gui=nocombine
