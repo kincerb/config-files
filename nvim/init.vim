@@ -74,7 +74,7 @@ hi Visual guibg=#346b69 guifg=#f5f2f0
 hi DiffAdd guibg=#447856
 hi DiffChange guibg=#446778
 hi DiffDelete guibg=#784744
-hi DiffText guibg=#676d8f
+hi DiffText guibg=#676d8f guifg=#2e2e30
 " Colors for plugins
 hi CocMenuSel guibg=#bdbfa3 guifg=#346b69 gui=bold
 hi IndentBlanklineIndent1 guifg=#f0dbc7 gui=nocombine
