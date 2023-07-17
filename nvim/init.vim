@@ -48,24 +48,27 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-set background=dark
-set termguicolors
-colorscheme jellybeans
-set guifont=FantasqueSansM\ Nerd\ Font:h12
-
 " add fzf to vim runtimepath
 set rtp+=~/.local/fzf
 set rtp+=~/.local/venvs/neovim
 let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 
+set background=dark
+set termguicolors
+set cursorline
+set cursorlineopt=number
+set guifont=FantasqueSansM\ Nerd\ Font:h12
+set colorcolumn=88
+
+colorscheme jellybeans
 hi Normal guibg=NONE ctermbg=NONE
 hi Folded guibg=#111117 guifg=#45615c
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Whitespace guibg=#111117 guifg=#de9b95 ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
-hi CursorLineNr guibg=#89858c ctermbg=NONE guifg=#d5d4d6
-hi ColorColumn guibg=NONE
-hi CursorLine gui=underline cterm=underline
+hi CursorLineNr guibg=NONE ctermbg=NONE guifg=#1fcc4a
+hi ColorColumn guifg=NONE guibg=#111117
+hi CursorLine gui=underline cterm=underline guifg=NONE guibg=NONE
 hi VertSplit guibg=#959ea1 guifg=#005f87
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#b3b0b5 guifg=#9805ed
@@ -127,8 +130,6 @@ set completeopt+=noselect  " force user selection
 set completeopt-=longest   " don't insert the longest common text
 set belloff+=ctrlg         " disable beep during completion
 
-set cursorline
-set cursorlineopt=number
 set noswapfile
 set directory=~/.local/share/nvim/tmp
 set undodir=~/.local/share/nvim/undodir
@@ -136,11 +137,10 @@ set undofile
 set nobackup
 set diffopt=vertical,filler
 set nowritebackup
-set colorcolumn=120
 set updatetime=300
 set shortmess+=c
 set signcolumn=auto
-set scrolloff=16
+set scrolloff=999
 set showmatch
 set number
 set relativenumber
