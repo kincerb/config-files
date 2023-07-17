@@ -59,9 +59,9 @@ set rtp+=~/.local/venvs/neovim
 let g:python3_host_prog = '~/.local/venvs/neovim/bin/python3'
 
 hi Normal guibg=NONE ctermbg=NONE
-hi Folded guibg=#111117 guifg=#45615c "#38544e 
+hi Folded guibg=#111117 guifg=#45615c
 hi EndOfBuffer guibg=NONE ctermbg=NONE
-hi Whitespace guibg=#a9b0ab ctermbg=NONE
+hi Whitespace guibg=#111117 guifg=#de9b95 ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
 hi CursorLineNr guibg=#89858c ctermbg=NONE guifg=#d5d4d6
 hi ColorColumn guibg=NONE
@@ -166,7 +166,7 @@ set laststatus=2
 set showtabline=2
 set foldlevel=99 " start with all folds opened
 " display extra whitespace
-set listchars=tab:⟪⋯⟫,trail:●,nbsp:●
+set list listchars=tab:⟪⋯⟫,trail:,nbsp:●
 
 "------- Builtin variables --------"
 let g:netrw_keepdir=0
