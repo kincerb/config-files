@@ -13,8 +13,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " plugins for git
 Plug 'tpope/vim-fugitive'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'lewis6991/gitsigns.nvim' " alt to gitgutter
 " autocomplete
 Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim' , { 'branch' : 'release'  }
@@ -37,6 +35,7 @@ Plug 'andymass/vim-matchup'
 Plug 'jiangmiao/auto-pairs' " basic auto-close
 Plug 'tpope/vim-endwise' " auto-close for shells, ruby
 Plug 'alvan/vim-closetag' " auto-close html
+Plug 'pearofducks/ansible-vim',{ 'do': './UltiSnips/generate.sh' } " ansible syntax
 " syntax highlighting for kitty conf files
 Plug 'fladson/vim-kitty'
 
@@ -174,9 +173,22 @@ let g:netrw_winsize=30
 let g:netrw_banner=0
 
 "------- Plugin variables --------"
+let g:ansible_unindent_after_newline=1
+let g:ansible_name_highlight='d'
+let g:ansible_attribute_highlight='od'
+let g:ansible_extra_keywords_hightlight=1
+
+let g:ansible_template_syntaxes = {
+    \ '*.vim.j2': 'vim',
+    \ '*.toml.j2': 'toml',
+    \ '*.json.j2': 'json',
+    \ '*smb.conf.j2': 'samba',
+    \ '*.py.j2': 'python'}
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
 let g:airline_symbols.dirty=' '
 let g:airline_symbols.notexists=' '
 let g:airline_symbols.whitespace='󱪶 '
