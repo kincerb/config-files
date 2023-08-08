@@ -54,6 +54,7 @@ else
     alias cat="bat -p"
     export BAT_THEME="gruvbox-dark"
     export MANPAGER="sh -c 'col -bx |bat -l man -p'"
+    export MANROFFOPT="-c"
 fi
 export PROMPT_DIRTRIM=2
 export SEND_256_COLORS_TO_REMOTE=1
