@@ -2,6 +2,9 @@
 " ---------
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rafi/awesome-vim-colorschemes'
+" plugins that provide or manage splits
+Plug 'preservim/nerdtree'
+Plug 'kincerb/nerdtree-git-plugin'
 " file icons
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-peekaboo' " displays split with all registers
@@ -88,10 +91,11 @@ hi GitGutterDelete guibg=NONE guifg=#de9b95 gui=nocombine
 
 "------- Autocommands  --------"
 autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " autocmd VimEnter * wincmd p
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd BufNewFile,BufRead *Jenkinsfile :set filetype=groovy
-" autocmd BufNewFile,BufRead *.yml :set filetype=yaml.ansible " create function or script to inspect first line
+autocmd BufNewFile,BufRead *.yml :set filetype=yaml.ansible " create function or script to inspect first line
 autocmd FileType * AnyFoldActivate
 autocmd FileType javascript setlocal commentstring=/*%s*/
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -212,6 +216,19 @@ let g:anyfold_motion=1
 let g:indentLine_setConceal=1 " set to 0 to disable plugin overriding conceal options
 let g:indentLine_fileTypeExclude = ['markdown']
 
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$', '\.ropeproject$', '\.git$', '\.idea$']
+" let NERDTreeNodeDelimiter="\u00a0"
+let NERDTreeNodeDelimiter="\x07"
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeWinSize=32
+let NERDTreeHijackNetrw=1
+let g:NERDTreeGitStatusConcealBrackets=1
+let g:NERDTreeDirArrowExpandable=''
+let g:NERDTreeDirArrowCollapsible=''
+
+let g:webdevicons_enable_nerdtree=1
+let g:webdevicons_conceal_nerdtree_brackets=1
 let g:WebDevIconsUnicodeDecorateFolderNodes=1
 let g:DevIconsEnableFoldersOpenClose=1
 
@@ -308,6 +325,8 @@ nnoremap <expr> <leader>ga WriteAndAdd()
 nnoremap <leader>gR :Git rebase --continue<CR>
 nnoremap <leader>gP :silent Git push<CR>
 nnoremap <leader><C-n> :TagbarToggle<CR>
+nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+nnoremap <leader>N :NERDTreeClose<CR>
 
 nnoremap <F5> :UndotreeToggle<CR>
 " ------- FZF mappings ----------- "
@@ -457,6 +476,30 @@ function! SetPythonOptions()
     iabbrev <buffer> ifmain if __name__ == "__main__":<cr><tab>main()<cr><esc>
 endfunction
 
+function! NERDTreeHighlightFile(extension, fg, bg)
+    exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:bg .' guifg='. a:fg
+    exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('json', 'yellow', 'none')
+" call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+" call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+" call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('bashrc', '#686868', 'none')
+" call NERDTreeHighlightFile('bashprofile', '#686868', 'none')
+
 augroup Markdown
     autocmd!
     au BufNewFile,BufRead *.md call SetMarkdownOptions()
@@ -478,5 +521,6 @@ augroup Python
 augroup END
 
 if exists('g:loaded_webdevicons')
+    " call NERDTreeHighlightFile('py', 'cyan', 'NONE')
     call webdevicons#refresh()
 endif
