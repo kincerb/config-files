@@ -58,6 +58,7 @@ set cursorline
 set cursorlineopt=number
 set guifont=FantasqueSansM\ Nerd\ Font:h12
 set colorcolumn=88
+set viminfo='1000
 
 colorscheme jellybeans
 hi Normal guibg=NONE ctermbg=NONE
@@ -245,6 +246,11 @@ let g:coc_filetype_map = {
     \ 'yaml.ansible': 'ansible',
     \ }
 
+let g:fzf_preview_floating_window_rate = 0.7
+let g:fzf_preview_buffers_jump = 1
+let g:fzf_preview_use_dev_icons = 1
+" let g:fzf_preview_preview_key_bindings = 'ctrl-d:preview-page-down,ctrl-u:preview-page-up,?:toggle-preview,ctrl-i:open-split'
+
 let g:coc_disable_startup_warning = 1
 
 let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff', 'coc-htmldjango', '@yaegassy/coc-ansible',
@@ -331,22 +337,48 @@ nnoremap <leader>N :NERDTreeClose<CR>
 nnoremap <F5> :UndotreeToggle<CR>
 " ------- FZF mappings ----------- "
 " search for word under cursor
-nnoremap <leader>f :Ag <C-R><C-W><cr>
+" nnoremap <leader>f :Ag <C-R><C-W><cr>
 " [visual] search for word under cursor
-vnoremap <leader>f y:Ag <C-R><cr>
+" vnoremap <leader>f y:Ag <C-R><cr>
 " enter search pattern
-nnoremap <leader>/ :Ag<Space>
+" nnoremap <leader>/ :Ag<Space>
 " search vim command history
-nnoremap <leader>h :History:<CR>
+" nnoremap <leader>h :History:<CR>
 " normal mode mappings
 nnoremap <leader>? :Maps<CR>
-nnoremap <leader>. :Files<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>w :Windows<CR>
+" nnoremap <leader>. :Files<CR>
+" nnoremap <leader>b :Buffers<CR>
+" nnoremap <leader>w :Windows<CR>
 nnoremap <leader>c :Commands<CR>
-nnoremap <leader>bt :BTags<CR>
+" nnoremap <leader>bt :BTags<CR>
 nnoremap <leader>gm :GFiles --modified<CR>
 " ------- END FZF mappings ----------- "
+" ------- FZF Preview mappings ------- "
+nmap <leader>f [fzf-p]
+xmap <leader>f [fzf-p]
+vmap <leader>f [fzf-p]
+
+nnoremap <silent> [fzf-p]f :<C-u>CocCommand fzf-preview.ProjectGrep <C-R><C-W><cr>
+vnoremap <silent> [fzf-p]f y:<C-u>CocCommand fzf-preview.ProjectGrep <C-R><cr>
+nnoremap <silent> [fzf-p]/ :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+nnoremap <silent> [fzf-p]b/ :<C-u>CocCommand fzf-preview.Lines<Space>
+nnoremap <silent> [fzf-p]B/ :<C-u>CocCommand fzf-preview.BufferLines<Space>
+
+nnoremap <silent> [fzf-p]. :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
+nnoremap <silent> [fzf-p]h :<C-u>CocCommand fzf-preview.CommandPalette<CR>
+nnoremap <silent> [fzf-p]b :<C-u>CocCommand fzf-preview.Buffers<CR>
+nnoremap <silent> [fzf-p]bt :<C-u>CocCommand fzf-preview.BufferTags<CR>
+nnoremap <silent> [fzf-p]w :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+nnoremap <silent> [fzf-p]Bt :<C-u>CocCommand fzf-preview.Ctags<CR>
+" nnoremap <silent> [fzf-p]gm :<C-u>CocCommand fzf-preview.GitStatus --modified<CR>
+
+nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
+nnoremap <silent> [fzf-p]g     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
+nnoremap <silent> [fzf-p]G     :<C-u>CocCommand fzf-preview.CocDiagnostics<CR>
+nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.CocOutline<CR>
+" ------- END FZF Preview mappings ------- "
+
 nnoremap <expr> <leader>C ConstructCommit()
 
 nmap == <Plug>(coc-codeaction-line)
