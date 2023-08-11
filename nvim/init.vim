@@ -62,6 +62,7 @@ set viminfo='1000
 
 colorscheme jellybeans
 hi Normal guibg=NONE ctermbg=NONE
+hi NormalFloat guibg=NONE ctermbg=NONE
 hi Folded guibg=#111117 guifg=#45615c
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 hi Whitespace guibg=#111117 guifg=#de9b95 ctermbg=NONE
@@ -241,21 +242,33 @@ let g:rainbow_active=1
 
 let g:fzf_action = { 'enter': 'edit', 'ctrl-t': 'tab split', 'ctrl-s': 'vsplit', 'ctrl-i': 'split'}
 let g:fzf_buffers_jump = 1
+
 let g:coc_filetype_map = {
     \ 'jinja.html': 'htmldjango',
     \ 'yaml.ansible': 'ansible',
     \ }
 
-let g:fzf_preview_floating_window_rate = 0.7
-let g:fzf_preview_buffers_jump = 1
-let g:fzf_preview_use_dev_icons = 1
-" let g:fzf_preview_preview_key_bindings = 'ctrl-d:preview-page-down,ctrl-u:preview-page-up,?:toggle-preview,ctrl-i:open-split'
+let g:fzf_colors =
+\ { 'fg':         ['fg', 'Normal'],
+  \ 'bg':         ['bg', 'Normal'],
+  \ 'preview-bg': ['bg', 'NormalFloat'],
+  \ 'hl':         ['fg', 'Comment'],
+  \ 'fg+':        ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':        ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':        ['fg', 'Statement'],
+  \ 'info':       ['fg', 'PreProc'],
+  \ 'border':     ['fg', 'Ignore'],
+  \ 'prompt':     ['fg', 'Conditional'],
+  \ 'pointer':    ['fg', 'Exception'],
+  \ 'marker':     ['fg', 'Keyword'],
+  \ 'spinner':    ['fg', 'Label'],
+  \ 'header':     ['fg', 'Comment'] }
 
 let g:coc_disable_startup_warning = 1
 
 let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff', 'coc-htmldjango', '@yaegassy/coc-ansible',
     \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker',
-    \ 'coc-css', 'coc-markdownlint', 'coc-git', 'coc-fzf-preview',
+    \ 'coc-css', 'coc-markdownlint', 'coc-git',
     \ 'coc-sh', 'coc-go', 'coc-vimlsp', 'coc-pydocstring',
     \ 'coc-snippets', 'coc-marketplace', 'coc-highlight',
     \ 'https://github.com/andys8/vscode-jest-snippets']
@@ -337,47 +350,25 @@ nnoremap <leader>N :NERDTreeClose<CR>
 nnoremap <F5> :UndotreeToggle<CR>
 " ------- FZF mappings ----------- "
 " search for word under cursor
-" nnoremap <leader>f :Ag <C-R><C-W><cr>
+nnoremap <leader>f :Rg <C-R><C-W><cr>
 " [visual] search for word under cursor
-" vnoremap <leader>f y:Ag <C-R><cr>
+vnoremap <leader>f y:Rg <C-R><cr>
 " enter search pattern
-" nnoremap <leader>/ :Ag<Space>
+nnoremap <leader>/ :Rg<Space>
 " search vim command history
-" nnoremap <leader>h :History:<CR>
+nnoremap <leader>h :History:<CR>
 " normal mode mappings
 nnoremap <leader>? :Maps<CR>
-" nnoremap <leader>. :Files<CR>
-" nnoremap <leader>b :Buffers<CR>
-" nnoremap <leader>w :Windows<CR>
+nnoremap <leader>. :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>w :Windows<CR>
 nnoremap <leader>c :Commands<CR>
-" nnoremap <leader>bt :BTags<CR>
+nnoremap <leader>bt :BTags<CR>
+nnoremap <leader>Bt :Tags<CR>
 nnoremap <leader>gm :GFiles --modified<CR>
+nnoremap <leader>bl :BLines<CR>
+nnoremap <leader>Bl :Lines<CR>
 " ------- END FZF mappings ----------- "
-" ------- FZF Preview mappings ------- "
-nmap <leader>f [fzf-p]
-xmap <leader>f [fzf-p]
-vmap <leader>f [fzf-p]
-
-nnoremap <silent> [fzf-p]f :<C-u>CocCommand fzf-preview.ProjectGrep <C-R><C-W><cr>
-vnoremap <silent> [fzf-p]f y:<C-u>CocCommand fzf-preview.ProjectGrep <C-R><cr>
-nnoremap <silent> [fzf-p]/ :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
-nnoremap <silent> [fzf-p]b/ :<C-u>CocCommand fzf-preview.Lines<Space>
-nnoremap <silent> [fzf-p]B/ :<C-u>CocCommand fzf-preview.BufferLines<Space>
-
-nnoremap <silent> [fzf-p]. :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
-nnoremap <silent> [fzf-p]h :<C-u>CocCommand fzf-preview.CommandPalette<CR>
-nnoremap <silent> [fzf-p]b :<C-u>CocCommand fzf-preview.Buffers<CR>
-nnoremap <silent> [fzf-p]bt :<C-u>CocCommand fzf-preview.BufferTags<CR>
-nnoremap <silent> [fzf-p]w :<C-u>CocCommand fzf-preview.AllBuffers<CR>
-nnoremap <silent> [fzf-p]Bt :<C-u>CocCommand fzf-preview.Ctags<CR>
-" nnoremap <silent> [fzf-p]gm :<C-u>CocCommand fzf-preview.GitStatus --modified<CR>
-
-nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
-nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
-nnoremap <silent> [fzf-p]g     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
-nnoremap <silent> [fzf-p]G     :<C-u>CocCommand fzf-preview.CocDiagnostics<CR>
-nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.CocOutline<CR>
-" ------- END FZF Preview mappings ------- "
 
 nnoremap <expr> <leader>C ConstructCommit()
 
@@ -403,10 +394,10 @@ vmap =r <Plug>(coc-rename)
 nmap =f <Plug>(coc-format-selected)
 xmap =f <Plug>(coc-format-selected)
 " Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug> (coc-funcobj-i)
-xmap af <Plug> (coc-funcobj-a)
-omap if <Plug> (coc-funcobj-i)
-omap af <Plug> (coc-funcobj-a)
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
 " Use tab for trigger completion with characters ahead and navigate.
@@ -418,7 +409,8 @@ inoremap <silent><expr> <TAB>
     \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -512,25 +504,6 @@ function! NERDTreeHighlightFile(extension, fg, bg)
     exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:bg .' guifg='. a:fg
     exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
-
-" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('json', 'yellow', 'none')
-" call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-" call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-" call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-" call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
-" call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
-" call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
-" call NERDTreeHighlightFile('bashrc', '#686868', 'none')
-" call NERDTreeHighlightFile('bashprofile', '#686868', 'none')
 
 augroup Markdown
     autocmd!
