@@ -70,7 +70,7 @@ hi LineNr guibg=NONE ctermbg=NONE guifg=#89858c
 hi CursorLineNr guibg=NONE ctermbg=NONE guifg=#1fcc4a
 hi ColorColumn guifg=NONE guibg=#111117
 hi CursorLine gui=underline cterm=underline guifg=NONE guibg=NONE
-hi VertSplit guibg=#959ea1 guifg=#005f87
+hi VertSplit guifg=#346b69 guifg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 hi MatchParen guibg=#b3b0b5 guifg=#9805ed
 hi Visual guibg=#346b69 guifg=#f5f2f0
