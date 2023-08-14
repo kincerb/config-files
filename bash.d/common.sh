@@ -10,7 +10,7 @@ else
     export PLATFORM_BASHRC="${HOME}/.config/bash.d/linux.sh"
 fi
 
-for _path in "${HOME}/.local/bin" /usr/local/go/bin "${GOPATH}/bin" "${HOME}/.fzf/bin"; do
+for _path in "${HOME}/.local/bin" /usr/local/go/bin "${GOPATH}/bin"; do
     if [ -d "${_path}" ]; then
         if ! [[ "${PATH}" =~ :?"${_path}":? ]]; then
             export PATH=$_path:$PATH
@@ -66,6 +66,7 @@ export HISTIGNORE='history*'
 export HISTTIMEFORMAT='%F %T '
 
 if (which fzf &>/dev/null); then
+    export FZF_DEFAULT_COMMAND='rg --hidden --ignore-case'
     export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200' --select-1 --exit-0"
     export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
     export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
