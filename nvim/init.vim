@@ -357,7 +357,6 @@ vnoremap <leader>f y:Rg <C-R><cr>
 nnoremap <leader>/ :Rg<Space>
 " search vim command history
 nnoremap <leader>h :History:<CR>
-" normal mode mappings
 nnoremap <leader>? :Maps<CR>
 nnoremap <leader>. :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -368,6 +367,7 @@ nnoremap <leader>Bt :Tags<CR>
 nnoremap <leader>gm :GFiles --modified<CR>
 nnoremap <leader>bl :BLines<CR>
 nnoremap <leader>Bl :Lines<CR>
+vnoremap <leader>c :BCommits<CR>
 " ------- END FZF mappings ----------- "
 
 nnoremap <expr> <leader>C ConstructCommit()
