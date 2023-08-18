@@ -43,6 +43,7 @@ alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(
 alias awk="${BREW_BIN}/awk"
 alias sed="${BREW_BIN}/gsed"
 alias pg_dump="${BREW_PREFIX}/Cellar/postgresql@12/12.15_2/bin/pg_dump"
+alias nvim_update='nvim -c "PlugUpdate|CocUpdateSync|qa"'
 
 web_app() {
     if [ "${#}" -ne 1 ]; then
