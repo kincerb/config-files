@@ -27,28 +27,33 @@ for _helper in $(compgen -f "${HOME}/.local/share/bash_completion.d/"); do
 done
 unset _helper
 
+for _helper in "${HOME}"/.local/fzf/shell/*.bash; do
+    source "${_helper}"
+done
+unset _helper
 
 # if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
 #     source "${HOME}/.iterm2_shell_integration.bash"
 # fi
 
 alias chrome_canary='(/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --proxy-server=http://127.0.0.1:3128 &>/dev/null &)'
+alias vivaldi='(/Applications/Vivaldi.app/Contents/MacOS/Vivaldi --proxy-server=http://127.0.0.1:3128 &>/dev/null &)'
 alias xor_decode="python3 -c \"import base64; import sys; print(''.join(chr(ord(x) ^ ord('_')) for x in base64.b64decode(sys.argv[1].replace('{xor}', '')).decode()))\""
 alias awk="${BREW_BIN}/awk"
 alias sed="${BREW_BIN}/gsed"
-alias pg_dump="${BREW_PREFIX}/Cellar/postgresql@12/12.14/bin/pg_dump"
+alias pg_dump="${BREW_PREFIX}/Cellar/postgresql@12/12.16/bin/pg_dump"
+alias nvim_update='nvim -c "PlugUpdate|CocUpdateSync|qa"'
 
-chrome_app() {
+web_app() {
     if [ "${#}" -ne 1 ]; then
-        echo -e "Usage:\n chrome_app [url]"
-        echo -e "\n  chrome_app https://netflix.com"
+        echo -e "Usage:\n web_app [url]"
+        echo -e "\n  web_app https://netflix.com"
         return
     fi
     local url="${1}"
-    (/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary \
-        --proxy-server=http://wireguard01.lan:3128 \
-        --app="${url}" \
-        --app-shell-user=dev.bkincer@gmail.com 2>&1 &>/dev/null &)
+    (/Applications/Vivaldi.app/Contents/MacOS/Vivaldi \
+        --proxy-server=http://127.0.0.1:3128 \
+        --app="${url}" 2>&1 &>/dev/null &)
 }
 
 deploy() {

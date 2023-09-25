@@ -28,6 +28,7 @@
     "MD033": false,
     "MD041": false
   },
+  "pydocstring.formatter": "google",
   "pylsp.enable": true,
   "pylsp.trace.server": "off",
   "pylsp.builtin.enableInstallPythonLspBlack": false,
