@@ -21,9 +21,9 @@ unset bin_path
 unset bin_paths
 
 
-if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
-    source "${HOME}/.iterm2_shell_integration.bash"
-fi
+# if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
+#     source "${HOME}/.iterm2_shell_integration.bash"
+# fi
 
 for _helper in $(compgen -f "${HOME}/.local/share/bash_completion.d/"); do
     if [ -e "${_helper}" ]; then
