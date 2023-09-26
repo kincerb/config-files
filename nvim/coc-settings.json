@@ -34,8 +34,8 @@
     "pylsp.enable": true,
     "pylsp.trace.server": "off",
     "pylsp.builtin.enableInstallPythonLspBlack": false,
-    "pylsp.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
-    "pylsp.commandPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/pylsp",
+    "pylsp.builtin.pythonPath": "/home/kincerb/.local/venvs/neovim/bin/python3",
+    "pylsp.commandPath": "/home/kincerb/.local/venvs/neovim/bin/pylsp",
     "pylsp.plugins.autopep8.enabled": false,
     "pylsp.plugins.yapf.enabled": false,
     "pylsp.plugins.flake8.enabled": false,
@@ -51,14 +51,14 @@
     ],
     "ruff.enable": true,
     "ruff.path": [
-        "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff"
+        "/home/kincerb/.local/venvs/neovim/bin/ruff"
     ],
-    "ruff.builtin.pythonPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3",
-    "ruff.serverPath": "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/ruff-lsp",
+    "ruff.builtin.pythonPath": "/home/kincerb/.local/venvs/neovim/bin/python3",
+    "ruff.serverPath": "/home/kincerb/.local/venvs/neovim/bin/ruff-lsp",
     "ruff.autoFixOnSave": true,
     "ruff.fixAll": true,
     "ruff.organizeImports": true,
     "ruff.interpreter": [
-        "/Users/kincerbnationwide.com/.local/venvs/neovim/bin/python3"
+        "/home/kincerb/.local/venvs/neovim/bin/python3"
     ]
 }
