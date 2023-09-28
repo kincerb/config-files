@@ -319,7 +319,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>= :vertical resize 42<CR>
 " terminal mappings
 tnoremap <Esc> <C-\><C-n>
-nnoremap <leader>t :split term://bash<CR>
+nnoremap <leader>t :split term:///usr/bin/fish<CR>
 
 " quickfix list navigation
 nnoremap [q :cprevious<CR>
