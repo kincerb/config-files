@@ -20,8 +20,8 @@ end
 
 if status is-interactive
     /usr/bin/starship init fish --print-full-init | source
-    # atuin init fish | source
-    # bind \cr _atuin_search
+    atuin init fish | source
+    bind \cr _atuin_search
 end
 
 alias ls='exa -al --color=always --group-directories-first --icons' # preferred listing
