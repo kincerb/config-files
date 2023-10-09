@@ -24,5 +24,5 @@ if status is-interactive
     bind \cr _atuin_search
 end
 
-alias ls='exa -al --color=always --group-directories-first --icons' # preferred listing
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+alias ls='exa --all --long --group --color=always --group-directories-first --icons' # preferred listing
+alias lt='exa --all --tree --color=always --group-directories-first --icons' # tree listing
