@@ -7,11 +7,6 @@ set -gx BAT_THEME "gruvbox-dark"
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT "-c"
 set -gx ATUIN_NOBIND "true"
-set -gax MANPATH /usr/share/man
-set -gax MANPATH /usr/local/share/man
-set -gax MANPATH /usr/local/man
-set -gpx MANPATH ~/.local/pipx/venvs/ranger-fm/share/man
-set -gpx MANPATH ~/.local/fzf/man
 set -gx LESS "-FiXR"
 
 set -l _fzf_opts "--color=dark"

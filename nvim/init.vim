@@ -459,7 +459,7 @@ function! ConstructCommit() abort
     endif
 
     execute "write"
-    execute "Git add %"
+    " execute "Git add %"
 
     let branch = FugitiveHead()
     if branch =~ 'MWAUTO'
