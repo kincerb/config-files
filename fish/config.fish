@@ -3,7 +3,7 @@ set custom_paths ~/.local/bin ~/.local/fzf/bin $GOPATH/bin
 set man_paths /usr/share/man /usr/local/share/man /usr/local/man ~/.local/pipx/venvs/ranger-fm/share/man ~/.local/fzf/man
 
 # Set settings for https://github.com/franciscolourenco/done
-set -U __done_min_cmd_duration 10000
+set -U __done_min_cmd_duration 5000
 set -U __done_notification_urgency_level low
 
 for _path in $man_paths
