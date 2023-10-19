@@ -42,13 +42,25 @@
   "pydocstring.enable": true,
   "pydocstring.doqPath": "/home/kincerb/.local/venvs/neovim/bin/doq",
   "pydocstring.formatter": "google",
-  "ruff.enable": true,
-  "ruff.path": ["/home/kincerb/.local/venvs/neovim/bin/ruff"],
-  "ruff.builtin.pythonPath": "/home/kincerb/.local/venvs/neovim/bin/python3",
-  "ruff.serverPath": "/home/kincerb/.local/venvs/neovim/bin/ruff-lsp",
-  "ruff.enableExperimentalFormatter": true,
-  "ruff.autoFixOnSave": true,
-  "ruff.fixAll": true,
-  "ruff.organizeImports": true,
-  "ruff.interpreter": ["/home/kincerb/.local/venvs/neovim/bin/python3"]
+  "languageserver": {
+    "ruff-lsp": {
+      "command": "/home/kincerb/.local/venvs/neovim/bin/ruff-lsp",
+      "filetypes": ["python"],
+      "formatterPriority": 1,
+      "settings": {
+        "path": ["/home/kincerb/.local/venvs/neovim/bin/ruff"],
+        "interpreter": ["/home/kincerb/.local/venvs/neovim/bin/python3"],
+        "organizeImports": true,
+        "fixAll": true
+      },
+      "disabledFeatures": [
+        "hover",
+        "completion",
+        "definition",
+        "references",
+        "rename",
+        "signatureHelp"
+      ]
+    }
+  }
 }

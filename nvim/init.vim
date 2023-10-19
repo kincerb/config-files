@@ -105,7 +105,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup json_files
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType json syntax match Comment +\/\/.\+$+
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -266,7 +266,7 @@ let g:fzf_colors =
 
 let g:coc_disable_startup_warning = 1
 
-let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', '@yaegassy/coc-ruff', 'coc-htmldjango', '@yaegassy/coc-ansible',
+let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', 'coc-htmldjango', '@yaegassy/coc-ansible',
     \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker',
     \ 'coc-css', 'coc-markdownlint', 'coc-git',
     \ 'coc-sh', 'coc-go', 'coc-vimlsp', 'coc-pydocstring',
@@ -367,7 +367,7 @@ nnoremap <leader>Bt :Tags<CR>
 nnoremap <leader>gm :GFiles --modified<CR>
 nnoremap <leader>bl :BLines<CR>
 nnoremap <leader>Bl :Lines<CR>
-vnoremap <leader>c :BCommits<CR>
+vnoremap <leader>bc :BCommits<CR>
 " ------- END FZF mappings ----------- "
 nnoremap <expr> <leader>C ConstructCommit()
 
