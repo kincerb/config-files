@@ -33,5 +33,10 @@ if status is-interactive
     bind \cr _atuin_search
 end
 
+function fish_title
+    echo $argv[1] (prompt_pwd)
+    pwd
+end
+
 alias ls='exa --all --long --group --color=always --group-directories-first --icons' # preferred listing
 alias lt='exa --all --tree --color=always --group-directories-first --icons' # tree listing
