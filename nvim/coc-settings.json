@@ -1,8 +1,22 @@
 {
-  "hover.floatConfig": {
-    "rounded": true
-  },
   "coc.preferences.willSaveHandlerTimeout": 1500,
+  "hover.autoHide": true,
+  "diagnostic.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "shadow": true,
+    "winblend": 1
+  },
+  "hover.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "shadow": true,
+    "winblend": 1
+  },
+  "list.floatPreview": true,
+  "list.previewSplitRight": true,
+  "suggest.defaultSortMethod": "none",
+  "suggest.virtualText": true,
   "codeLens.enable": true,
   "snippets.loadFromExtensions": true,
   "suggest.maxCompleteItemCount": 20,
@@ -10,6 +24,7 @@
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveTimeout": 1500,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.renameFillCurrent": false,
   "git.addGBlameToVirtualText": true,
   "git.enableGutters": true,
   "git.addedSign.hlGroup": "GitGutterAdd",
