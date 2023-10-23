@@ -4,7 +4,7 @@ set man_paths /usr/share/man /usr/local/share/man /usr/local/man ~/.local/pipx/v
 
 # Set settings for https://github.com/franciscolourenco/done
 set -U __done_min_cmd_duration 5000
-set -U __done_notification_urgency_level low
+set -U __done_notification_urgency_level normal
 
 for _path in $man_paths
     if path is --type=dir $_path
