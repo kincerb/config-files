@@ -171,6 +171,8 @@ set foldlevel=99 " start with all folds opened
 " display extra whitespace
 set list listchars=tab:⟪⋯⟫,trail:,nbsp:●
 
+" let g:node_client_debug = 1
+" let $NODE_CLIENT_LOG_FILE = '/home/kincerb/Documents/neovim.log'
 "------- Builtin variables --------"
 let g:netrw_keepdir=0
 let g:netrw_winsize=30
@@ -290,7 +292,8 @@ let g:indent_blankline_buftype_exclude = [
     \ 'prompt']
 
 "------- Keymaps --------"
-nnoremap <expr> <CR> &diff ? ']c' : ':noh'
+" nnoremap <expr> <CR> &diff ? ']c' : ':noh'
+" nnoremap <expr> <CR> &diff ? ']c' : ':execute "normal! <CR>"'
 nnoremap <expr> <leader>x ':tabclose<CR>'
 nnoremap <leader><leader> zA
 nnoremap <leader>z za
@@ -373,6 +376,9 @@ vnoremap <leader>bc :BCommits<CR>
 nnoremap <expr> <leader>C ConstructCommit()
 
 nmap == <Plug>(coc-codeaction-line)
+nmap <Leader>== <Plug>(coc-codeaction)
+" nmap <Leader>== <Plug>(coc-codeaction)
+
 vmap == <Plug>(coc-codeaction-selected)
 xmap == <Plug>(coc-codeaction-selected)
 nmap <leader>qf <Plug>(coc-fix-current)
