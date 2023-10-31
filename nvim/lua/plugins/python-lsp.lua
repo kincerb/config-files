@@ -12,7 +12,7 @@ return {
                 mccabe = { enabled = false },
                 pycodestyle = { enabled = false },
                 yapf = { enabled = false },
-                pydocstyle = { enabled = true, convention = "google" },
+                pydocstyle = { enabled = false, convention = "google" },
               },
             },
           },
