@@ -270,7 +270,7 @@ let g:fzf_colors =
 let g:coc_disable_startup_warning = 1
 
 let g:coc_global_extensions = [ '@yaegassy/coc-pylsp', 'coc-htmldjango', '@yaegassy/coc-ansible',
-    \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker',
+    \ 'coc-json', 'coc-yaml', 'coc-html', 'coc-docker', '@yaegassy/coc-ruff',
     \ 'coc-css', 'coc-markdownlint', 'coc-git', 'coc-lua',
     \ 'coc-sh', 'coc-go', 'coc-vimlsp', 'coc-pydocstring',
     \ 'coc-snippets', 'coc-marketplace', 'coc-highlight',
@@ -376,7 +376,7 @@ vnoremap <leader>bc :BCommits<CR>
 nnoremap <expr> <leader>C ConstructCommit()
 
 nmap == <Plug>(coc-codeaction-line)
-nmap <Leader>== <Plug>(coc-codeaction)
+nmap <Leader>== <Plug>(coc-codeaction-source)
 " nmap <Leader>== <Plug>(coc-codeaction)
 
 vmap == <Plug>(coc-codeaction-selected)
