@@ -1,3 +1,5 @@
+local actions = require("telescope.actions")
+
 return {
   "nvim-telescope/telescope.nvim",
   keys = function()
@@ -10,14 +12,20 @@ return {
         end,
         desc = "Find Files (Current dir)",
       },
-      {
-        "<esc>",
-        function()
-          require("telescope.actions").close()
-        end,
-        -- mode = { "i", "n" },
-        desc = "Close telescope",
-      },
     }
   end,
+  opts = {
+    defaults = {
+      mappings = {
+        i = {
+          ["<esc>"] = actions.close,
+          ["<C-g>"] = actions.close,
+          ["<C-s>"] = actions.select_horizontal,
+          ["<C-i>"] = actions.select_vertical,
+          ["<C-t>"] = actions.select_drop,
+          ["<C-u>"] = false,
+        },
+      },
+    },
+  },
 }
