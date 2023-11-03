@@ -2,10 +2,18 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local map = vim.keymap
+local util = require("lazyvim.util")
+local lazyterm = function()
+  util.terminal(nil, { cwd = util.root(), size = { width = 1.0, height = 0.4 } })
+end
 local opts = { remap = false, silent = true }
 
-map.set("n", "<leader>j", "<cmd>tabnext<cr>", { desc = "Next Tab", remap = false })
-map.set("n", "<leader>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab", remap = false })
+map.del("n", "<leader>ft")
+map.del("n", "<leader>fT")
+map.del("n", "<c-_>")
+
+map.set("n", "<leader>t", lazyterm, { desc = "Terminal" })
+
 map.set("n", "<leader>x", "<cmd>tabclose<cr>", { desc = "Close Tab", remap = false })
 map.set("i", "jk", "<ESC>", { remap = false })
 map.set("n", "==", vim.diagnostic.open_float, opts)

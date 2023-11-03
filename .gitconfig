@@ -5,8 +5,10 @@
 	email = dev.bkincer@gmail.com
 [core]
 	autocrlf = input
+  editor = nvim
+  pager = bat
 [alias]
-    h = log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    h = log --graph --pretty=format:g%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cresetl --abbrev-commit
     # short status
     s = status -sb
     # Saving typing
@@ -22,3 +24,12 @@
     up = pull --rebase
 [pull]
 	rebase = true
+[diff]
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'
+[merge]
+  tool = nvimmerge
+[mergetool "nvimmerge"]
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c l$wincmd wg -c 'wincmd J'
+
