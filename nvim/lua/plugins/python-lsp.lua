@@ -1,3 +1,5 @@
+local map = vim.keymap
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -35,7 +37,9 @@ return {
       },
       setup = {
         ruff_lsp = function()
-          require("lazyvim.util").lsp.on_attach(function(client, _)
+          require("lazyvim.util").lsp.on_attach(function(client, bufnr)
+            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+            local buffopts = { remap = false, silent = true, buffer = bufnr }
             if client.name == "ruff_lsp" then
               client.server_capabilities.hoverProvider = false
               client.server_capabilities.completion = false
@@ -44,6 +48,8 @@ return {
               client.server_capabilities.rename = false
               client.server_capabilities.signatureHelp = false
             end
+            map.set("n", "<leader>==", vim.lsp.buf.code_action, buffopts)
+            map.set("n", "K", vim.lsp.buf.hover, buffopts)
           end)
         end,
       },
