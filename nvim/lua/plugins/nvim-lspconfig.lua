@@ -3,8 +3,17 @@ local map = vim.keymap
 return {
   {
     "neovim/nvim-lspconfig",
+    keys = {
+      { "==", vim.lsp.buf.code_action, mode = "n", desc = "Code Actions" },
+      { "K", vim.lsp.buf.hover, mode = "n", desc = "Hover" },
+    },
     opts = {
       servers = {
+        ansiblels = {
+          settings = {
+            filetypes = { "yaml.ansible" },
+          },
+        },
         pylsp = {
           settings = {
             pylsp = {
@@ -36,20 +45,13 @@ return {
         },
       },
       setup = {
-        ruff_lsp = function()
+        ["*"] = function()
           require("lazyvim.util").lsp.on_attach(function(client, bufnr)
+            vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr")
             vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-            local buffopts = { remap = false, silent = true, buffer = bufnr }
             if client.name == "ruff_lsp" then
               client.server_capabilities.hoverProvider = false
-              client.server_capabilities.completion = false
-              client.server_capabilities.definition = false
-              client.server_capabilities.references = false
-              client.server_capabilities.rename = false
-              client.server_capabilities.signatureHelp = false
             end
-            map.set("n", "<leader>==", vim.lsp.buf.code_action, buffopts)
-            map.set("n", "K", vim.lsp.buf.hover, buffopts)
           end)
         end,
       },
