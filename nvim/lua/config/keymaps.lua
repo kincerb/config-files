@@ -6,7 +6,7 @@ local util = require("lazyvim.util")
 local lazyterm = function()
   util.terminal(nil, { cwd = util.root(), size = { width = 1.0, height = 0.6 } })
 end
-local opts = { remap = false, silent = true }
+local opts = { noremap = true, silent = true }
 
 map.del("n", "<leader>ft")
 map.del("n", "<leader>fT")
@@ -18,11 +18,11 @@ map.del("t", "<c-l>")
 map.del("t", "<c-k>")
 
 map.set("n", "<leader>t", lazyterm, { desc = "Terminal" })
-map.set("n", "<c-/>", lazyterm, { desc = "Show Terminal" })
+map.set("n", "<c-/>", lazyterm, { desc = "Terminal" })
 map.set("t", "<c-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
-map.set("n", "<leader>x", "<cmd>tabclose<cr>", { desc = "Close Tab", remap = false })
-map.set("i", "jk", "<ESC>", { remap = false })
+map.set("n", "<leader>x", "<cmd>tabclose<cr>", { desc = "Close Tab", noremap = true })
+map.set("i", "jk", "<ESC>", { noremap = true })
 map.set("n", "==", vim.diagnostic.open_float)
 map.set("n", "[d", vim.diagnostic.goto_prev, opts)
 map.set("n", "]d", vim.diagnostic.goto_next, opts)
