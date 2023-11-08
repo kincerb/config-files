@@ -10,15 +10,13 @@ local opts = { noremap = true, silent = true }
 
 map.del("n", "<leader>ft")
 map.del("n", "<leader>fT")
-map.del("n", "<c-_>")
-map.del({ "n", "t" }, "<c-/>")
 map.del("t", "<c-h>")
 map.del("t", "<c-j>")
 map.del("t", "<c-l>")
 map.del("t", "<c-k>")
 
-map.set("n", "<leader>t", lazyterm, { desc = "Terminal" })
-map.set("n", "<c-/>", lazyterm, { desc = "Terminal" })
+map.set("n", "<leader>t", lazyterm, { desc = "Terminal (root dir)" })
+map.set("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
 map.set("t", "<c-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 map.set("n", "<leader>x", "<cmd>tabclose<cr>", { desc = "Close Tab", noremap = true })
