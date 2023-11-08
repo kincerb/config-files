@@ -18,8 +18,8 @@ map.del("t", "<c-l>")
 map.del("t", "<c-k>")
 
 map.set("n", "<leader>t", lazyterm, { desc = "Terminal" })
-map.set("n", "<c-/>", lazyterm, { desc = "which_key_ignore" })
-map.set("t", "<c-/>", "<cmd>close<cr>", { desc = "Terminal", remap = false, silent = true })
+map.set("n", "<c-/>", lazyterm, { desc = "Show Terminal" })
+map.set("t", "<c-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 map.set("n", "<leader>x", "<cmd>tabclose<cr>", { desc = "Close Tab", remap = false })
 map.set("i", "jk", "<ESC>", { remap = false })
