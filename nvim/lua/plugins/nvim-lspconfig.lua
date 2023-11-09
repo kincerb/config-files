@@ -14,6 +14,13 @@ return {
             filetypes = { "yaml.ansible" },
           },
         },
+        bashls = {},
+        dockerls = {},
+        docker_compose_language_service = {},
+        gopls = {},
+        groovyls = {},
+        html = {},
+        jsonls = {},
         pylsp = {
           settings = {
             pylsp = {
@@ -24,7 +31,7 @@ return {
                 pycodestyle = { enabled = false },
                 yapf = { enabled = false },
                 mypy = { enabled = true },
-                pydocstyle = { enabled = true, convention = "google" },
+                pydocstyle = { enabled = false, convention = "google" },
               },
             },
           },
@@ -44,6 +51,8 @@ return {
             },
           },
         },
+        taplo = {},
+        yamlls = {},
       },
       setup = {
         ["*"] = function()
