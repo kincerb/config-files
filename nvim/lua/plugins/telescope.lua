@@ -20,8 +20,8 @@ return {
         i = {
           ["<esc>"] = actions.close,
           ["<C-g>"] = actions.close,
-          ["<C-s>"] = actions.select_horizontal,
-          ["<C-i>"] = actions.select_vertical,
+          ["<C-i>"] = actions.select_horizontal,
+          ["<C-s>"] = actions.select_vertical,
           ["<C-t>"] = actions.select_drop,
           ["<C-u>"] = false,
         },
