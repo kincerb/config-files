@@ -15,7 +15,7 @@ style_user = "fg:27"
 # Second param
 [hostname]
 disabled = false
-ssh_symbol = "   "
+ssh_symbol = "󰱠 "
 style = "dimmed fg:24"
 format = "[$ssh_symbol](dimmed green)[$hostname]($style)"
 ssh_only = true
@@ -70,15 +70,15 @@ disabled = true
 discharging_symbol = "󰂌"
 full_symbol = "󰂏"
 
-[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+[[battery.display]] # "bold red" style when capacity is between 0% and 10%
 style = "bold red"
 threshold = 15
 
-[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+[[battery.display]] # "bold yellow" style when capacity is between 10% and 30%
 style = "bold yellow"
 threshold = 50
 
-[[battery.display]]  # "bold green" style when capacity is between 10% and 30%
+[[battery.display]] # "bold green" style when capacity is between 10% and 30%
 style = "bold green"
 threshold = 100
 
