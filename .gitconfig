@@ -4,7 +4,7 @@
 	name = kincerb
 	email = dev.bkincer@gmail.com
 [core]
-	autocrlf = input
+  autocrlf = input
   editor = nvim
   pager = bat
 [alias]
