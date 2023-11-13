@@ -20,6 +20,7 @@ crashlytics-build.properties
 fabric.properties
 
 secrets.*
+scratch/
 nvim/pack/
 
 .ropeproject/
