@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://json.schemastore.org/lazygit.json
+gui:
+  nerdFontsVersion: "3"
+git:
+  commitPrefixes:
+    Middleware-Lifecycle-Checkins:
+      pattern: "^\\w+\\/(\\w+-\\w+).*"
+      replace: "$1 #comment "
