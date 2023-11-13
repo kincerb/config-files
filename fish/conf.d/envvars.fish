@@ -1,15 +1,14 @@
 set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 
-set -gx PAGER bat -p
+set -gx PAGER bat --plain
 set -gx BAT_THEME gruvbox-dark
-set -gx SYSTEMD_PAGER bat --plain --language syslog
+set -gx SYSTEMD_PAGER bat --plain
 set -gx SYSTEMD_PAGERSECURE true
 set -gx GOPATH ~/.local/go
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -gx MANROFFOPT "-c"
-set -gx ATUIN_NOBIND "true"
-set -gx LESS "-FiXR"
+set -gx MANROFFOPT -c
+set -gx ATUIN_NOBIND true
 
 set -l _fzf_opts "--color=dark"
 set -a _fzf_opts "--color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe"
