@@ -1,19 +1,29 @@
 return {
   { "rafi/awesome-vim-colorschemes" },
   {
-    "LazyVim/LazyVim",
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
     opts = {
-      colorscheme = "tokyonight",
+      style = "storm",
+      terminal_colors = true,
+      transparent = true,
+      styles = {
+        sidebars = "dark",
+        floats = "dark",
+      },
+      on_highlights = function(hl, colors)
+        hl.FloatBorder = {
+          fg = colors.green,
+          bg = colors.bg_float,
+        }
+      end,
     },
   },
   {
-    "folke/tokyonight.nvim",
+    "LazyVim/LazyVim",
     opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
+      colorscheme = "tokyonight",
     },
   },
 }

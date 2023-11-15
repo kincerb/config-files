@@ -4,7 +4,7 @@
 local map = vim.keymap
 local util = require("lazyvim.util")
 local lazyterm = function()
-  util.terminal(nil, { cwd = util.root(), size = { width = 1.0, height = 0.6 } })
+  util.terminal(nil, { cwd = util.root(), size = { width = 0.9, height = 0.6 }, border = "rounded" })
 end
 local opts = { noremap = true, silent = true }
 
