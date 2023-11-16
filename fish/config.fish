@@ -22,11 +22,6 @@ if test -z "$SSH_CONNECTION"
     set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 end
 
-
-if not pgrep -U $USER gpg-agent &>/dev/null
-    gpg-agent --daemon
-end
-
 if status is-interactive
     /usr/bin/starship init fish --print-full-init | source
     atuin init fish | source
