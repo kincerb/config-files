@@ -2,8 +2,8 @@ return {
   "folke/trouble.nvim",
   opts = {
     position = "bottom",
-    height = 40,
-    width = 90,
+    height = 25,
+    width = 80,
     auto_close = true,
   },
 }
