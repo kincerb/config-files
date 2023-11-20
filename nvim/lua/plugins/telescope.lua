@@ -69,18 +69,29 @@ return {
     }
   end,
   opts = {
+    pickers = {
+      buffers = {
+        mappings = {
+          i = {
+            ["<C-x>"] = actions.delete_buffer + actions.move_to_top,
+          },
+        },
+      },
+    },
     defaults = {
       mappings = {
         i = {
           ["<C-d>"] = false,
           ["<C-u>"] = false,
+          ["<C-x>"] = false,
           ["<esc>"] = actions.close,
+          ["<C-b"] = actions.preview_scrolling_up,
+          ["<C-e>"] = actions.edit_command_line,
+          ["<C-f"] = actions.preview_scrolling_down,
           ["<C-g>"] = actions.close,
           ["<C-i>"] = actions.select_horizontal,
           ["<C-s>"] = actions.select_vertical,
           ["<C-t>"] = actions.select_tab,
-          ["<C-b"] = actions.preview_scrolling_up,
-          ["<C-f"] = actions.preview_scrolling_down,
         },
       },
     },
