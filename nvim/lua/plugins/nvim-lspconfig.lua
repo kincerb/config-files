@@ -1,5 +1,3 @@
-local map = vim.keymap
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -18,7 +16,6 @@ return {
         dockerls = {},
         docker_compose_language_service = {},
         gopls = {},
-        groovyls = {},
         html = {},
         jsonls = {},
         pylsp = {
