@@ -7,14 +7,32 @@ snippet imp
 snippet from
   from ${1:package} import ${0:module}
 
+snippet with
+  with ${1:expr} as ${2:var}:
+    ${0:${VISUAL}}
+
+snippet awith
+  async with ${1:expr} as ${2:var}:
+    ${0:${VISUAL}}
+
+snippet ifmain
+  if __name__ == "__main__":
+    ${0:main()}
+
 snippet ignore "Ignore error / warning" w
   # type: ${1:ignore}[${2:import}]$0
 
 snippet #ty "# type: ignore..." w
   # type: ${1:ignore}[${2:import}]$0
 
-snippet myp "# mypy: ignore" b
+snippet #mypy "# mypy: ignore" b
   # mypy: ${1:disable-error-code}="${2:import}"$0
 
-snippet ruf "# ruff: noqa" b
+snippet mypy "# mypy: ignore" b
+   mypy: ${1:disable-error-code}="${2:import}"$0
+
+snippet #ruff "# ruff: noqa" b
   # ruff: noqa: ${1:F811}$0
+
+snippet ruff "# ruff: noqa" b
+   ruff: noqa: ${1:F811}$0
