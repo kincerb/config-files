@@ -8,3 +8,4 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.scrolloff = 999
+vim.opt.formatoptions:remove({ "o" })
