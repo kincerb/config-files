@@ -12,6 +12,11 @@ return {
         desc = "Find Files (Current dir)",
       },
       {
+        "<leader>/.",
+        builtin.resume,
+        desc = "Resume previous",
+      },
+      {
         "<leader>/?",
         builtin.keymaps,
         desc = "Keymaps",
@@ -37,9 +42,24 @@ return {
         desc = "Commands (History)",
       },
       {
+        "<leader>/e",
+        builtin.colorscheme,
+        desc = "Colorscheme",
+      },
+      {
+        "<leader>/E",
+        builtin.highlights,
+        desc = "Highlights",
+      },
+      {
         "<leader>/m",
         builtin.marks,
         desc = "Marks",
+      },
+      {
+        "<leader>/p",
+        builtin.pickers,
+        desc = "Pickers",
       },
       {
         "<leader>/r",
