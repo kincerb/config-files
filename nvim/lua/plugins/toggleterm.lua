@@ -10,8 +10,12 @@ return {
       direction = "vertical",
       float_opts = {
         border = "curved",
-        width = 100,
-        height = 60,
+        width = function()
+          return vim.o.columns * 0.7
+        end,
+        height = function()
+          return vim.o.lines * 0.5
+        end,
         winblend = 0,
         zindex = 10,
       },
@@ -25,12 +29,20 @@ return {
     },
     keys = {
       {
-        "<C-\\>",
+        "<leader>\\t",
         function()
           require("toggleterm").toggle(nil, nil, nil, "horizontal")
         end,
-        mode = { "n", "i", "t" },
-        desc = "ToggleTerm (vert ---)",
+        mode = { "n" },
+        desc = "ToggleTerm (horizontal ---)",
+      },
+      {
+        "<leader>\\T",
+        function()
+          require("toggleterm").toggle(nil, nil, nil, "vertical")
+        end,
+        mode = { "n" },
+        desc = "ToggleTerm (vertical |||)",
       },
     },
   },
