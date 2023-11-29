@@ -110,7 +110,7 @@ return {
           ["<C-f"] = actions.preview_scrolling_down,
           ["<C-g>"] = actions.close,
           ["<C-i>"] = actions.select_horizontal,
-          ["<C-s>"] = actions.select_vertical,
+          ["<C-v>"] = actions.select_vertical,
           ["<C-t>"] = actions.select_tab,
         },
       },
