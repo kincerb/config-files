@@ -30,44 +30,34 @@ return {
     keys = {
       {
         "<leader>tt",
-        function()
-          require("toggleterm").toggle(nil, nil, nil, "horizontal")
-        end,
+        "<cmd>:ToggleTerm direction=horizontal<cr>",
         mode = { "n" },
         desc = "ToggleTerm (horizontal ---)",
       },
       {
         "<leader>tT",
-        function()
-          require("toggleterm").toggle(nil, nil, nil, "vertical")
-        end,
+        "<cmd>:ToggleTerm direction=vertical<cr>",
         mode = { "n" },
         desc = "ToggleTerm (vertical |||)",
       },
       {
         "<leader>tf",
-        function()
-          require("toggleterm").toggle(nil, nil, nil, "float")
-        end,
+        "<cmd>:ToggleTerm direction=float<cr>",
         mode = { "n" },
         desc = "ToggleTerm (float)",
       },
-      -- {
-      --   "<C-/>",
-      --   function()
-      --     require("toggleterm").smart_toggle(nil, nil, nil, nil)
-      --   end,
-      --   mode = { "n" },
-      --   desc = "ToggleTerm (smart)",
-      -- },
-      -- {
-      --   "<C-_>",
-      --   function()
-      --     require("toggleterm").smart_toggle(nil, nil, nil, nil)
-      --   end,
-      --   mode = { "n" },
-      --   desc = "ToggleTerm (smart)",
-      -- },
+      {
+        "<C-/>",
+        "<cmd>:ToggleTerm<cr>",
+        mode = { "n" },
+        desc = "ToggleTerm (smart)",
+      },
+      {
+        "<C-_>",
+        "<cmd>:ToggleTerm<cr>",
+        mode = { "n" },
+        desc = "ToggleTerm (smart)",
+      },
     },
   },
 }
