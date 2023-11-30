@@ -6,8 +6,8 @@ local opts = { noremap = true, silent = true }
 
 map.del("n", "<leader>ft")
 map.del("n", "<leader>fT")
-map.del("n", "<C-/>")
-map.del("n", "<C-_>")
+-- map.del("n", "<C-/>")
+-- map.del("n", "<C-_>")
 map.del("t", "<c-h>")
 map.del("t", "<c-j>")
 map.del("t", "<c-l>")
