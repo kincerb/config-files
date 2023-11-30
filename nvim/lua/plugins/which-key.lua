@@ -4,6 +4,6 @@ return {
     if require("lazyvim.util").has("telescope.nvim") then
       opts.defaults["<leader>/"] = { name = "+telescope" }
     end
-    opts.defaults["<leader>\\"] = { name = "+toggleterm" }
+    opts.defaults["<leader>t"] = { name = "+toggleterm" }
   end,
 }
