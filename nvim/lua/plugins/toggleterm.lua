@@ -4,7 +4,7 @@ return {
     lazy = true,
     opts = {
       shade_terminals = false,
-      open_mapping = [[<c-/>]],
+      open_mapping = [[<c-_>]],
       terminal_mappings = true,
       insert_mappings = true,
       direction = "horizontal",
@@ -52,22 +52,22 @@ return {
         mode = { "n" },
         desc = "ToggleTerm (float)",
       },
-      {
-        "<C-/>",
-        function()
-          require("toggleterm").smart_toggle()
-        end,
-        mode = { "n" },
-        desc = "ToggleTerm (smart)",
-      },
-      {
-        "<C-_>",
-        function()
-          require("toggleterm").smart_toggle()
-        end,
-        mode = { "n" },
-        desc = "ToggleTerm (smart)",
-      },
+      -- {
+      --   "<C-/>",
+      --   function()
+      --     require("toggleterm").smart_toggle(nil, nil, nil, nil)
+      --   end,
+      --   mode = { "n" },
+      --   desc = "ToggleTerm (smart)",
+      -- },
+      -- {
+      --   "<C-_>",
+      --   function()
+      --     require("toggleterm").smart_toggle(nil, nil, nil, nil)
+      --   end,
+      --   mode = { "n" },
+      --   desc = "ToggleTerm (smart)",
+      -- },
     },
   },
 }
