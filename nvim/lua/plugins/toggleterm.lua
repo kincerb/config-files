@@ -58,6 +58,24 @@ return {
         mode = { "n" },
         desc = "ToggleTerm (smart)",
       },
+      {
+        "<leader><C-e>",
+        "<cmd>:ToggleTermSendCurrentLine<cr>",
+        mode = { "n" },
+        desc = "Send current line to terminal",
+      },
+      {
+        "<leader><C-e>",
+        "<cmd>:ToggleTermSendVisualLines<cr>",
+        mode = { "v" },
+        desc = "Send selected lines to terminal",
+      },
+      {
+        "<leader><C-E>",
+        "<cmd>:ToggleTermSendVisualSelection<cr>",
+        mode = { "v" },
+        desc = "Send selection to terminal",
+      },
     },
   },
 }
