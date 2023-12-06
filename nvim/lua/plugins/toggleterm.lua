@@ -21,7 +21,7 @@ return {
       },
       size = function(term)
         if term.direction == "horizontal" then
-          return math.floor(vim.o.lines * 0.5)
+          return math.floor(vim.o.lines * 0.3)
         elseif term.direction == "vertical" then
           return math.floor(vim.o.columns * 0.4)
         end

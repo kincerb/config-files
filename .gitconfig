@@ -3,10 +3,17 @@
 [user]
 	name = kincerb
 	email = dev.bkincer@gmail.com
+  signingKey = ""
 [core]
   autocrlf = input
   editor = nvim
   pager = bat
+[commit]
+    gpgSign = false
+[tag]
+    forceSignAnnotated = false
+[init]
+    defaultBranch = main
 [alias]
     h = log --graph --pretty=format:g%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cresetl --abbrev-commit
     # short status
@@ -24,11 +31,14 @@
     up = pull --rebase
 [pull]
 	rebase = true
+[push]
+  autoSetupRemote = true
 [diff]
   tool = nvimdiff
 [difftool "nvimdiff"]
   cmd = nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'
 [merge]
+  conflictStyle = diff3
   tool = nvimmerge
 [mergetool "nvimmerge"]
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c l$wincmd wg -c 'wincmd J'
