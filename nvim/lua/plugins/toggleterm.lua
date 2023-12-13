@@ -21,9 +21,9 @@ return {
       },
       size = function(term)
         if term.direction == "horizontal" then
-          return math.floor(vim.o.lines * 0.3)
+          return math.floor(vim.o.lines * 0.4)
         elseif term.direction == "vertical" then
-          return math.floor(vim.o.columns * 0.4)
+          return math.floor(vim.o.columns * 0.5)
         end
       end,
     },
@@ -45,6 +45,18 @@ return {
         "<cmd>ToggleTerm direction=float<cr>",
         mode = { "n" },
         desc = "ToggleTerm (float)",
+      },
+      {
+        "<leader>t=",
+        "<cmd>TermSelect<cr>",
+        mode = { "n" },
+        desc = "Pick a terminal",
+      },
+      {
+        "<C-.>",
+        "<cmd>ToggleTermToggleAll<cr>",
+        mode = { "n", "i" },
+        desc = "ToggleTerm (all)",
       },
       {
         "<C-/>",
