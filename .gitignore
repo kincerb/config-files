@@ -25,3 +25,4 @@ nvim/pack/
 
 .ropeproject/
 *.swp
+lazygit/state.yml
