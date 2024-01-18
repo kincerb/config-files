@@ -1,11 +1,16 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
+local config = {}
 
-return {
-  font = wezterm.font 'FiraCode Nerd Font',
-  font_size = 10.0,
-  color_scheme = 'MaterialDark',
-  enable_scroll_bar = false,
-  hide_tab_bar_if_only_one_tab = true,
-  tab_bar_at_bottom = true,
-}
+if wezterm.config_builder then
+	config = wezterm.config_builder()
+end
+
+config.color_scheme = "MaterialDark"
+config.font_size = 12.0
+config.font = wezterm.font("")
+config.enable_scroll_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = true
+
+return config
 --# vim: ft=lua ts=2 sw=2 sts=2
