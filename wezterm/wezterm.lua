@@ -38,6 +38,14 @@ wezterm.on("update-status", function(window, pane)
 	window:set_right_status(wezterm.format({ { Text = name } }))
 end)
 
+config.ssh_domains = {
+	{
+		name = "garudavm",
+		remote_address = "garuda-mate-vm.lan",
+		username = "kincerb",
+	},
+}
+
 config.leader = { key = "Space", mods = "CTRL|SHIFT" }
 
 config.keys = {
