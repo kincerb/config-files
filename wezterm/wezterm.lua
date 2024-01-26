@@ -44,7 +44,7 @@ config.keys = {
 	{
 		key = "t",
 		mods = "CTRL|SHIFT",
-		action = act.SpawnTab({ domain = "CurrentPaneDomain" }),
+		action = act.SpawnTab("CurrentPaneDomain"),
 	},
 	{
 		key = "p",
