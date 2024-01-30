@@ -9,7 +9,10 @@ end
 config.font = wezterm.font("FantasqueSansM Nerd Font")
 config.font_size = 12.0
 config.bold_brightens_ansi_colors = true
-config.color_scheme = "Breeze (Gogh)"
+-- config.color_scheme = "Monokai Vivid"
+-- config.color_scheme = "Breeze (Gogh)"
+config.color_scheme = "Argonaut (Gogh)"
+-- config.color_scheme = "Breath Darker (Gogh)"
 config.enable_scroll_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
