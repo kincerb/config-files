@@ -56,6 +56,16 @@ config.keys = {
 		action = act.SpawnTab("CurrentPaneDomain"),
 	},
 	{
+		key = "n",
+		mods = "CTRL|SHIFT",
+		action = act.ActivateTabRelative(1),
+	},
+	{
+		key = "p",
+		mods = "CTRL|SHIFT",
+		action = act.ActivateTabRelative(-1),
+	},
+	{
 		key = "p",
 		mods = "LEADER",
 		action = act.ActivateKeyTable({
