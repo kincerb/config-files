@@ -17,7 +17,7 @@ config.enable_scroll_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.adjust_window_size_when_changing_font_size = false
-
+config.audible_bell = "Disabled"
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = true
