@@ -14,13 +14,11 @@ config.bold_brightens_ansi_colors = true
 config.color_scheme = "Argonaut (Gogh)"
 -- config.color_scheme = "Breath Darker (Gogh)"
 config.enable_scroll_bar = false
-config.hide_tab_bar_if_only_one_tab = true
-config.tab_bar_at_bottom = true
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = true
 
 config.inactive_pane_hsb = {
@@ -44,6 +42,11 @@ config.ssh_domains = {
 		name = "garudavm",
 		remote_address = "garuda-mate-vm.lan",
 		username = "kincerb",
+	},
+	{
+		name = "mac",
+		remote_address = "mac",
+		remote_wezterm_path = "/Applications/WezTerm.app/Contents/MacOS/wezterm",
 	},
 }
 
@@ -70,6 +73,14 @@ config.keys = {
 		mods = "LEADER",
 		action = act.ActivateKeyTable({
 			name = "pane_control",
+			one_shot = false,
+		}),
+	},
+	{
+		key = "d",
+		mods = "LEADER",
+		action = act.ActivateKeyTable({
+			name = "domain_control",
 			one_shot = false,
 		}),
 	},
@@ -121,6 +132,11 @@ config.key_tables = {
 		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 1 }) },
 		{ key = "j", mods = "SHIFT", action = act.AdjustPaneSize({ "Down", 1 }) },
 		{ key = "j", action = act.ActivatePaneDirection("Down") },
+		{ key = "Escape", action = "PopKeyTable" },
+	},
+	domain_control = {
+		{ key = "d", action = act.DetachDomain("CurrentPaneDomain") },
+		{ key = "m", action = act.AttachDomain("mac") },
 		{ key = "Escape", action = "PopKeyTable" },
 	},
 }
