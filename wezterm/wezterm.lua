@@ -54,6 +54,11 @@ config.leader = { key = "Space", mods = "CTRL|SHIFT" }
 
 config.keys = {
 	{
+		key = "Space",
+		mods = "CTRL|SHIFT",
+		action = act.DisableDefaultAssignment,
+	},
+	{
 		key = "t",
 		mods = "CTRL|SHIFT",
 		action = act.SpawnTab("CurrentPaneDomain"),
