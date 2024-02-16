@@ -137,12 +137,15 @@ config.key_tables = {
 		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 1 }) },
 		{ key = "j", mods = "SHIFT", action = act.AdjustPaneSize({ "Down", 1 }) },
 		{ key = "j", action = act.ActivatePaneDirection("Down") },
+		{ key = "z", action = act.TogglePaneZoomState },
 		{ key = "Escape", action = "PopKeyTable" },
+		{ key = "q", action = "PopKeyTable" },
 	},
 	domain_control = {
 		{ key = "d", action = act.DetachDomain("CurrentPaneDomain") },
 		{ key = "m", action = act.AttachDomain("mac") },
 		{ key = "Escape", action = "PopKeyTable" },
+		{ key = "q", action = "PopKeyTable" },
 	},
 }
 

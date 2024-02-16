@@ -29,13 +29,11 @@
     bls = branch --list -a
     fp = fetch --prune
     up = pull --rebase
-[pull]
-	rebase = true
-[push]
-  autoSetupRemote = true
 [diff]
+  algorithm = patience
+  compactionHeuristic = true
   tool = nvimdiff
-[difftool "nvimdiff"]
+  [difftool "nvimdiff"]
   cmd = nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'
 [merge]
   conflictStyle = diff3
