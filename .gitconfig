@@ -30,8 +30,6 @@
     fp = fetch --prune
     up = pull --rebase
 [diff]
-  algorithm = patience
-  compactionHeuristic = true
   tool = nvimdiff
   [difftool "nvimdiff"]
   cmd = nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'
