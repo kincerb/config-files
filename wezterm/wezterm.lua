@@ -7,7 +7,7 @@ if wezterm.config_builder then
 end
 
 config.font = wezterm.font("FantasqueSansM Nerd Font")
-config.font_size = 12.0
+config.font_size = 14.0
 config.bold_brightens_ansi_colors = true
 -- config.color_scheme = "Monokai Vivid"
 -- config.color_scheme = "Breeze (Gogh)"
@@ -43,12 +43,22 @@ config.ssh_domains = {
 		remote_address = "garuda-mate-vm.lan",
 		username = "kincerb",
 	},
-	{
-		name = "mac",
-		remote_address = "mac",
-		remote_wezterm_path = "/Applications/WezTerm.app/Contents/MacOS/wezterm",
-	},
 }
+
+-- config.default_gui_startup_args = { "connect", "main" }
+
+local fuzzy_commands = act.ShowLauncherArgs({
+	title = "🔍 find commands",
+	flags = "FUZZY|KEY_ASSIGNMENTS|COMMANDS",
+})
+local fuzzy_domains = act.ShowLauncherArgs({
+	title = "🔍 find domains",
+	flags = "FUZZY|DOMAINS",
+})
+local fuzzy_tabs = act.ShowLauncherArgs({
+	title = "🔍 find tabs",
+	flags = "FUZZY|TABS|DOMAINS|WORKSPACES",
+})
 
 config.leader = { key = "Space", mods = "CTRL|SHIFT" }
 
@@ -57,6 +67,14 @@ config.keys = {
 		key = "Space",
 		mods = "CTRL|SHIFT",
 		action = act.DisableDefaultAssignment,
+	},
+	{
+		key = "f",
+		mods = "CTRL|SHIFT",
+		action = act.ActivateKeyTable({
+			name = "find_stuff",
+			one_shot = false,
+		}),
 	},
 	{
 		key = "t",
@@ -122,6 +140,13 @@ config.keys = {
 }
 
 config.key_tables = {
+	find_stuff = {
+		{ key = "t", action = fuzzy_tabs },
+		{ key = "c", action = fuzzy_commands },
+		{ key = "d", action = fuzzy_domains },
+		{ key = "Escape", action = "PopKeyTable" },
+		{ key = "q", action = "PopKeyTable" },
+	},
 	pane_control = {
 		{ key = "-", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		{ key = "\\", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
@@ -143,7 +168,6 @@ config.key_tables = {
 	},
 	domain_control = {
 		{ key = "d", action = act.DetachDomain("CurrentPaneDomain") },
-		{ key = "m", action = act.AttachDomain("mac") },
 		{ key = "Escape", action = "PopKeyTable" },
 		{ key = "q", action = "PopKeyTable" },
 	},
