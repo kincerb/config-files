@@ -7,12 +7,14 @@ if wezterm.config_builder then
 end
 
 config.font = wezterm.font("FantasqueSansM Nerd Font")
-config.font_size = 14.0
+config.font_size = 12.0
 config.bold_brightens_ansi_colors = true
 -- config.color_scheme = "Monokai Vivid"
--- config.color_scheme = "Breeze (Gogh)"
-config.color_scheme = "Argonaut (Gogh)"
--- config.color_scheme = "Breath Darker (Gogh)"
+-- config.color_scheme = "Argonaut (Gogh)"
+-- config.color_scheme = "Monokai (terminal.sexy)"
+-- config.color_scheme = "Galizur"
+-- config.color_scheme = "Numix Darkest (terminal.sexy)"
+config.color_scheme = "Monokai Dark (Gogh)"
 config.enable_scroll_bar = false
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
