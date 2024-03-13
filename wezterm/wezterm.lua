@@ -6,7 +6,12 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("FantasqueSansM Nerd Font")
+config.font = wezterm.font_with_fallback({
+	"FantasqueSansM Nerd Font",
+	"Nerd Font Symbols",
+	"Noto Color Emoji",
+	{ family = "JetBrains Mono" },
+})
 config.font_size = 12.0
 config.bold_brightens_ansi_colors = true
 -- config.color_scheme = "Monokai Vivid"
