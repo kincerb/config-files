@@ -3,14 +3,17 @@
 [user]
 	name = kincerb
 	email = dev.bkincer@gmail.com
-  signingKey = ""
+  signingKey = 1CF7038E5E47E76F876B74A3AB1326F3400A0CDC
+[gpg]
+  program = gpg
 [core]
   autocrlf = input
   editor = nvim
   pager = bat
 [commit]
-    gpgSign = false
+    gpgSign = true
 [tag]
+    gpgSign = true
     forceSignAnnotated = false
 [init]
     defaultBranch = main
@@ -32,12 +35,12 @@
 [diff]
   tool = nvimdiff
 [difftool "fugitive"]
-  cmd = nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd L\"
 [merge]
   conflictStyle = diff3
   tool = nvimdiff2
 [mergetool "fugitive"]
-  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c l$wincmd wg -c 'wincmd J'
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [pull]
   rebase = true
 [push]
