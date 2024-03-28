@@ -44,13 +44,13 @@ wezterm.on("update-status", function(window, pane)
 	window:set_right_status(wezterm.format({ { Text = name } }))
 end)
 
-config.ssh_domains = {
-	{
-		name = "garudavm",
-		remote_address = "garuda-mate-vm.lan",
-		username = "kincerb",
-	},
-}
+config.ssh_domains = wezterm.default_ssh_domains()
+
+for _, dom in ipairs(config.ssh_domains) do
+	if dom.name == "SSHMUX:mac" then
+		dom.remote_wezterm_path = "/Applications/WezTerm.app/Contents/MacOS/wezterm"
+	end
+end
 
 -- config.default_gui_startup_args = { "connect", "main" }
 
@@ -143,6 +143,11 @@ config.keys = {
 		key = "l",
 		mods = "CTRL|SHIFT",
 		action = act.ActivatePaneDirection("Right"),
+	},
+	{
+		key = "r",
+		mods = "CTRL|SHIFT",
+		action = act.ShowDebugOverlay,
 	},
 }
 
