@@ -6,6 +6,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+-- ui / color_scheme
 config.font = wezterm.font_with_fallback({
 	"FantasqueSansM Nerd Font",
 	"Nerd Font Symbols",
@@ -27,6 +28,8 @@ config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = true
+config.prefer_to_spawn_tabs = true
+config.show_tab_index_in_tab_bar = false
 
 config.inactive_pane_hsb = {
 	saturation = 0.9,
@@ -67,7 +70,7 @@ local fuzzy_tabs = act.ShowLauncherArgs({
 	flags = "FUZZY|TABS|DOMAINS|WORKSPACES",
 })
 
-config.leader = { key = "Space", mods = "CTRL|SHIFT" }
+config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 2500 }
 
 config.keys = {
 	{
@@ -97,6 +100,11 @@ config.keys = {
 		key = "p",
 		mods = "CTRL|SHIFT",
 		action = act.ActivateTabRelative(-1),
+	},
+	{
+		key = "]",
+		mods = "LEADER",
+		action = act.ActivateCopyMode,
 	},
 	{
 		key = "p",
