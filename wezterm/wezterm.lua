@@ -83,7 +83,7 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = act.ActivateKeyTable({
 			name = "find_stuff",
-			one_shot = false,
+			one_shot = true,
 		}),
 	},
 	{
@@ -105,6 +105,11 @@ config.keys = {
 		key = "]",
 		mods = "LEADER",
 		action = act.ActivateCopyMode,
+	},
+	{
+		key = "c",
+		mods = "LEADER",
+		action = act.ActivateCommandPalette,
 	},
 	{
 		key = "p",
