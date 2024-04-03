@@ -1,4 +1,6 @@
 local wezterm = require("wezterm")
+local tabbar = require("tab_bar")
+
 local act = wezterm.action
 local config = {}
 
@@ -6,7 +8,11 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- ui / color_scheme
+-- ui
+config.adjust_window_size_when_changing_font_size = false
+config.audible_bell = "Disabled"
+config.enable_scroll_bar = false
+config.enable_tab_bar = true
 config.font = wezterm.font_with_fallback({
 	"FantasqueSansM Nerd Font",
 	"Nerd Font Symbols",
@@ -14,37 +20,33 @@ config.font = wezterm.font_with_fallback({
 	{ family = "JetBrains Mono" },
 })
 config.font_size = 12.0
-config.bold_brightens_ansi_colors = true
--- config.color_scheme = "Monokai Vivid"
--- config.color_scheme = "Argonaut (Gogh)"
--- config.color_scheme = "Monokai (terminal.sexy)"
-config.color_scheme = "Galizur"
--- config.color_scheme = "Numix Darkest (terminal.sexy)"
--- config.color_scheme = "Monokai Dark (Gogh)"
-config.enable_scroll_bar = false
-config.adjust_window_size_when_changing_font_size = false
-config.audible_bell = "Disabled"
-config.enable_tab_bar = true
-config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = false
-config.use_fancy_tab_bar = true
 config.prefer_to_spawn_tabs = true
 config.show_tab_index_in_tab_bar = false
+config.tab_bar_at_bottom = false
+config.use_fancy_tab_bar = true
+
+-- colors
+config.bold_brightens_ansi_colors = true
+config.color_scheme = "Galizur"
 
 config.inactive_pane_hsb = {
 	saturation = 0.9,
 	brightness = 0.7,
 }
 
+-- this must be applied after font and color scheme
+tabbar.apply_to_config(config)
+
 wezterm.on("update-status", function(window, pane)
 	local name = window:active_key_table()
 	if name then
-		name = "TABLE: " .. name
-	else
-		name = ""
+		window:set_right_status(wezterm.format({
+			{ Attribute = { Italic = true } },
+			{ Attribute = { Intensity = "Bold" } },
+			{ Text = "TABLE: " .. name },
+		}))
 	end
-
-	window:set_right_status(wezterm.format({ { Text = name } }))
 end)
 
 config.ssh_domains = wezterm.default_ssh_domains()
