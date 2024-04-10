@@ -14,10 +14,7 @@ config.audible_bell = "Disabled"
 config.enable_scroll_bar = false
 config.enable_tab_bar = true
 config.font = wezterm.font_with_fallback({
-	"FantasqueSansM Nerd Font",
-	"Nerd Font Symbols",
-	"Noto Color Emoji",
-	{ family = "JetBrains Mono" },
+	{ family = "FantasqueSansM Nerd Font" },
 })
 config.font_size = 12.0
 config.hide_tab_bar_if_only_one_tab = false
