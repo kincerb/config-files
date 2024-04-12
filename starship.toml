@@ -92,7 +92,8 @@ format = '\[[$time]($style)\]'
 # Prompt: param 2
 [character]
 success_symbol = "[  ](bold green)"
-error_symbol = "[  ](bold red)"
+# error_symbol = "[  ](bold red)"
+error_symbol = "[ ](bold red)"
 # success_symbol = "[ ⮚](bold green)"
 # error_symbol = "[ ⮚](bold red)"
 
@@ -175,7 +176,7 @@ symbol = " "
 format = '\[[$symbol$branch]($style)\]'
 
 [java]
-symbol = " "
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [julia]
@@ -192,11 +193,11 @@ format = '\[[$symbol$context( \($namespace\))]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 format = '\[$symbol[$ram( | $swap)]($style)\]'
 
 [nim]
-symbol = " "
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [nix_shell]
@@ -214,7 +215,7 @@ format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
 format = '\[[$symbol$cloud(\($project\))]($style)\]'
 
 [package]
-symbol = " "
+symbol = " "
 format = '\[[$symbol$version]($style)\]'
 
 [perl]
@@ -255,7 +256,7 @@ symbol = "🅢 "
 format = '\[[$symbol$environment]($style)\]'
 
 [swift]
-symbol = "ﯣ "
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [terraform]
