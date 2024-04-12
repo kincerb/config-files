@@ -36,12 +36,27 @@ config.inactive_pane_hsb = {
 tabbar.apply_to_config(config)
 
 wezterm.on("update-status", function(window, pane)
-	local name = window:active_key_table()
-	if name then
+	local pane_domain = pane:get_domain_name()
+	local leader_active = window:leader_is_active()
+	local active_table = window:active_key_table()
+
+	if active_table then
 		window:set_right_status(wezterm.format({
 			{ Attribute = { Italic = true } },
 			{ Attribute = { Intensity = "Bold" } },
-			{ Text = "TABLE: " .. name },
+			{ Text = "TABLE: " .. active_table .. " " },
+		}))
+	elseif leader_active then
+		window:set_right_status(wezterm.format({
+			{ Attribute = { Italic = true } },
+			{ Attribute = { Intensity = "Bold" } },
+			{ Text = "LEADER " },
+		}))
+	else
+		window:set_right_status(wezterm.format({
+			{ Attribute = { Italic = true } },
+			{ Attribute = { Intensity = "Bold" } },
+			{ Text = "DOMAIN: " .. pane_domain .. " " },
 		}))
 	end
 end)
@@ -74,8 +89,13 @@ config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 2500 }
 config.keys = {
 	{
 		key = "Space",
-		mods = "CTRL|SHIFT",
-		action = act.DisableDefaultAssignment,
+		mods = "LEADER",
+		action = act.ShowLauncher,
+	},
+	{
+		key = "z",
+		mods = "LEADER",
+		action = act.TogglePaneZoomState,
 	},
 	{
 		key = "f",
