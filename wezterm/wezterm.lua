@@ -36,6 +36,7 @@ config.inactive_pane_hsb = {
 tabbar.apply_to_config(config)
 
 wezterm.on("update-status", function(window, pane)
+	local meta = pane:get_metadata() or {}
 	local pane_domain = pane:get_domain_name()
 	local leader_active = window:leader_is_active()
 	local active_table = window:active_key_table()
@@ -53,10 +54,19 @@ wezterm.on("update-status", function(window, pane)
 			{ Text = "LEADER " },
 		}))
 	else
+		local secs
+		local status
+
+		status = string.format("DOMAIN: %s ", pane_domain)
+
+		if meta.is_tardy then
+			secs = meta.since_last_response_ms / 1000.0
+			status = string.format("LAG: %5.1fs | %s ", secs, status)
+		end
 		window:set_right_status(wezterm.format({
 			{ Attribute = { Italic = true } },
 			{ Attribute = { Intensity = "Bold" } },
-			{ Text = "DOMAIN: " .. pane_domain .. " " },
+			{ Text = status },
 		}))
 	end
 end)
