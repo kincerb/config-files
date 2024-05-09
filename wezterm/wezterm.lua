@@ -153,7 +153,7 @@ config.keys = {
 		mods = "LEADER",
 		action = act.ActivateKeyTable({
 			name = "domain_control",
-			one_shot = false,
+			one_shot = true,
 		}),
 	},
 	{
