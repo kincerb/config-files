@@ -6,6 +6,12 @@ return {
       { "K", vim.lsp.buf.hover, mode = "n", desc = "Hover" },
     },
     opts = {
+      inlay_hints = {
+        enabled = true,
+      },
+      codelens = {
+        enabled = true,
+      },
       servers = {
         ansiblels = {
           settings = {
@@ -29,6 +35,10 @@ return {
                 yapf = { enabled = false },
                 mypy = { enabled = true },
                 pydocstyle = { enabled = false, convention = "google" },
+                rope_autoimport = {
+                  enabled = true,
+                  code_actions = { enabled = true },
+                },
               },
             },
           },

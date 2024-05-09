@@ -7,16 +7,23 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
+      "mtoohey31/cmp-fish",
+      "chrisgrieser/cmp-nerdfont",
     },
     opts = function(_, opts)
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
+
+      table.insert(opts.sources, { name = "emoji" })
+      table.insert(opts.sources, { name = "fish" })
+      table.insert(opts.sources, { name = "nerdfont" })
+      table.insert(opts.auto_brackets, { "python" })
+
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
-
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
