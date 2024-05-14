@@ -46,7 +46,11 @@ end
 
 -- Return the Tab's current working directory
 function module.get_cwd(tab)
-	return tab.active_pane.current_working_dir.file_path or ""
+	local pane_dir = tab.active_pane.current_working_dir
+	if pane_dir then
+		return pane_dir.file_path
+	end
+	return ""
 end
 
 -- Remove all path components and return only the last value
