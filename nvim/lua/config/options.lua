@@ -5,7 +5,7 @@ vim.g.python3_host_prog = "~/.local/venvs/neovim/bin/python"
 vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.scrolloff = 999
+vim.opt.scrolloff = 0
 vim.opt.formatoptions:remove({ "o" })
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

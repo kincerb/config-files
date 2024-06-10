@@ -10,7 +10,7 @@ return {
         enabled = true,
       },
       codelens = {
-        enabled = true,
+        enabled = false,
       },
       servers = {
         ansiblels = {
@@ -44,6 +44,9 @@ return {
           },
         },
         ruff_lsp = {
+          on_attach = function(client)
+            client.server_capabilities.hoverProvider = false
+          end,
           keys = {},
           settings = {
             filetypes = { "python" },
@@ -60,17 +63,6 @@ return {
         },
         taplo = {},
         yamlls = {},
-      },
-      setup = {
-        ["*"] = function()
-          require("lazyvim.util").lsp.on_attach(function(client, bufnr)
-            vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr")
-            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-            if client.name == "ruff_lsp" then
-              client.server_capabilities.hoverProvider = false
-            end
-          end)
-        end,
       },
     },
   },

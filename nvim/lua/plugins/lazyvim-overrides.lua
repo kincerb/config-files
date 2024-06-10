@@ -9,6 +9,7 @@ return {
       "hrsh7th/cmp-emoji",
       "mtoohey31/cmp-fish",
       "chrisgrieser/cmp-nerdfont",
+      "saadparwaiz1/cmp_luasnip",
     },
     opts = function(_, opts)
       local luasnip = require("luasnip")
@@ -17,7 +18,8 @@ return {
       table.insert(opts.sources, { name = "emoji" })
       table.insert(opts.sources, { name = "fish" })
       table.insert(opts.sources, { name = "nerdfont" })
-      table.insert(opts.auto_brackets, { "python" })
+      table.insert(opts.sources, { name = "luasnip" })
+      vim.list_extend(opts.auto_brackets, { "python" })
 
       local has_words_before = function()
         unpack = unpack or table.unpack

@@ -202,8 +202,8 @@ config.key_tables = {
 		{ key = "q", action = "PopKeyTable" },
 	},
 	pane_control = {
-		{ key = "-", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-		{ key = "\\", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+		{ key = "-", action = act.SplitVertical({ domain = "DefaultDomain" }) },
+		{ key = "\\", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
 		{ key = "LeftArrow", action = act.AdjustPaneSize({ "Left", 1 }) },
 		{ key = "h", mods = "SHIFT", action = act.AdjustPaneSize({ "Left", 1 }) },
 		{ key = "h", action = act.ActivatePaneDirection("Left") },
