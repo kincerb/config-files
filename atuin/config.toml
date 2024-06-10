@@ -1,0 +1,6 @@
+sync_address = "http://inttools01.lan:8888"
+sync_frequency = "10m"
+style = "full"
+inline_height = 40
+[sync]
+records = true

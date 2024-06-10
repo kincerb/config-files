@@ -19,9 +19,10 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-*/secrets.sh
-*/work-secrets.sh
+secrets.*
+scratch/
 nvim/pack/
 
 .ropeproject/
 *.swp
+lazygit/state.yml

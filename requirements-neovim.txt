@@ -1,0 +1,5 @@
+pynvim
+python-lsp-server
+pylsp-mypy
+ruff
+ruff-lsp

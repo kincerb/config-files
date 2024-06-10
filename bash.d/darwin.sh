@@ -10,30 +10,25 @@ bin_paths+=("${HOME}/Library/Python/3.10/bin")
 bin_paths+=("${HOME}/Library/Python/3.11/bin")
 bin_paths+=("${HOME}/.local/fzf/bin")
 
-for bin_path in  ${bin_paths[@]}; do
-    if [ -d "${bin_path}" ]; then
-        if ! [[ "${PATH}" =~ :?"${bin_path}":? ]]; then
-            export PATH="${bin_path}:$PATH"
-        fi
-    fi
+for bin_path in ${bin_paths[@]}; do
+	if [ -d "${bin_path}" ]; then
+		if ! [[ "${PATH}" =~ :?"${bin_path}":? ]]; then
+			export PATH="${bin_path}:$PATH"
+		fi
+	fi
 done
 unset bin_path
 unset bin_paths
 
-
-# if [ -n "${ITERM_SESSION_ID}" ] && [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
-#     source "${HOME}/.iterm2_shell_integration.bash"
-# fi
-
 for _helper in $(compgen -f "${HOME}/.local/share/bash_completion.d/"); do
-    if [ -e "${_helper}" ]; then
-        source "${_helper}"
-    fi
+	if [ -e "${_helper}" ]; then
+		source "${_helper}"
+	fi
 done
 unset _helper
 
 for _helper in "${HOME}"/.local/fzf/shell/*.bash; do
-    source "${_helper}"
+	source "${_helper}"
 done
 unset _helper
 
@@ -46,39 +41,39 @@ alias pg_dump="${BREW_PREFIX}/Cellar/postgresql@12/12.16/bin/pg_dump"
 alias nvim_update='nvim -c "PlugUpdate|CocUpdateSync|qa"'
 
 web_app() {
-    if [ "${#}" -ne 1 ]; then
-        echo -e "Usage:\n web_app [url]"
-        echo -e "\n  web_app https://netflix.com"
-        return
-    fi
-    local url="${1}"
-    (/Applications/Vivaldi.app/Contents/MacOS/Vivaldi \
-        --proxy-server=http://127.0.0.1:3128 \
-        --app="${url}" 2>&1 &>/dev/null &)
+	if [ "${#}" -ne 1 ]; then
+		echo -e "Usage:\n web_app [url]"
+		echo -e "\n  web_app https://netflix.com"
+		return
+	fi
+	local url="${1}"
+	(/Applications/Vivaldi.app/Contents/MacOS/Vivaldi \
+		--proxy-server=http://127.0.0.1:3128 \
+		--app="${url}" 2>&1 &>/dev/null &)
 }
 
 deploy() {
-    local _server
-    local _project
+	local _server
+	local _project
 }
 
 brew_cleanup() {
-    for x in /opt/homebrew/Cellar/*; do
-        brew cleanup "${x##*/}"
-    done
+	for x in /opt/homebrew/Cellar/*; do
+		brew cleanup "${x##*/}"
+	done
 }
 
 pycharm() {
-    unset TMUX
-    open "${HOME}/Applications/JetBrains Toolbox/PyCharm Professional.app"
+	unset TMUX
+	open "${HOME}/Applications/JetBrains Toolbox/PyCharm Professional.app"
 }
 
 datagrip() {
-    unset TMUX
-    open "${HOME}/Applications/JetBrains Toolbox/DataGrip.app"
+	unset TMUX
+	open "${HOME}/Applications/JetBrains Toolbox/DataGrip.app"
 }
 
 webstorm() {
-    unset TMUX
-    open "${HOME}/Applications/JetBrains Toolbox/WebStorm.app"
+	unset TMUX
+	open "${HOME}/Applications/JetBrains Toolbox/WebStorm.app"
 }

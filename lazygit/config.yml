@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://json.schemastore.org/lazygit.json
+os:
+  editPreset: "nvim-remote"
+gui:
+  nerdFontsVersion: "3"
+git:
+  commitPrefixes:
+    Middleware-Lifecycle-Core:
+      pattern: "^\\w+\\/(\\w+-\\w+).*"
+      replace: "$1 #comment "
+    Middleware-Lifecycle-Checkins:
+      pattern: "^\\w+\\/(\\w+-\\w+).*"
+      replace: "$1 #comment "
+    Middleware-Lifecycle-Server:
+      pattern: "^\\w+\\/(\\w+-\\w+).*"
+      replace: "$1 #comment "
+    Middleware-Checkin-Scheduler:
+      pattern: "^\\w+\\/(\\w+-\\w+).*"
+      replace: "$1 #comment "

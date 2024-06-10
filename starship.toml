@@ -15,7 +15,7 @@ style_user = "fg:27"
 # Second param
 [hostname]
 disabled = false
-ssh_symbol = "   "
+ssh_symbol = "󰱠 "
 style = "dimmed fg:24"
 format = "[$ssh_symbol](dimmed green)[$hostname]($style)"
 ssh_only = true
@@ -70,15 +70,15 @@ disabled = true
 discharging_symbol = "󰂌"
 full_symbol = "󰂏"
 
-[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+[[battery.display]] # "bold red" style when capacity is between 0% and 10%
 style = "bold red"
 threshold = 15
 
-[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+[[battery.display]] # "bold yellow" style when capacity is between 10% and 30%
 style = "bold yellow"
 threshold = 50
 
-[[battery.display]]  # "bold green" style when capacity is between 10% and 30%
+[[battery.display]] # "bold green" style when capacity is between 10% and 30%
 style = "bold green"
 threshold = 100
 
@@ -92,7 +92,8 @@ format = '\[[$time]($style)\]'
 # Prompt: param 2
 [character]
 success_symbol = "[  ](bold green)"
-error_symbol = "[  ](bold red)"
+# error_symbol = "[  ](bold red)"
+error_symbol = "[  ](bold red)"
 # success_symbol = "[ ⮚](bold green)"
 # error_symbol = "[ ⮚](bold red)"
 
@@ -175,7 +176,7 @@ symbol = " "
 format = '\[[$symbol$branch]($style)\]'
 
 [java]
-symbol = " "
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [julia]
@@ -192,11 +193,11 @@ format = '\[[$symbol$context( \($namespace\))]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 format = '\[$symbol[$ram( | $swap)]($style)\]'
 
 [nim]
-symbol = " "
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [nix_shell]
@@ -214,7 +215,7 @@ format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
 format = '\[[$symbol$cloud(\($project\))]($style)\]'
 
 [package]
-symbol = " "
+symbol = " "
 format = '\[[$symbol$version]($style)\]'
 
 [perl]
@@ -255,7 +256,7 @@ symbol = "🅢 "
 format = '\[[$symbol$environment]($style)\]'
 
 [swift]
-symbol = "ﯣ "
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [terraform]

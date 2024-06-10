@@ -3,10 +3,22 @@
 [user]
 	name = kincerb
 	email = dev.bkincer@gmail.com
+  signingKey = 1CF7038E5E47E76F876B74A3AB1326F3400A0CDC
+[gpg]
+  program = gpg
 [core]
-	autocrlf = input
+  autocrlf = input
+  editor = nvim
+  pager = bat
+[commit]
+    gpgSign = true
+[tag]
+    gpgSign = true
+    forceSignAnnotated = false
+[init]
+    defaultBranch = main
 [alias]
-    h = log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    h = log --graph --pretty=format:g%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cresetl --abbrev-commit
     # short status
     s = status -sb
     # Saving typing
@@ -20,5 +32,20 @@
     bls = branch --list -a
     fp = fetch --prune
     up = pull --rebase
+[diff]
+  tool = nvimdiff
+[difftool "fugitive"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd L\"
+[merge]
+  conflictStyle = diff3
+  tool = nvimdiff2
+[mergetool "fugitive"]
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [pull]
-	rebase = true
+  rebase = true
+[push]
+  autoSetupRemote = true
+[fetch]
+  prune = true
+  pruneTags = true
+
