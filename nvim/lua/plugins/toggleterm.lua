@@ -1,3 +1,5 @@
+local trim_spaces = true
+
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -71,20 +73,26 @@ return {
         desc = "ToggleTerm (smart)",
       },
       {
-        "<leader><C-e>",
-        "<cmd>ToggleTermSendCurrentLine<cr>",
+        "<C-e>",
+        function()
+          require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, {})
+        end,
         mode = { "n" },
         desc = "Send current line to terminal",
       },
       {
-        "<leader><C-e>",
-        "<cmd>ToggleTermSendVisualLines<cr>",
+        "<C-e>",
+        function()
+          require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+        end,
         mode = { "v" },
         desc = "Send selected lines to terminal",
       },
       {
-        "<leader><C-E>",
-        "<cmd>ToggleTermSendVisualSelection<cr>",
+        "<C-E>",
+        function()
+          require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
+        end,
         mode = { "v" },
         desc = "Send selection to terminal",
       },
