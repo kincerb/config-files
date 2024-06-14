@@ -7,6 +7,7 @@ return {
       "Makefile",
       "venv",
       "package.json",
+      ">Projects",
     },
   },
 }

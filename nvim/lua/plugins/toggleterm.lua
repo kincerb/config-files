@@ -10,6 +10,7 @@ return {
       terminal_mappings = true,
       insert_mappings = true,
       direction = "horizontal",
+      persist_size = false,
       float_opts = {
         border = "curved",
         width = function(_)
@@ -63,7 +64,7 @@ return {
       {
         "<C-/>",
         "<cmd>ToggleTerm<cr>",
-        mode = { "n" },
+        mode = { "n", "i" },
         desc = "ToggleTerm (smart)",
       },
       {
@@ -94,7 +95,7 @@ return {
           require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
         end,
         mode = { "v" },
-        desc = "Send selection to terminal",
+        desc = "Send selected lines to terminal",
       },
     },
   },

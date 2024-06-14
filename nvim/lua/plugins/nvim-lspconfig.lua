@@ -1,69 +1,76 @@
 return {
-  {
-    "neovim/nvim-lspconfig",
-    keys = {
-      { "==", vim.lsp.buf.code_action, mode = "n", desc = "Code Actions" },
-      { "K", vim.lsp.buf.hover, mode = "n", desc = "Hover" },
-    },
-    opts = {
-      inlay_hints = {
-        enabled = true,
+  "neovim/nvim-lspconfig",
+  opts = function(_, opts)
+    local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    keys[#keys + 1] = { "==", vim.lsp.buf.code_action, mode = "n", desc = "Code Actions" }
+    keys[#keys + 1] = { "K", vim.lsp.buf.hover, mode = "n", desc = "Hover" }
+
+    opts.inlay_hints = { enabled = true }
+    opts.codelens = { enabled = true }
+
+    opts.servers = vim.tbl_deep_extend("force", opts.servers, {
+      ansiblels = {
+        settings = {
+          filetypes = { "yaml.ansible" },
+        },
       },
-      codelens = {
-        enabled = false,
-      },
-      servers = {
-        ansiblels = {
-          settings = {
-            filetypes = { "yaml.ansible" },
+      bashls = {},
+      dockerls = {},
+      docker_compose_language_service = {},
+      gopls = {},
+      html = {},
+      jsonls = {},
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              autopep8 = { enabled = false },
+              flake8 = { enabled = false },
+              pycodestyle = { enabled = false },
+              pydocstyle = { enabled = false, convention = "google" },
+              pyflakes = { enabled = false },
+              pylint = { enabled = false },
+              mccabe = { enabled = false },
+              mypy = { enabled = true },
+              rope_autoimport = {
+                enabled = true,
+                code_actions = { enabled = true },
+              },
+              yapf = { enabled = false },
+            },
           },
         },
-        bashls = {},
-        dockerls = {},
-        docker_compose_language_service = {},
-        gopls = {},
-        html = {},
-        jsonls = {},
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pyflakes = { enabled = false },
-                autopep8 = { enabled = false },
-                mccabe = { enabled = false },
-                pycodestyle = { enabled = false },
-                yapf = { enabled = false },
-                mypy = { enabled = true },
-                pydocstyle = { enabled = false, convention = "google" },
-                rope_autoimport = {
-                  enabled = true,
-                  code_actions = { enabled = true },
-                },
+      },
+      ruff_lsp = {
+        on_attach = function(client)
+          client.server_capabilities.hoverProvider = false
+        end,
+        settings = {
+          filetypes = { "python" },
+          init_options = {
+            settings = {
+              organizeImports = true,
+              fixAll = true,
+              codeAction = {
+                disableRuleComment = { enable = true },
               },
             },
           },
         },
-        ruff_lsp = {
-          on_attach = function(client)
-            client.server_capabilities.hoverProvider = false
-          end,
-          keys = {},
-          settings = {
-            filetypes = { "python" },
-            init_options = {
-              settings = {
-                organizeImports = true,
-                fixAll = true,
-                codeAction = {
-                  disableRuleComment = { enable = true },
-                },
-              },
+      },
+      taplo = {},
+      yamlls = {
+        settings = {
+          yaml = {
+            schemas = {
+              ["https://raw.githubusercontent.com/cappyzawa/concourse-pipeline-jsonschema/master/concourse_jsonschema.json"] = "/.concourse/*.yml",
+            },
+            filetypes = {
+              "yaml",
             },
           },
         },
-        taplo = {},
-        yamlls = {},
       },
-    },
-  },
+    })
+  end,
 }
