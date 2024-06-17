@@ -8,6 +8,11 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+-- core
+config.check_for_updates = true
+config.check_for_updates_interval_seconds = 86400
+config.show_update_window = true
+
 -- ui
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"

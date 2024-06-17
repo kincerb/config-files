@@ -5,8 +5,13 @@ return {
     keys[#keys + 1] = { "==", vim.lsp.buf.code_action, mode = "n", desc = "Code Actions" }
     keys[#keys + 1] = { "K", vim.lsp.buf.hover, mode = "n", desc = "Hover" }
 
-    opts.inlay_hints = { enabled = true }
-    opts.codelens = { enabled = true }
+    opts.inlay_hints = vim.tbl_extend("force", opts.inlay_hints, {
+      enabled = true,
+    })
+
+    opts.codelens = vim.tbl_extend("force", opts.codelens, {
+      enabled = true,
+    })
 
     opts.servers = vim.tbl_deep_extend("force", opts.servers, {
       ansiblels = {
@@ -14,12 +19,6 @@ return {
           filetypes = { "yaml.ansible" },
         },
       },
-      bashls = {},
-      dockerls = {},
-      docker_compose_language_service = {},
-      gopls = {},
-      html = {},
-      jsonls = {},
       pylsp = {
         settings = {
           pylsp = {

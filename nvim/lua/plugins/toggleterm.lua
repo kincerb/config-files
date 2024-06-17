@@ -1,5 +1,4 @@
 local trim_spaces = true
-
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -76,6 +75,11 @@ return {
       {
         "<C-e>",
         function()
+          local trim_spaces = true
+          local buftype = vim.bo.filetype
+          if buftype == "python" then
+            trim_spaces = false
+          end
           require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, {})
         end,
         mode = { "n" },
@@ -84,6 +88,11 @@ return {
       {
         "<C-e>",
         function()
+          local trim_spaces = true
+          local buftype = vim.bo.filetype
+          if buftype == "python" then
+            trim_spaces = false
+          end
           require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
         end,
         mode = { "v" },
@@ -92,6 +101,11 @@ return {
       {
         "<C-E>",
         function()
+          local trim_spaces = true
+          local buftype = vim.bo.filetype
+          if buftype == "python" then
+            trim_spaces = false
+          end
           require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
         end,
         mode = { "v" },
