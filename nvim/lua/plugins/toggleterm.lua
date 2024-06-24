@@ -1,4 +1,3 @@
-local trim_spaces = true
 return {
   {
     "akinsho/toggleterm.nvim",
