@@ -10,7 +10,7 @@ return {
     })
 
     opts.codelens = vim.tbl_extend("force", opts.codelens, {
-      enabled = true,
+      enabled = false,
     })
 
     opts.servers = vim.tbl_deep_extend("force", opts.servers, {

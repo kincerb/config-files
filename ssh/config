@@ -7,6 +7,72 @@ ControlMaster auto
 ControlPath ~/.ssh/socket/%r_%h
 ControlPersist 30m
 PermitLocalCommand yes
-LocalCommand echo -en "\033k%h\033\\"; echo -en "\033]0;%h\007\\"
+# LocalCommand if ! [ -z "${TMUX}" ]; then printf "\033k%h\033\\"; fi
 Compression yes
-Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
+CanonicalDomains tail269af.ts.net lan nucoder.io
+CanonicalizeFallbackLocal yes
+CanonicalizeHostname yes
+# Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
+
+	# Host exttools01
+	# ControlPersist 8h
+	# ForwardX11 yes
+	# Hostname %h.nucoder.io
+	# Port 8022
+
+Host rhel9.3
+  ProxyJump r820.lan
+
+Host exttools01
+  ControlPersist 12h
+  ForwardX11Trusted yes
+  Port 8022
+
+Host garuda
+  ControlPersist 12h
+  ForwardX11Trusted yes
+  Hostname garuda-mate-vm
+
+Host wireguard01
+  ControlPersist 12h
+  IdentitiesOnly yes
+  IdentityFile %d/.ssh/kincerb_forwarder
+
+Host forward-services
+  ControlPersist 10h
+  Compression yes
+  StdinNull yes
+  ForkAfterAuthentication yes
+  ExitOnForwardFailure yes
+  SessionType none
+  IdentitiesOnly yes
+  IdentityFile %d/.ssh/kincerb_forwarder
+  LocalForward :3128 127.0.0.1:3128
+  LocalForward localhost:8900 127.0.0.1:8900
+  LocalForward localhost:8080 127.0.0.1:8080
+  LocalForward localhost:3306 127.0.0.1:3306
+  LocalForward localhost:6379 127.0.0.1:6379
+  LocalForward localhost:1025 127.0.0.1:1025
+  LocalForward localhost:8025 127.0.0.1:8025
+  LocalForward localhost:8022 127.0.0.1:8022
+  Hostname garuda-mate-vm
+
+Host mac
+  ControlPersist 8h
+  Port 8022
+  Hostname 127.0.0.1
+  # ProxyJump garuda
+
+Host github.com
+  ControlPersist 10s
+  User git
+  Hostname ssh.github.com
+
+Host octopi
+  Hostname octopi.local
+  User pi
+
+Host *
+  ControlPersist 8h
+
+# vim: ft=sshconfig ts=2 sw=2
