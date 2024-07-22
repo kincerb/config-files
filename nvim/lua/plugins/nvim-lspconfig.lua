@@ -6,12 +6,10 @@ return {
     keys[#keys + 1] = { "K", vim.lsp.buf.hover, mode = "n", desc = "Hover" }
 
     opts.inlay_hints = vim.tbl_extend("force", opts.inlay_hints, {
-      enabled = true,
-    })
-
-    opts.codelens = vim.tbl_extend("force", opts.codelens, {
       enabled = false,
     })
+
+    opts.codelens = vim.tbl_extend("force", opts.codelens, { enabled = false })
 
     opts.servers = vim.tbl_deep_extend("force", opts.servers, {
       ansiblels = {
@@ -32,7 +30,7 @@ return {
               mccabe = { enabled = false },
               mypy = { enabled = true },
               rope_autoimport = {
-                enabled = true,
+                enabled = false,
                 code_actions = { enabled = true },
               },
               yapf = { enabled = false },

@@ -80,6 +80,7 @@ return {
             trim_spaces = false
           end
           require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, {})
+          vim.api.nvim_feedkeys("j", "n", false)
         end,
         mode = { "n" },
         desc = "Send current line to terminal",

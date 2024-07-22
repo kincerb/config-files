@@ -7,7 +7,9 @@ return {
     focus = true,
     win = {
       type = "split",
-      size = { width = 0.3, height = 0.4 },
+      size = function()
+        return math.floor(vim.o.columns * 0.4)
+      end,
       position = "right",
     },
     preview = {
@@ -22,8 +24,19 @@ return {
         filter = { buf = 0 },
         win = {
           type = "split",
-          size = { width = 0.3, height = 0.4 },
+          size = function()
+            return math.floor(vim.o.columns * 0.4)
+          end,
           position = "right",
+        },
+      },
+      diagnostics = {
+        win = {
+          type = "split",
+          size = function()
+            return math.floor(vim.o.lines * 0.3)
+          end,
+          position = "bottom",
         },
       },
     },

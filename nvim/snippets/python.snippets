@@ -1,6 +1,9 @@
 snippet #!
   #!/usr/bin/env python3
 
+snippet doc "Docstring"
+  """${0:Docstring}."""
+
 snippet imp
   import ${0:module}
 
@@ -19,20 +22,20 @@ snippet ifmain
   if __name__ == "__main__":
     ${0:main()}
 
-snippet ignore "Ignore error / warning" w
+snippet ignore "Ignore error / warning (line)" w
   # type: ${1:ignore}[${2:import}]$0
 
-snippet #ty "# type: ignore..." w
+snippet #ty "Ignore error / warning (line)" w
   # type: ${1:ignore}[${2:import}]$0
 
-snippet #mypy "# mypy: ignore" b
+snippet #mypy "Ignore mypy error (entire file)" b
   # mypy: ${1:disable-error-code}="${2:import}"$0
 
-snippet mypy "# mypy: ignore" b
-   mypy: ${1:disable-error-code}="${2:import}"$0
+snippet mypy "Ignore mypy error (entire file)" b
+  # mypy: ${1:disable-error-code}="${2:import}"$0
 
-snippet #ruff "# ruff: noqa" b
+snippet #ruff "Ignore ruff error (entire file)" b
   # ruff: noqa: ${1:F811}$0
 
-snippet ruff "# ruff: noqa" b
-   ruff: noqa: ${1:F811}$0
+snippet ruff "Ignore ruff error (entire file)" b
+  # ruff: noqa: ${1:F811}$0

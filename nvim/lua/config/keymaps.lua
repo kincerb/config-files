@@ -6,13 +6,16 @@ local opts = { noremap = true, silent = true }
 
 map.del("n", "<leader>ft")
 map.del("n", "<leader>fT")
--- map.del("n", "<C-/>")
--- map.del("n", "<C-_>")
+map.del("n", "<leader>gB")
 map.del("t", "<c-h>")
 map.del("t", "<c-j>")
 map.del("t", "<c-l>")
 map.del("t", "<c-k>")
 
+map.set("i", "<c-CR>", function()
+  local _keys = vim.api.nvim_replace_termcodes("<ESC>j", true, false, true)
+  vim.api.nvim_feedkeys(_keys, "n", false)
+end, opts)
 map.set("i", "jk", "<ESC>", { noremap = true })
 map.set("n", "==", vim.diagnostic.open_float)
 map.set("n", "[d", vim.diagnostic.goto_prev, opts)
