@@ -1,162 +1,298 @@
-local wezterm = require("wezterm")
+-- copied from https://github.com/adriankarlen/bar.wezterm/tree/main
+local wez = require("wezterm")
 
--- module table
-local module = {}
-
--- module.colorscheme = wezterm.config.color_scheme
-
-module.process_icons = {
-	["bash"] = wezterm.nerdfonts.cod_terminal_bash,
-	["btm"] = wezterm.nerdfonts.fa_area_chart,
-	["cargo"] = wezterm.nerdfonts.dev_rust,
-	["curl"] = wezterm.nerdfonts.md_flattr,
-	["docker"] = wezterm.nerdfonts.linux_docker,
-	["docker-compose"] = wezterm.nerdfonts.linux_docker,
-	["fish"] = wezterm.nerdfonts.md_fish,
-	["gh"] = wezterm.nerdfonts.md_github,
-	["git"] = wezterm.nerdfonts.dev_git,
-	["go"] = wezterm.nerdfonts.seti_go,
-	["htop"] = wezterm.nerdfonts.md_chart_donut_variant,
-	["kubectl"] = wezterm.nerdfonts.md_kubernetes,
-	["kuberlr"] = wezterm.nerdfonts.md_kubernetes,
-	["lazydocker"] = wezterm.nerdfonts.linux_docker,
-	["lazygit"] = wezterm.nerdfonts.oct_git_compare,
-	["lua"] = wezterm.nerdfonts.seti_lua,
-	["make"] = wezterm.nerdfonts.dev_gnu,
-	["node"] = wezterm.nerdfonts.md_nodejs,
-	["nvim"] = wezterm.nerdfonts.linux_neovim,
-	["psql"] = wezterm.nerdfonts.dev_postgresql,
-	["python"] = wezterm.nerdfonts.md_language_python,
-	["ruby"] = wezterm.nerdfonts.cod_ruby,
-	["stern"] = wezterm.nerdfonts.linux_docker,
-	["sudo"] = wezterm.nerdfonts.fa_hashtag,
-	["usql"] = wezterm.nerdfonts.dev_mysql,
-	["vim"] = wezterm.nerdfonts.dev_vim,
-	["wget"] = wezterm.nerdfonts.md_arrow_down_box,
-	["zsh"] = wezterm.nerdfonts.dev_terminal,
+local config = {
+	position = "top",
+	max_width = 32,
+	left_separator = "  ",
+	right_separator = "  ",
+	field_separator = "  |  ",
+	leader_icon = "",
+	workspace_icon = "",
+	pane_icon = "",
+	user_icon = wez.nerdfonts.cod_account,
+	hostname_icon = wez.nerdfonts.cod_server,
+	clock_icon = wez.nerdfonts.fa_clock_o,
+	cwd_icon = wez.nerdfonts.fa_folder_open_o,
+	enabled_modules = {
+		username = true,
+		hostname = true,
+		clock = true,
+		cwd = true,
+	},
+	ansi_colors = {
+		workspace = 8,
+		leader = 2,
+		pane = 7,
+		active_tab = 4,
+		inactive_tab = 6,
+		username = 6,
+		hostname = 8,
+		clock = 5,
+		cwd = 7,
+	},
 }
 
-function module.apply_to_config(config)
-	local scheme = wezterm.color.get_builtin_schemes()[config.color_scheme]
-	config.window_frame = {
-		font_size = config.font_size - 2,
-		font = config.font,
-	}
-end
+local username = os.getenv("USER") or os.getenv("LOGNAME") or os.getenv("USERNAME")
+local home = (os.getenv("USERPROFILE") or os.getenv("HOME") or wez.home_dir or ""):gsub("\\", "/")
+local is_windows = package.config:sub(1, 1) == "\\"
 
--- Return the Tab's current working directory
-function module.get_cwd(tab)
-	local pane_dir = tab.active_pane.current_working_dir
-	if pane_dir then
-		return pane_dir.file_path
-	end
-	return ""
-end
+local M = {}
 
--- Remove all path components and return only the last value
-function module.remove_abs_path(path)
-	return path:gsub("(.*[/\\])(.*)", "%2")
-end
-
--- Return the pretty path of the tab's current working directory
-function module.get_display_cwd(tab)
-	local current_dir = module.get_cwd(tab)
-	local HOME_DIR = string.format("file://%s", os.getenv("HOME"))
-	return current_dir == HOME_DIR and "~/" or module.remove_abs_path(current_dir)
-end
-
--- Return the concise name or icon of the running process for display
-function module.get_process(tab)
-	if not tab.active_pane or tab.active_pane.foreground_process_name == "" then
-		return "[?]"
-	end
-
-	local process_name = module.remove_abs_path(tab.active_pane.foreground_process_name)
-	if process_name:find("kubectl") then
-		process_name = "kubectl"
-	end
-
-	return module.process_icons[process_name] or string.format("[%s]", process_name)
-end
-
--- Pretty format the tab title
-function module.format_title(tab)
-	local cwd = module.get_display_cwd(tab)
-	local process = module.get_process(tab)
-
-	local active_title = tab.active_pane.title
-	if active_title:find("- NVIM") then
-		active_title = active_title:gsub("^([^ ]+) .*", "%1")
-	end
-
-	local description = (not active_title or active_title == cwd) and "~" or active_title
-	return string.format(" %s %s/ %s ", process, cwd, description)
-end
-
--- Determine if a tab has unseen output since last visited
-function module.has_unseen_output(tab)
-	if not tab.is_active then
-		for _, pane in ipairs(tab.panes) do
-			if pane.has_unseen_output then
-				return true
+local function tableMerge(t1, t2)
+	for k, v in pairs(t2) do
+		if type(v) == "table" then
+			if type(t1[k] or false) == "table" then
+				tableMerge(t1[k] or {}, t2[k] or {})
+			else
+				t1[k] = v
 			end
+		else
+			t1[k] = v
 		end
 	end
-	return false
+	return t1
 end
 
--- Returns manually set title (from `tab:set_title()` or `wezterm cli set-tab-title`) or creates a new one
-function module.get_tab_title(tab)
-	local title = tab.tab_title
+local find_git_dir = function(directory)
+	directory = directory:gsub("~", home)
+
+	while directory do
+		local handle = io.open(directory .. "/.git/HEAD", "r")
+		if handle then
+			handle:close()
+			directory = directory:match("([^/]+)$")
+			return directory
+		elseif directory == "/" or directory == "" then
+			break
+		else
+			directory = directory:match("(.+)/[^/]*")
+		end
+	end
+
+	return nil
+end
+
+local get_cwd_hostname = function(pane, search_git_root_instead)
+	local cwd, hostname = "", ""
+	local cwd_uri = pane:get_current_working_dir()
+	if cwd_uri then
+		if type(cwd_uri) == "userdata" then
+			-- Running on a newer version of wezterm and we have
+			-- a URL object here, making this simple!
+
+			---@diagnostic disable-next-line: undefined-field
+			cwd = cwd_uri.file_path
+			---@diagnostic disable-next-line: undefined-field
+			hostname = cwd_uri.host or wez.hostname()
+		else
+			-- an older version of wezterm, 20230712-072601-f4abf8fd or earlier,
+			-- which doesn't have the Url object
+			cwd_uri = cwd_uri:sub(8)
+			local slash = cwd_uri:find("/")
+			if slash then
+				hostname = cwd_uri:sub(1, slash - 1)
+				-- and extract the cwd from the uri, decoding %-encoding
+				cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
+					return string.char(tonumber(hex, 16))
+				end)
+			end
+		end
+
+		-- Remove the domain name portion of the hostname
+		local dot = hostname:find("[.]")
+		if dot then
+			hostname = hostname:sub(1, dot - 1)
+		end
+		if hostname == "" then
+			hostname = wez.hostname()
+		end
+
+		if is_windows then
+			cwd = cwd:gsub("/" .. home .. "(.-)$", "~%1")
+		else
+			cwd = cwd:gsub(home .. "(.-)$", "~%1")
+		end
+
+		---search for the git root of the project if specified
+		if search_git_root_instead then
+			local git_root = find_git_dir(cwd)
+			cwd = git_root or cwd ---fallback to cwd
+		end
+	end
+
+	return cwd, hostname
+end
+
+local basename = function(path) -- get filename from path
+	if type(path) ~= "string" then
+		return nil
+	end
+	local file = ""
+	if M.is_windows then
+		file = path:gsub("(.*[/\\])(.*)", "%2") -- replace (path/ or path\)(file) with (file)
+	else
+		file = path:gsub("(.*/)(.*)", "%2") -- replace (path/)(file) with (file)
+	end
+	-- remove extension
+	file = file:gsub("(%..+)$", "")
+	return file
+end
+
+local function tab_title(tab_info)
+	local title = tab_info.tab_title
+	-- if the tab title is explicitly set, take that
 	if title and #title > 0 then
 		return title
 	end
-	return module.format_title(tab)
+	-- Otherwise, use the title from the active pane
+	-- in that tab
+	return basename(tab_info.active_pane.title)
 end
 
--- Convert arbitrary strings to a unique hex color value
--- Based on: https://stackoverflow.com/a/3426956/3219667
-function module.string_to_color(str)
-	-- Convert the string to a unique integer
-	local hash = 0
-	for i = 1, #str do
-		hash = string.byte(str, i) + ((hash << 5) - hash)
+local get_leader = function(prev)
+	local leader = config.leader_icon
+
+	wez.log_info("prev: " .. prev)
+	wez.log_info("prev size: " .. #prev)
+	wez.log_info("leader: " .. leader)
+	wez.log_info("leader size: " .. #leader)
+
+	local spacing = #prev - #leader
+	local first_half = math.floor(spacing / 2)
+	local second_half = math.ceil(spacing / 2)
+	wez.log_info("spacing: " .. spacing)
+	wez.log_info("first_half: " .. first_half)
+	wez.log_info("second_half: " .. second_half)
+	return string.rep(" ", first_half) .. leader .. string.rep(" ", second_half)
+end
+
+-- conforming to https://github.com/wez/wezterm/commit/e4ae8a844d8feaa43e1de34c5cc8b4f07ce525dd
+-- exporting an apply_to_config function, even though we don't change the users config
+M.apply_to_config = function(c, opts)
+	-- make the opts arg optional
+	if not opts then
+		opts = {}
 	end
 
-	-- Convert the integer to a unique color
-	local c = string.format("%06X", hash & 0x00FFFFFF)
-	return "#" .. (string.rep("0", 6 - #c) .. c):upper()
+	-- combine user config with defaults
+	config = tableMerge(config, opts)
+
+	local scheme = wez.color.get_builtin_schemes()[c.color_scheme]
+	local default_colors = {
+		tab_bar = {
+			background = "transparent",
+			active_tab = {
+				bg_color = "transparent",
+				fg_color = scheme.ansi[config.ansi_colors.active_tab],
+			},
+			inactive_tab = {
+				bg_color = "transparent",
+				fg_color = scheme.ansi[config.ansi_colors.inactive_tab],
+			},
+		},
+	}
+
+	if c.colors == nil then
+		c.colors = default_colors
+	else
+		c.colors = tableMerge(default_colors, c.colors)
+	end
+
+	c.use_fancy_tab_bar = false
+	c.tab_bar_at_bottom = config.position == "bottom"
+	c.tab_max_width = config.max_width
 end
 
-function module.select_contrasting_fg_color(hex_color)
-	-- Note: this could use `return color:complement_ryb()` instead if you prefer or other builtins!
+wez.on("format-tab-title", function(tab, _, _, conf, _, _)
+	local palette = conf.resolved_palette
 
-	local color = wezterm.color.parse(hex_color)
-	return color:complement_ryb(hex_color)
-end
+	local index = tab.tab_index + 1
+	local offset = #tostring(index) + #config.left_separator + 2
+	local title = index .. config.left_separator .. tab_title(tab)
 
--- On format tab title events, override the default handling to return a custom title
--- Docs: https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html
----@diagnostic disable-next-line: unused-local
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local title = module.get_tab_title(tab)
-	local color = module.string_to_color(module.get_cwd(tab))
+	local width = conf.tab_max_width - offset
+	if #title > conf.tab_max_width then
+		title = wez.truncate_right(title, width) .. "…"
+	end
 
+	local fg = palette.tab_bar.inactive_tab.fg_color
+	local bg = palette.tab_bar.inactive_tab.bg_color
 	if tab.is_active then
-		return {
-			{ Attribute = { Intensity = "Bold" } },
-			{ Background = { Color = color } },
-			{ Foreground = { Color = module.select_contrasting_fg_color(color) } },
-			{ Text = title },
-		}
+		fg = palette.tab_bar.active_tab.fg_color
+		bg = palette.tab_bar.active_tab.bg_color
 	end
-	if module.has_unseen_output(tab) then
-		return {
-			{ Foreground = { Color = "#EBD168" } },
-			{ Text = title },
-		}
-	end
-	return title
+
+	return {
+		{ Background = { Color = bg } },
+		{ Foreground = { Color = fg } },
+		{ Text = title .. "  " },
+	}
 end)
 
-return module
+-- Name of workspace
+wez.on("update-status", function(window, pane)
+	local present, conf = pcall(window.effective_config, window)
+	if not present then
+		return
+	end
+
+	local palette = conf.resolved_palette
+
+	-- left status
+	local stat = " " .. config.workspace_icon .. " " .. window:active_workspace() .. " "
+	local stat_fg = palette.ansi[config.ansi_colors.workspace]
+
+	if window:leader_is_active() then
+		stat_fg = palette.ansi[config.ansi_colors.leader]
+		stat = get_leader(stat)
+	end
+
+	window:set_left_status(wez.format({
+		{ Background = { Color = palette.tab_bar.background } },
+		{ Foreground = { Color = stat_fg } },
+		{ Text = stat },
+
+		{ Foreground = { Color = palette.ansi[config.ansi_colors.pane] } },
+		{ Text = config.pane_icon .. " " .. basename(pane:get_title()) .. " " },
+	}))
+
+	-- right status
+	local cells = {
+		{ Background = { Color = palette.tab_bar.background } },
+	}
+	local enabled_modules = config.enabled_modules
+
+	if enabled_modules.username then
+		table.insert(cells, { Foreground = { Color = palette.ansi[config.ansi_colors.username] } })
+		table.insert(cells, { Text = username })
+		table.insert(cells, { Foreground = { Color = palette.brights[1] } })
+		table.insert(cells, { Text = config.right_separator .. config.user_icon .. config.field_separator })
+	end
+
+	local cwd, hostname = get_cwd_hostname(pane, true)
+	if enabled_modules.hostname then
+		table.insert(cells, { Foreground = { Color = palette.ansi[config.ansi_colors.hostname] } })
+		table.insert(cells, { Text = hostname })
+		table.insert(cells, { Foreground = { Color = palette.brights[1] } })
+		table.insert(cells, { Text = config.right_separator .. config.hostname_icon .. config.field_separator })
+	end
+
+	if enabled_modules.clock then
+		table.insert(cells, { Foreground = { Color = palette.ansi[config.ansi_colors.clock] } })
+		table.insert(cells, { Text = wez.time.now():format("%H:%M") })
+		table.insert(cells, { Foreground = { Color = palette.brights[1] } })
+		table.insert(cells, { Text = config.right_separator .. config.clock_icon .. "  " })
+	end
+
+	if enabled_modules.cwd then
+		table.insert(cells, { Foreground = { Color = palette.brights[1] } })
+		table.insert(cells, { Text = config.cwd_icon .. " " })
+		table.insert(cells, { Foreground = { Color = palette.ansi[config.ansi_colors.cwd] } })
+		table.insert(cells, { Text = cwd .. " " })
+	end
+
+	window:set_right_status(wez.format(cells))
+end)
+
+return M
