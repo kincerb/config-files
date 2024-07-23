@@ -1,5 +1,5 @@
 function workon --description "Start work on project"
-    argparse a/activate j/jump -- $argv
+    argparse a/activate -- $argv
 
     if test (count $argv) -eq 0
         set -f project_dir $PWD
@@ -7,12 +7,12 @@ function workon --description "Start work on project"
         set -f project_dir $argv[1]
     end
 
-    if set -ql _flag_jump
-        cd $project_dir
-    end
+    cd $project_dir
 
     if set -ql _flag_activate
         if test -e $project_dir/bin/activate.fish
+            set -f venv_dir $project_dir
+        else if test -e $project_dir/venv/bin/activate.fish
             set -f venv_dir $project_dir/venv
         else if test -e (path dirname $project_dir)/venv/bin/activate.fish
             set -f venv_dir (path dirname $project_dir)/venv

@@ -1,4 +1,4 @@
-set -l possible_envs (fd --type directory --max-depth 1 . "$HOME/.local/venvs")
+set -l possible_envs (fd --type directory --unrestricted --max-depth 1 . "$HOME/.local/venvs")
 
 for _dirname in (fd --type directory --unrestricted --exclude "site-packages" --exclude ".mypy_cache" --format "{//}" "^(venv|.git)\$" "$HOME/Projects")
     if not contains $_dirname $possible_envs
