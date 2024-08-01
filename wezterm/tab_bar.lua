@@ -20,6 +20,32 @@ local config = {
 		clock = true,
 		cwd = true,
 	},
+	modules = {
+		workspace = {
+			enabled = true,
+			icon = "",
+		},
+		pane = {
+			enabled = true,
+			icon = "",
+		},
+		user = {
+			enabled = true,
+			icon = wez.nerdfonts.cod_account,
+		},
+		hostname = {
+			enabled = true,
+			icon = wez.nerdfonts.cod_server,
+		},
+		clock = {
+			enabled = true,
+			icon = wez.nerdfonts.fa_clock_o,
+		},
+		cwd = {
+			enabled = true,
+			icon = wez.nerdfonts.fa_folder_open_o,
+		},
+	},
 	ansi_colors = {
 		workspace = 8,
 		leader = 2,
