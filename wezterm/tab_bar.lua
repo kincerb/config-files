@@ -268,14 +268,18 @@ wez.on("update-status", function(window, pane)
 	-- left status
 	local stat = " " .. config.workspace_icon .. " " .. window:active_workspace() .. " "
 	local stat_fg = palette.ansi[config.ansi_colors.workspace]
+	local stat_bg = palette.tab_bar.background
 
 	if window:leader_is_active() then
 		stat_fg = palette.ansi[config.ansi_colors.leader]
+		stat_bg = palette.ansi[config.ansi_colors.workspace]
 		stat = get_leader(stat)
 	end
 
+	-- window:set_left_status(wez.format({}))
+
 	window:set_left_status(wez.format({
-		{ Background = { Color = palette.tab_bar.background } },
+		{ Background = { Color = stat_bg } },
 		{ Foreground = { Color = stat_fg } },
 		{ Text = stat },
 
