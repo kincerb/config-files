@@ -29,7 +29,7 @@ return {
       diagnostics = {
         win = {
           type = "split",
-          size = math.floor(vim.o.lines * 0.4),
+          size = math.floor(vim.o.lines * 0.3),
           position = "bottom",
         },
       },
