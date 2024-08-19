@@ -22,16 +22,23 @@ config.enable_tab_bar = true
 config.font = wezterm.font_with_fallback({
 	{ family = "FantasqueSansM Nerd Font" },
 })
-config.font_size = 12.0
+config.font_size = 13.0
 config.hide_tab_bar_if_only_one_tab = false
 config.prefer_to_spawn_tabs = true
 config.show_tab_index_in_tab_bar = false
 config.tab_bar_at_bottom = false
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
+config.default_cursor_style = "BlinkingBlock"
+config.cursor_blink_rate = 1500
+config.detect_password_input = true
 
 -- colors
 config.bold_brightens_ansi_colors = true
 config.color_scheme = "Galizur"
+config.char_select_bg_color = "#07adad"
+config.char_select_fg_color = "#000505"
+config.command_palette_bg_color = "#313457"
+config.command_palette_fg_color = "#7c7c80"
 
 config.inactive_pane_hsb = {
 	saturation = 0.9,
