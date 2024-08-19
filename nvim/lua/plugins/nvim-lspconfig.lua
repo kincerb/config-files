@@ -24,7 +24,7 @@ return {
               autopep8 = { enabled = false },
               flake8 = { enabled = false },
               pycodestyle = { enabled = false, hangClosing = true },
-              pydocstyle = { enabled = true, convention = "google" },
+              pydocstyle = { enabled = false, convention = "google" },
               pyflakes = { enabled = false },
               pylint = { enabled = false },
               mccabe = { enabled = false },
