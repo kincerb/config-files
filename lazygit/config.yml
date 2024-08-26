@@ -1,19 +1,11 @@
-# yaml-language-server: $schema=https://json.schemastore.org/lazygit.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 os:
   editPreset: "nvim-remote"
 gui:
+  border: rounded
   nerdFontsVersion: "3"
 git:
-  commitPrefixes:
-    Middleware-Lifecycle-Core:
-      pattern: "^\\w+\\/(\\w+-\\w+).*"
-      replace: "$1 #comment "
-    Middleware-Lifecycle-Checkins:
-      pattern: "^\\w+\\/(\\w+-\\w+).*"
-      replace: "$1 #comment "
-    Middleware-Lifecycle-Server:
-      pattern: "^\\w+\\/(\\w+-\\w+).*"
-      replace: "$1 #comment "
-    Middleware-Checkin-Scheduler:
-      pattern: "^\\w+\\/(\\w+-\\w+).*"
-      replace: "$1 #comment "
+  paging:
+    colorArg: always
+    useConfig: false
+  overrideGpg: true
