@@ -20,9 +20,11 @@ config.audible_bell = "Disabled"
 config.enable_scroll_bar = false
 config.enable_tab_bar = true
 config.font = wezterm.font_with_fallback({
+	{ family = "Lilex Nerd Font" },
+	{ family = "IosevkaTerm Nerd Font" },
 	{ family = "FantasqueSansM Nerd Font" },
 })
-config.font_size = 13.0
+config.font_size = 12.0
 config.hide_tab_bar_if_only_one_tab = false
 config.prefer_to_spawn_tabs = true
 config.show_tab_index_in_tab_bar = false
@@ -34,7 +36,9 @@ config.detect_password_input = true
 
 -- colors
 config.bold_brightens_ansi_colors = true
-config.color_scheme = "Galizur"
+config.color_scheme = "Argonaut (Gogh)"
+-- config.color_scheme = "Galizur"
+-- config.color_scheme = "theme2 (terminal.sexy)"
 config.char_select_bg_color = "#07adad"
 config.char_select_fg_color = "#000505"
 config.command_palette_bg_color = "#313457"
@@ -185,7 +189,13 @@ config.keys = {
 			}),
 			action = wezterm.action_callback(function(window, pane, line)
 				if line then
-					window:perform_action(act.SwitchToWorkspace({ name = line }), pane)
+					window:perform_action(
+						act.SwitchToWorkspace({
+							name = line,
+							spawn = { domain = { DomainName = "SSHMUX:mac" } },
+						}),
+						pane
+					)
 				end
 			end),
 		}),
