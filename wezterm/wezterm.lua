@@ -24,7 +24,7 @@ config.font = wezterm.font_with_fallback({
 	{ family = "IosevkaTerm Nerd Font" },
 	{ family = "FantasqueSansM Nerd Font" },
 })
-config.font_size = 12.0
+config.font_size = 11.0
 config.hide_tab_bar_if_only_one_tab = false
 config.prefer_to_spawn_tabs = true
 config.show_tab_index_in_tab_bar = false
