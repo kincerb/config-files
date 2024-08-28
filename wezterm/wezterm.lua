@@ -12,7 +12,6 @@ end
 -- core
 config.check_for_updates = true
 config.check_for_updates_interval_seconds = 86400
-config.show_update_window = true
 
 -- ui
 config.adjust_window_size_when_changing_font_size = false
@@ -55,7 +54,7 @@ config.ssh_domains = wezterm.default_ssh_domains()
 
 for _, dom in ipairs(config.ssh_domains) do
 	if dom.name == "SSHMUX:mac" then
-		dom.remote_wezterm_path = "/Applications/WezTerm.app/Contents/MacOS/wezterm"
+		dom.remote_wezterm_path = "~/Applications/WezTerm.app/Contents/MacOS/wezterm"
 	end
 end
 
