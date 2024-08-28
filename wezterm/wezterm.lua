@@ -20,8 +20,7 @@ config.audible_bell = "Disabled"
 config.enable_scroll_bar = false
 config.enable_tab_bar = true
 config.font = wezterm.font_with_fallback({
-	{ family = "Lilex Nerd Font" },
-	{ family = "IosevkaTerm Nerd Font" },
+	{ family = "FiraCode Nerd Font" },
 	{ family = "FantasqueSansM Nerd Font" },
 })
 config.font_size = 11.0
@@ -88,6 +87,11 @@ config.keys = {
 			title = "🔍 all the things",
 			flags = "FUZZY|TABS|LAUNCH_MENU_ITEMS|DOMAINS|WORKSPACES|COMMANDS",
 		}),
+	},
+	{
+		key = "x",
+		mods = "LEADER",
+		action = act.CloseCurrentTab({ confirm = true }),
 	},
 	{
 		key = "z",
