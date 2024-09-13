@@ -192,13 +192,22 @@ config.keys = {
 			}),
 			action = wezterm.action_callback(function(window, pane, line)
 				if line then
-					window:perform_action(
-						act.SwitchToWorkspace({
-							name = line,
-							spawn = { domain = { DomainName = "SSHMUX:mac" } },
-						}),
-						pane
-					)
+					if string.find(line, "^work$") then
+						window:perform_action(
+							act.SwitchToWorkspace({
+								name = line,
+								spawn = { domain = { DomainName = "SSHMUX:mac" } },
+							}),
+							pane
+						)
+					else
+						window:perform_action(
+							act.SwitchToWorkspace({
+								name = line,
+							}),
+							pane
+						)
+					end
 				end
 			end),
 		}),
