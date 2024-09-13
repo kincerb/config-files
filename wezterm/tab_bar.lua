@@ -8,19 +8,11 @@ local config = {
 	right_separator = " " .. wez.nerdfonts.fa_chevron_left .. " ",
 	field_separator = " " .. wez.nerdfonts.fa_ellipsis_v .. " ",
 	leader_icon = wez.nerdfonts.fa_pause,
-	workspace_icon = "",
-	pane_icon = "",
-	user_icon = wez.nerdfonts.cod_account,
-	hostname_icon = wez.nerdfonts.cod_server,
-	clock_icon = wez.nerdfonts.fa_clock_o,
-	cwd_icon = wez.nerdfonts.fa_folder_open_o,
-	enabled_modules = {
-		username = true,
-		hostname = true,
-		clock = true,
-		cwd = true,
-	},
 	modules = {
+		tab = {
+			index = false,
+			prefix = wez.nerdfonts.fa_chevron_right .. " ",
+		},
 		workspace = {
 			enabled = true,
 			icon = "",
@@ -178,18 +170,9 @@ end
 
 local get_leader = function(prev)
 	local leader = config.leader_icon
-
-	wez.log_info("prev: " .. prev)
-	wez.log_info("prev size: " .. #prev)
-	wez.log_info("leader: " .. leader)
-	wez.log_info("leader size: " .. #leader)
-
 	local spacing = #prev - #leader
 	local first_half = math.floor(spacing / 2)
 	local second_half = math.ceil(spacing / 2)
-	wez.log_info("spacing: " .. spacing)
-	wez.log_info("first_half: " .. first_half)
-	wez.log_info("second_half: " .. second_half)
 	return string.rep(" ", first_half) .. leader .. string.rep(" ", second_half)
 end
 
@@ -234,8 +217,14 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
 	local palette = conf.resolved_palette
 
 	local index = tab.tab_index + 1
-	local offset = #tostring(index) + #config.left_separator + 2
-	local title = index .. config.left_separator .. tab_title(tab)
+
+	local offset = #config.modules.tab.prefix + 2
+	local title = config.modules.tab.prefix .. tab_title(tab)
+
+	if config.modules.tab.index then
+		offset = #tostring(index) + #offset
+		title = index .. title
+	end
 
 	local width = conf.tab_max_width - offset
 	if #title > conf.tab_max_width then
@@ -252,7 +241,7 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
 	return {
 		{ Background = { Color = bg } },
 		{ Foreground = { Color = fg } },
-		{ Text = title .. "  " },
+		{ Text = title .. " " },
 	}
 end)
 
