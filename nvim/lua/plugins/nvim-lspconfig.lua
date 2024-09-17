@@ -12,11 +12,6 @@ return {
     opts.codelens = vim.tbl_extend("force", opts.codelens, { enabled = true })
 
     opts.servers = vim.tbl_deep_extend("force", opts.servers, {
-      ansiblels = {
-        settings = {
-          filetypes = { "yaml.ansible" },
-        },
-      },
       pylsp = {
         settings = {
           pylsp = {
@@ -54,19 +49,6 @@ return {
               codeAction = {
                 disableRuleComment = { enable = true },
               },
-            },
-          },
-        },
-      },
-      taplo = {},
-      yamlls = {
-        settings = {
-          yaml = {
-            schemas = {
-              ["https://raw.githubusercontent.com/cappyzawa/concourse-pipeline-jsonschema/master/concourse_jsonschema.json"] = "/.concourse/*.yml",
-            },
-            filetypes = {
-              "yaml",
             },
           },
         },
