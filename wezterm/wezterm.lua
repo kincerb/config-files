@@ -29,7 +29,9 @@ config.show_tab_index_in_tab_bar = false
 config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
 config.default_cursor_style = "BlinkingBlock"
-config.cursor_blink_rate = 1500
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
+config.cursor_blink_rate = 800
 config.detect_password_input = true
 
 -- colors
