@@ -23,6 +23,9 @@ CanonicalizeHostname yes
 Host rhel9.3
   ProxyJump r820.lan
 
+Host workvm
+  ProxyJump titan.lan
+
 Host exttools01
   ControlPersist 12h
   ForwardX11Trusted yes
