@@ -33,6 +33,8 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 800
 config.detect_password_input = true
+config.initial_cols = 120
+config.initial_rows = 40
 
 -- colors
 config.bold_brightens_ansi_colors = true
