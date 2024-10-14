@@ -57,6 +57,7 @@ config.ssh_domains = wezterm.default_ssh_domains()
 for _, dom in ipairs(config.ssh_domains) do
 	if dom.name == "SSHMUX:mac" then
 		dom.remote_wezterm_path = "/Applications/WezTerm.app/Contents/MacOS/wezterm"
+		dom.local_echo_threshold_ms = 250
 	end
 end
 
