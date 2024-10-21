@@ -1,8 +1,8 @@
 mouse_support = true
 scroll_offset = 6
 
-xdg_open = true
-xdg_open_fork = true
+xdg_open = false
+xdg_open_fork = false
 
 case_insensitive_ext = true
 use_trash = true
