@@ -1,11 +1,17 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+promptToReturnFromSubprocess: false
 os:
   editPreset: "nvim-remote"
+  editInTerminal: true
 gui:
   border: rounded
   nerdFontsVersion: "3"
+  switchToFilesAfterStashPop: true
+  switchToFilesAfterStashApply: true
 git:
   paging:
     colorArg: always
+    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     useConfig: false
   overrideGpg: true
+  parseEmoji: true
