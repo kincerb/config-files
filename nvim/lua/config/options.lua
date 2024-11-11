@@ -8,5 +8,5 @@ vim.opt.splitright = true
 vim.opt.scrolloff = 0 -- set to 999 for padding at bottom
 -- disable automatic comment leader ofter hitting 'o' or 'O' see :help fo-table
 vim.opt.formatoptions:remove({ "o" })
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
