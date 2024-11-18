@@ -205,6 +205,14 @@ config.keys = {
 							}),
 							pane
 						)
+					elseif string.find(line, "^titan$") then
+						window:perform_action(
+							act.SwitchToWorkspace({
+								name = line,
+								spawn = { domain = { DomainName = "SSHMUX:titan" } },
+							}),
+							pane
+						)
 					else
 						window:perform_action(
 							act.SwitchToWorkspace({
