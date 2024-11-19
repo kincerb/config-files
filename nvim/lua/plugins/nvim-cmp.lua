@@ -15,12 +15,13 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
+      opts.auto_brackets = opts.auto_brackets or {}
+      table.insert(opts.auto_brackets, "python")
+
       table.insert(opts.sources, { name = "emoji" })
       table.insert(opts.sources, { name = "fish" })
       table.insert(opts.sources, { name = "nerdfont" })
       table.insert(opts.sources, { name = "luasnip" })
-      -- table.insert(opts.sources, { name = "nvim_lsp_signature_help" })
-      vim.list_extend(opts.auto_brackets, { "python" })
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
