@@ -24,7 +24,3 @@ lines-between-types = 1
 
 [tool.ruff.pydocstyle]
 convention = "google"
-
-[tool.pylsp-mypy]
-enabled = true
-live_mode = true

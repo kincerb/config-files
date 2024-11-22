@@ -22,6 +22,7 @@ return {
           basedpyright = {
             disableOrganizeImports = true,
             analysis = {
+              typeCheckingMode = "basic",
               diagnosticSeverityOverrides = {
                 reportUnusedImport = false,
                 reportDuplicateImport = false,
