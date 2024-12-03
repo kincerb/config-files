@@ -1,5 +1,5 @@
 function workon --description "Start work on project"
-    argparse n/no-activate -- $argv
+    argparse n/noactivate -- $argv
 
     if test (count $argv) -eq 0
         set --function project_dir $PWD
@@ -9,8 +9,8 @@ function workon --description "Start work on project"
 
     cd $project_dir
 
-    if set --query --local _flag_no-activate
-        return
+    if set --query _flag_noactivate
+        return 0
     end
 
     if test -e $project_dir/bin/activate.fish

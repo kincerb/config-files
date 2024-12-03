@@ -8,5 +8,5 @@ end
 
 complete --command workon --no-files
 complete --command workon --short-option n
-complete --command workon --long-option no-activate
+complete --command workon --long-option noactivate
 complete --command workon --keep-order --arguments (echo $possible_envs)
