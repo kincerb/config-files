@@ -9,4 +9,4 @@ end
 complete --command workon --no-files
 complete --command workon --short-option n
 complete --command workon --long-option no-activate
-complete --command workon --arguments --keep-order (echo $possible_envs)
+complete --command workon --keep-order --arguments (echo $possible_envs)
