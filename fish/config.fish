@@ -1,5 +1,5 @@
 set fish_greeting
-set custom_paths ~/.local/bin $GOPATH/bin
+set custom_paths ~/.local/bin $GOPATH/bin $HOME/.cargo/bin
 set man_paths /usr/share/man /usr/local/share/man /usr/local/man ~/.local/pipx/venvs/ranger-fm/share/man
 
 if not set -q VIRTUAL_ENV
