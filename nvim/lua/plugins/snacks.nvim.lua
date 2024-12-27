@@ -10,8 +10,9 @@ local highlight = {
 }
 return {
   {
-    "folke/snacks.nvim",
+    "snacks.nvim",
     lazy = false,
+    priority = 1000,
     init = function()
       vim.api.nvim_set_hl(0, "SnacksIndent1", { fg = "#5A6D73" })
       vim.api.nvim_set_hl(0, "SnacksIndent2", { fg = "#80121B" })
@@ -25,16 +26,22 @@ return {
     end,
     opts = {
       indent = {
-        enabled = true,
-        only_scope = false,
-        only_current = false,
-        hl = highlight,
-      },
-      scope = {
-        enabled = true,
-        underline = true,
-        only_current = false,
-        hl = "SnacksIndentScope",
+        indent = {
+          enabled = true,
+          only_scope = false,
+          only_current = false,
+          hl = highlight,
+        },
+        animate = {
+          enabled = true,
+          style = "up_down",
+        },
+        scope = {
+          enabled = true,
+          underline = true,
+          only_current = false,
+          hl = "SnacksIndentScope",
+        },
       },
     },
   },
