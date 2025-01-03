@@ -1,6 +1,10 @@
 set fish_greeting
 set custom_paths ~/.local/bin $GOPATH/bin $HOME/.cargo/bin
-set man_paths /usr/share/man /usr/local/share/man /usr/local/man ~/.local/pipx/venvs/ranger-fm/share/man
+set man_paths /usr/share/man /usr/local/share/man /usr/local/man
+
+if test \( -e /home/linuxbrew/.linuxbrew/bin/brew \)
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+end
 
 if not set -q VIRTUAL_ENV
     for _path in $custom_paths
@@ -34,8 +38,8 @@ function fish_title
     pwd
 end
 
-alias ls='exa --all --long --group --color=always --group-directories-first --icons' # preferred listing
-alias lt='exa --all --tree --color=always --group-directories-first --icons' # tree listing
+alias ls='eza --all --long --group --color=always --group-directories-first --icons' # preferred listing
+alias lt='eza --all --tree --color=always --group-directories-first --icons' # tree listing
 
 # Set settings for https://github.com/franciscolourenco/done
 set -U __done_min_cmd_duration 5000
