@@ -1,3 +1,4 @@
+local actions = require("fzf-lua").actions
 return {
   {
     "ibhagwan/fzf-lua",
@@ -5,10 +6,23 @@ return {
     opts = {
       defaults = {
         file_icons = "mini",
+        previewer = "bat",
+      },
+      actions = {
+        files = {
+          true,
+          ["ctrl-s"] = actions.file_split,
+          ["ctrl-v"] = actions.file_vsplit,
+          ["ctrl-x"] = actions.buf_del,
+        },
+        buffers = {
+          true,
+          ["ctrl-x"] = actions.buf_del,
+        },
       },
       winopts = {
         width = 0.8,
-        height = 0.5,
+        height = 0.6,
       },
     },
   },

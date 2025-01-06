@@ -45,13 +45,7 @@ return {
       },
     },
     keys = {
-      {
-        "<leader>fT",
-        function()
-          Snacks.terminal("fish", { cwd = LazyVim.root() })
-        end,
-        desc = "Floating terminal",
-      },
+      { "<leader>dps", false },
     },
   },
 }
