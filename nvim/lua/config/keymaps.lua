@@ -18,10 +18,6 @@ local diag_or_down = function()
   end
 end
 
-map.del("n", "<leader>ft")
-map.del("n", "<leader>fT")
-map.del("n", "<leader>gB")
-
 map.set("i", "<c-CR>", function()
   local _keys = vim.api.nvim_replace_termcodes("<ESC>j", true, false, true)
   vim.api.nvim_feedkeys(_keys, "n", false)
