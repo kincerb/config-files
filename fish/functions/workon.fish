@@ -9,6 +9,10 @@ function workon --description "Start work on project"
 
     cd $project_dir
 
+    if test -e $project_dir/.env.fish
+        source $project_dir/.env.fish
+    end
+
     if set --query _flag_noactivate
         return 0
     end
@@ -25,7 +29,4 @@ function workon --description "Start work on project"
         source $venv_dir/bin/activate.fish
     end
 
-    if test -e $project_dir/.env.fish
-        source $project_dir/.env.fish
-    end
 end
