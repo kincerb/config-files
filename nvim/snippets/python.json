@@ -1,0 +1,11 @@
+{
+  "doc string": {
+    "prefix": [
+      "doc"
+    ],
+    "body": [
+      "\"\"\"${0:Docstring}.\"\"\""
+    ],
+    "description": "Doc String"
+  }
+}
