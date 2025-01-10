@@ -19,4 +19,8 @@ end
 
 if test \( -e /home/linuxbrew/.linuxbrew/bin/brew \)
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    set --local brew_comp "$HOMEBREW_PREFIX"/share/fish/vendor_completions.d
+    if not contains $brew_comp $fish_complete_path
+        set --global --export --prepend fish_complete_path $brew_comp
+    end
 end
