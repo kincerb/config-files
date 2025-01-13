@@ -13,6 +13,9 @@ local config = {
 			index = false,
 			prefix = wez.nerdfonts.fa_chevron_right .. " ",
 		},
+		domain = {
+			enabled = true,
+		},
 		workspace = {
 			enabled = true,
 			icon = "",
@@ -251,10 +254,15 @@ local function left_status(window, pane, window_config)
 	local status_text = ""
 
 	if config.modules.workspace.enabled then
-		local text
+		local text = " " .. config.modules.workspace.icon .. " "
+		local workspace = window:active_workspace()
+		local domain = pane:get_domain_name()
 		table.insert(cells, { Foreground = { Color = palette.ansi[config.ansi_colors.workspace] } })
 		table.insert(cells, { Background = { Color = palette.tab_bar.background } })
-		text = " " .. config.modules.workspace.icon .. " " .. window:active_workspace() .. " "
+		if config.modules.domain.enabled then
+			text = text .. domain .. ":"
+		end
+		text = text .. workspace .. " "
 		status_text = status_text .. text
 		table.insert(cells, { Text = text })
 	end

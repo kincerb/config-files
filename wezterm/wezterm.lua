@@ -35,6 +35,12 @@ config.cursor_blink_rate = 800
 config.detect_password_input = true
 config.initial_cols = 120
 config.initial_rows = 40
+config.window_padding = {
+	top = "10px",
+	bottom = "0px",
+	left = "0px",
+	right = "0px",
+}
 
 -- colors
 config.bold_brightens_ansi_colors = true
