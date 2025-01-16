@@ -38,8 +38,8 @@ config.initial_rows = 40
 config.window_padding = {
 	top = "10px",
 	bottom = "0px",
-	left = "0px",
-	right = "0px",
+	left = "5px",
+	right = "5px",
 }
 
 -- colors
