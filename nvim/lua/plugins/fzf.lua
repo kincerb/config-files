@@ -18,6 +18,8 @@ return {
         buffers = {
           true,
           ["ctrl-x"] = actions.buf_del,
+          ["ctrl-s"] = actions.file_split,
+          ["ctrl-v"] = actions.file_vsplit,
         },
       },
       winopts = {
