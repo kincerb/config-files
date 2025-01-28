@@ -12,3 +12,10 @@ vim.opt.scrolloff = 0 -- set to 999 for padding at bottom
 vim.opt.formatoptions:remove({ "o" })
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.filetype.add({
+  extension = {
+    jinja = "jinja",
+    jinja2 = "jinja",
+    j2 = "jinja",
+  },
+})

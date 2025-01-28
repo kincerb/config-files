@@ -31,6 +31,7 @@ return {
           },
         },
       },
+      jinja_lsp = {},
     },
     setup = {
       ruff = function()
