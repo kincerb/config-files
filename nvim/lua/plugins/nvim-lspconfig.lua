@@ -25,6 +25,7 @@ return {
               typeCheckingMode = "basic",
               diagnosticSeverityOverrides = {
                 reportUnusedImport = false,
+                reportUnusedVariable = false,
                 reportDuplicateImport = false,
               },
             },
