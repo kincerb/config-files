@@ -4,7 +4,7 @@ return {
     opts = {
       completion = {
         accept = {
-          auto_brackets = { enabled = false },
+          auto_brackets = { enabled = true },
         },
       },
     },
