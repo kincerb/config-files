@@ -1,6 +1,9 @@
 return {
   "neovim/nvim-lspconfig",
+  dependencies = { "saghen/blink.cmp" },
   opts = {
+    inlay_hints = { enabled = true },
+    codelens = { enabled = true },
     servers = {
       ruff = {
         cmd_env = { RUFF_TRACE = "messages" },
