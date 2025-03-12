@@ -69,6 +69,16 @@ for _, dom in ipairs(config.ssh_domains) do
 	end
 end
 
+local gpg_rc, gpg_out, _ = wezterm.run_child_process({ "gpgconf", "--list-dirs", "agent-ssh-socket" })
+
+if gpg_rc then
+	local gpg_socket = wezterm.split_by_newlines(gpg_out)[1]
+	local ssh_auth_sock = os.getenv("SSH_AUTH_SOCK")
+	if ssh_auth_sock ~= gpg_socket then
+		config.default_ssh_auth_sock = gpg_socket
+	end
+end
+
 local fuzzy_commands = act.ShowLauncherArgs({
 	title = "🔍 find commands",
 	flags = "FUZZY|KEY_ASSIGNMENTS|COMMANDS",
