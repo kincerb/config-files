@@ -3,6 +3,8 @@ set --local bat_loc (which bat)
 set --local atuin_loc (which atuin)
 set --local eza_loc (which eza)
 
+set --global --export LESS -FIXR
+
 if test -n "$nvim_loc"
     set --global --export EDITOR $nvim_loc
     set --global --export VISUAL $nvim_loc
