@@ -26,6 +26,20 @@ return {
           position = "right",
         },
       },
+      project_errors = {
+        mode = "diagnostics",
+        filter = {
+          any = {
+            buf = 0,
+            {
+              severity = vim.diagnostic.severity.ERROR,
+              function(item)
+                return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+              end,
+            },
+          },
+        },
+      },
       diagnostics = {
         win = {
           type = "split",
@@ -38,5 +52,6 @@ return {
   keys = {
     { "<leader>cx", "<cmd>Trouble lsp_references_buffer toggle<cr>", desc = "LSP references (buffer)" },
     { "<leader>cX", "<cmd>Trouble lsp_references toggle<cr>", desc = "LSP references (project)" },
+    { "<leader>c.", "<cmd>Trouble project_errors toggle<cr>", desc = "Diagnostics (project)" },
   },
 }
