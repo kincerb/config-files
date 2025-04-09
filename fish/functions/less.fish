@@ -1,3 +1,3 @@
-function less
-    command bat -p $argv
+function less --wraps bat
+    command bat --paging=auto --style="grid,snip" $argv
 end
