@@ -18,12 +18,24 @@ local diag_or_down = function()
   end
 end
 
+local dos_to_unix = function()
+  return function()
+    vim.api.nvim_cmd(
+      { cmd = "!", args = { "dos2unix", "%" }, magic = { file = true, bar = false } },
+      { output = false }
+    )
+    vim.api.nvim_cmd({ cmd = "edit", args = {}, magic = { file = false, bar = false } }, { output = false })
+    vim.api.nvim_cmd({ cmd = "write", args = {}, magic = { file = false, bar = false } }, { output = false })
+  end
+end
+
 map.set("i", "<c-CR>", function()
   local _keys = vim.api.nvim_replace_termcodes("<ESC>j", true, false, true)
   vim.api.nvim_feedkeys(_keys, "n", false)
 end, opts)
 map.set("n", "<CR>", diag_or_down(), opts)
 map.set("i", "jk", "<ESC>", { noremap = true })
+map.set("n", "<leader>bF", dos_to_unix(), { noremap = true, silent = true, desc = "Reformat buffer with dos2unix" })
 map.set("n", "==", vim.lsp.buf.code_action, { desc = "Code Actions" })
 map.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
 map.set("n", "<space>q", vim.diagnostic.setloclist, opts)
