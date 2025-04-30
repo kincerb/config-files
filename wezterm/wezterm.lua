@@ -22,7 +22,7 @@ config.font = wezterm.font_with_fallback({
 	{ family = "FiraCode Nerd Font" },
 	{ family = "FantasqueSansM Nerd Font" },
 })
-config.font_size = 11.0
+config.font_size = 12.0
 config.hide_tab_bar_if_only_one_tab = false
 config.prefer_to_spawn_tabs = true
 config.show_tab_index_in_tab_bar = false
@@ -109,6 +109,15 @@ config.keys = {
 		}),
 	},
 	{
+		key = "u",
+		mods = "LEADER",
+		action = act.CharSelect({
+			copy_on_select = true,
+			copy_to = "ClipboardAndPrimarySelection",
+			group = "NerdFonts",
+		}),
+	},
+	{
 		key = "x",
 		mods = "LEADER",
 		action = act.CloseCurrentTab({ confirm = true }),
@@ -117,6 +126,11 @@ config.keys = {
 		key = "z",
 		mods = "LEADER",
 		action = act.TogglePaneZoomState,
+	},
+	{
+		key = "F11",
+		mods = "",
+		action = act.ToggleFullScreen,
 	},
 	{
 		key = "f",
@@ -221,11 +235,11 @@ config.keys = {
 							}),
 							pane
 						)
-					elseif string.find(line, "^titan$") then
+					elseif string.find(line, "^p620$") then
 						window:perform_action(
 							act.SwitchToWorkspace({
 								name = line,
-								spawn = { domain = { DomainName = "SSHMUX:titan" } },
+								spawn = { domain = { DomainName = "SSHMUX:p620" } },
 							}),
 							pane
 						)
