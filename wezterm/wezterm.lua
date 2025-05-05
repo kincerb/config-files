@@ -235,7 +235,7 @@ config.keys = {
 							}),
 							pane
 						)
-					elseif string.find(line, "^p620$") then
+					elseif string.find(line, "^lab$") then
 						window:perform_action(
 							act.SwitchToWorkspace({
 								name = line,
