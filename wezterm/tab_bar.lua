@@ -32,6 +32,12 @@ local config = {
 			enabled = true,
 			icon = wez.nerdfonts.cod_server,
 		},
+		battery = {
+			enabled = true,
+			icons = {
+				charging = {},
+			},
+		},
 		clock = {
 			enabled = true,
 			icon = wez.nerdfonts.fa_clock_o,
@@ -322,6 +328,18 @@ wez.on("update-status", function(window, pane)
 			right_cells,
 			{ Text = config.right_separator .. config.modules.hostname.icon .. config.field_separator }
 		)
+	end
+
+	if config.modules.battery.enabled then
+		local bat
+		local charge_level
+		local state
+
+		for _, b in ipairs(wez.battery_info()) do
+			charge_level = b.state_of_charge * 100
+			state = b.state
+			bat = "🔋 " .. string.format("%.0f%%", b.state_of_charge * 100)
+		end
 	end
 
 	if config.modules.clock.enabled then
