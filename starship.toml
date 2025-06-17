@@ -117,19 +117,20 @@ symbol = " "
 format = '\[[$symbol($version(-$name))]($style)\]'
 
 [cmake]
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [cobol]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[($version)]($style)\]'
 
 [conda]
-symbol = " "
-format = '\[[$symbol$environment]($style)\]'
+format = '\[[$environment]($style)\]'
 
 [container]
 disabled = true
 
 [crystal]
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [dart]
@@ -137,13 +138,14 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [deno]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[($version)]($style)\]'
 
 [docker_context]
 symbol = " "
 format = '\[[$symbol$context]($style)\]'
 
 [dotnet]
+symbol = "󰪮 "
 format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
 
 [elixir]
@@ -155,9 +157,11 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [erlang]
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [gcloud]
+symbol = " "
 format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
 
 [golang]
@@ -169,6 +173,7 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [helm]
+symbol = "⎈ "
 format = '\[[$symbol($version)]($style)\]'
 
 [hg_branch]
@@ -184,12 +189,15 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [kotlin]
+symbol = "󱈙 "
 format = '\[[$symbol($version)]($style)\]'
 
 [kubernetes]
+symbol = "󱃾 "
 format = '\[[$symbol$context( \($namespace\))]($style)\]'
 
 [lua]
+symbol = "󰢱 "
 format = '\[[$symbol($version)]($style)\]'
 
 [memory_usage]
@@ -209,10 +217,11 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [ocaml]
+symbol = " "
 format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
 
 [openstack]
-format = '\[[$symbol$cloud(\($project\))]($style)\]'
+format = '\[[$cloud(\($project\))]($style)\]'
 
 [package]
 symbol = " "
@@ -227,10 +236,10 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [pulumi]
-format = '\[[$symbol$stack]($style)\]'
+format = '\[[$stack]($style)\]'
 
 [purescript]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[($version)]($style)\]'
 
 [python]
 python_binary = ["python3"]
@@ -238,7 +247,7 @@ symbol = " "
 format = '\[[$symbol(${pyenv_prefix})(${version})(\($virtualenv\))]($style)\]'
 
 [red]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[($version)]($style)\]'
 
 [ruby]
 symbol = " "
@@ -249,6 +258,7 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [scala]
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [spack]
@@ -260,13 +270,15 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
 [terraform]
+symbol = "󱁢 "
 format = '\[[$symbol$workspace]($style)\]'
 
 [vagrant]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[($version)]($style)\]'
 
 [vlang]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[($version)]($style)\]'
 
 [zig]
+symbol = " "
 format = '\[[$symbol($version)]($style)\]'
