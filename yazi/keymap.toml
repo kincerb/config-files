@@ -1,6 +1,6 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[manager]
+[mgr]
 prepend_keymap = [
   { on = "<C-u>", run = "arrow -75%", desc = "Move cursor up 3/4 page" },
   { on = "<C-d>", run = "arrow 75%", desc = "Move cursor down 3/4 page" },
