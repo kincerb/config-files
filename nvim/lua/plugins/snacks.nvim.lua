@@ -43,6 +43,26 @@ return {
           hl = "IndentScope",
         },
       },
+      lazygit = {
+        config = {
+          os = {
+            editPreset = "nvim-remote",
+            editInTerminal = true,
+          },
+          gui = {
+            nerdFontsVersion = "3",
+          },
+          git = {
+            overrideGpg = false,
+            parseEmoji = true,
+            paging = {
+              colorArg = "always",
+              useConfig = false,
+              pager = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format='lazygit-edit://{path}:{line}'",
+            },
+          },
+        },
+      },
     },
     keys = {
       { "<leader>dps", false },
