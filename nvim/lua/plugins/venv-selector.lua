@@ -13,7 +13,7 @@ return {
       },
       options = {
         enable_cached_venvs = true,
-        cached_venv_automatic_activation = false,
+        cached_venv_automatic_activation = true,
         notify_user_on_venv_activation = true,
       },
     },
