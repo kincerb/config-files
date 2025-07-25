@@ -17,7 +17,7 @@ return {
           },
         },
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-        { LazyVim.lualine.pretty_path({ length = 6 }) },
+        { "filename", path = 4 },
         { "navic", color_correction = "dynamic" },
       },
     },
