@@ -1,7 +1,9 @@
 return {
   "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   event = "VeryLazy",
   opts = {
+    extensions = { "symbols-outline" },
     sections = {
       lualine_c = {
         LazyVim.lualine.root_dir(),
@@ -16,6 +18,7 @@ return {
         },
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         { LazyVim.lualine.pretty_path({ length = 6 }) },
+        { "navic", color_correction = "dynamic" },
       },
     },
   },
