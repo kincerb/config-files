@@ -3,6 +3,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   event = "VeryLazy",
   opts = {
+    theme = { "tokyonight" },
     extensions = { "symbols-outline" },
     sections = {
       lualine_c = {
