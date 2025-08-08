@@ -9,14 +9,19 @@ return {
       terminal_colors = true,
       transparent = true,
       styles = {
-        sidebars = "dark",
-        floats = "dark",
+        sidebars = "transparent",
+        floats = "transparent",
       },
       on_highlights = function(hl, colors)
         hl.FloatBorder = {
           fg = colors.green,
           bg = colors.bg_float,
         }
+        hl.Folded = {
+          fg = "#1ae707",
+          bg = "#1d2131",
+        }
+        hl.CursorLine = {}
       end,
     },
   },
