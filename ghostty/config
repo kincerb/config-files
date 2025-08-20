@@ -1,8 +1,6 @@
 font-family = "FiraCode Nerd Font"
 font-size = 12
-# theme = Argonaut
 theme = Abernathy
-# theme = Galizur
 cursor-style = block_hollow
 cursor-click-to-move = true
 mouse-hide-while-typing = false
