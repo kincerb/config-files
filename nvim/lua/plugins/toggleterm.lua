@@ -4,7 +4,7 @@ return {
     lazy = false,
     opts = {
       shade_terminals = false,
-      open_mapping = [[<c-_>]],
+      open_mapping = [[<c-/>]],
       terminal_mappings = true,
       insert_mappings = true,
       direction = "horizontal",
@@ -94,6 +94,7 @@ return {
             trim_spaces = false
           end
           require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+          vim.api.nvim_feedkeys("j", "n", false)
         end,
         mode = { "v" },
         desc = "Send selected lines to terminal",
