@@ -18,7 +18,7 @@
 [init]
     defaultBranch = main
 [alias]
-    h = log --graph --pretty=format:g%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cresetl --abbrev-commit
+    h = log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     # short status
     s = status -sb
     # Saving typing
