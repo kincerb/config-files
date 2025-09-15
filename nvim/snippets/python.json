@@ -8,5 +8,17 @@
       "$0"
     ],
     "description": "Doc String"
+  },
+  "ruff ignore (file)": {
+    "prefix": [
+      "# ruff",
+      "#ruff",
+      "ruff"
+    ],
+    "body": [
+      "# ruff: noqa: ${1:F811}",
+      "$0"
+    ],
+    "description": "Ruff ignore for file"
   }
 }

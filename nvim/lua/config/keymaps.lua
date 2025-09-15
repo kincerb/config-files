@@ -7,7 +7,7 @@ local diag_or_down = function()
   return function()
     if vim.diagnostic.is_enabled({ ns_id = nil, bufnr = 0 }) then
       if #vim.diagnostic.count(0) ~= 0 then
-        vim.diagnostic.goto_next()
+        vim.diagnostic.jump({ count = 1 })
         vim.api.nvim_feedkeys("zt", "n", false)
       else
         vim.api.nvim_feedkeys("j", "n", false)
