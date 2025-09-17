@@ -2,7 +2,7 @@ local actions = require("fzf-lua").actions
 return {
   {
     "ibhagwan/fzf-lua",
-    dependencies = { "echasnovski/mini.icons" },
+    dependencies = { "nvim-mini/mini.icons" },
     opts = {
       defaults = {
         file_icons = "mini",
