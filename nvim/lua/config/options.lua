@@ -9,13 +9,12 @@ vim.g.root_spec = { { ".git" }, "lsp", "cwd" }
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.scrolloff = 0 -- set to 999 to keep content in middle
+vim.opt.scrolloff = 999 -- 999 = middle / 0 = off
 vim.opt.sidescrolloff = 8
 -- disable automatic comment leader ofter hitting 'o' or 'O' see :help fo-table
 vim.opt.formatoptions:remove({ "o" })
 vim.opt.winborder = "rounded"
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 vim.filetype.add({
   extension = {
     jinja = "jinja",
