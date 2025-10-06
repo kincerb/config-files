@@ -13,7 +13,7 @@ end
 if test -n "$bat_loc"
     set --global --export PAGER "$bat_loc --plain"
     set --global --export BAT_THEME "Monokai Extended Origin"
-    set --global --export BAT_PAGER builtin
+    set --global --export BAT_PAGER less
     set --global --export SYSTEMD_PAGER "$bat_loc --plain"
     set --global --export SYSTEMD_PAGERSECURE true
     set --global --export MANPAGER "sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
