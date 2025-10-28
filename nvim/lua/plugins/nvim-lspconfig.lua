@@ -3,7 +3,7 @@ return {
   dependencies = { "saghen/blink.cmp" },
   opts = {
     inlay_hints = { enabled = true },
-    codelens = { enabled = true },
+    codelens = { enabled = false },
     servers = {
       autotools_ls = { settings = {} },
       basedpyright = {
@@ -58,14 +58,6 @@ return {
         },
       },
     },
-    setup = {
-      ruff = function()
-        LazyVim.lsp.on_attach(function(client, _)
-          if client.name == "ruff" then
-            client.server_capabilities.hoverProvider = false
-          end
-        end)
-      end,
-    },
+    setup = {},
   },
 }
