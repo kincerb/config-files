@@ -9,9 +9,9 @@ gui:
   switchToFilesAfterStashPop: true
   switchToFilesAfterStashApply: true
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    useConfig: false
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      useConfig: false
   overrideGpg: false
   parseEmoji: true
