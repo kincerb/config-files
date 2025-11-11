@@ -66,6 +66,8 @@ return {
     },
     keys = {
       { "<leader>dps", false },
+      { "<c-/>", false },
+      { "<c-_>", false },
     },
   },
 }
