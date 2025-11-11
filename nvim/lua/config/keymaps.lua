@@ -29,6 +29,9 @@ local dos_to_unix = function()
   end
 end
 
+map.set({ "n", "i", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>", { desc = "ToggleTerm (smart)" })
+map.set({ "n", "i", "t" }, "<c-_>", "<cmd>ToggleTerm<cr>", { desc = "ToggleTerm (smart)" })
+
 map.set("i", "<c-CR>", function()
   local _keys = vim.api.nvim_replace_termcodes("<ESC>j", true, false, true)
   vim.api.nvim_feedkeys(_keys, "n", false)

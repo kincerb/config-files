@@ -43,6 +43,8 @@ return {
           hl = "IndentScope",
         },
       },
+      image = { enabled = true },
+      terminal = { enabled = false },
       lazygit = {
         config = {
           os = {
@@ -66,8 +68,8 @@ return {
     },
     keys = {
       { "<leader>dps", false },
-      { "<c-/>", false },
-      { "<c-_>", false },
+      { "<C-/>", false },
+      { "<C-_>", false },
     },
   },
 }

@@ -56,19 +56,19 @@ return {
       {
         "<C-.>",
         "<cmd>ToggleTermToggleAll<cr>",
-        mode = { "n", "i" },
+        mode = { "n", "i", "t" },
         desc = "ToggleTerm (all)",
       },
       {
         "<C-/>",
         "<cmd>ToggleTerm<cr>",
-        mode = { "n", "i" },
+        mode = { "n", "i", "t" },
         desc = "ToggleTerm (smart)",
       },
       {
         "<C-_>",
         "<cmd>ToggleTerm<cr>",
-        mode = { "n", "i" },
+        mode = { "n", "i", "t" },
         desc = "ToggleTerm (smart)",
       },
       {
