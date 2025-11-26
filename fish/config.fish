@@ -21,3 +21,6 @@ end
 # Set settings for https://github.com/franciscolourenco/done
 set -U __done_min_cmd_duration 5000
 set -U __done_notification_urgency_level normal
+set -U --append __done_exclude '^nvim'
+set -U --append __done_exclude '^y'
+set -U --append __done_exclude '^yazi'
