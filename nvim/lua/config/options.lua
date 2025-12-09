@@ -9,7 +9,7 @@ vim.g.root_spec = { { ".git" }, "lsp", "cwd" }
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.scrolloff = 999 -- 999 = middle / 0 = off
+vim.opt.scrolloff = 0 -- 999 = middle / 0 = off
 vim.opt.sidescrolloff = 8
 -- disable automatic comment leader ofter hitting 'o' or 'O' see :help fo-table
 vim.opt.formatoptions:remove({ "o" })
