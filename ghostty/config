@@ -61,7 +61,7 @@ window-padding-x = 1
 window-padding-y = 1
 window-vsync = true
 window-inherit-working-directory = false
-window-inherit-font-size = false
+window-inherit-font-size = true
 window-theme = auto
 window-new-tab-position = current
 resize-overlay = after-first
@@ -93,3 +93,5 @@ gtk-wide-tabs = true
 desktop-notifications = true
 bold-is-bright = false
 term = xterm-ghostty
+
+config-file = ?overrides
