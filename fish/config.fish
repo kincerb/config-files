@@ -2,7 +2,7 @@ set fish_greeting
 
 set --global --export GPG_TTY (tty)
 
-if test \( -z "$SSH_CONNECTION" \) -o \( "$TERM_PROGRAM" = WezTerm \)
+if not set -q SSH_AUTH_SOCK
     set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
     if test ! -S "$SSH_AUTH_SOCK"
         gpg-connect-agent /bye &>/dev/null
