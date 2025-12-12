@@ -2,11 +2,10 @@ set fish_greeting
 
 set --global --export GPG_TTY (tty)
 
+set GPG_SSH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+
 if not set -q SSH_AUTH_SOCK
-    set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-    if test ! -S "$SSH_AUTH_SOCK"
-        gpg-connect-agent /bye &>/dev/null
-    end
+    set --global --export SSH_AUTH_SOCK "$GPG_SSH_SOCK"
 end
 
 function fish_title
