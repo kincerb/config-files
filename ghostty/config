@@ -1,5 +1,6 @@
 font-family = "FiraCode Nerd Font"
-font-size = 10
+font-style = "Ret"
+font-size = 12
 theme = Abernathy
 cursor-style = block_hollow
 cursor-click-to-move = true
