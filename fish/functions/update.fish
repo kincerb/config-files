@@ -6,7 +6,9 @@ function update --description "Run updates for apt, brew, flatpak"
     end
 
     if command -qs brew
-        command brew update && brew upgrade
+        command brew update
+        command brew upgrade --no-ask
+        command brew upgrade --cask --greedy --no-ask
     end
 
     if command -qs flatpak
