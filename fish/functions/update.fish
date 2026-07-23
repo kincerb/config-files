@@ -16,6 +16,10 @@ function update --description "Run updates for apt, brew, flatpak"
         command flatpak --user --assumeyes update
     end
 
+    if command -qs snap
+        command snap refresh
+    end
+
     if command -qs nvim
         command nvim --headless -c "Lazy! update" -c qall
     end
