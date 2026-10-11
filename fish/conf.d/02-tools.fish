@@ -30,6 +30,6 @@ if test -n "$atuin_loc"
 end
 
 if test -n "$eza_loc"
-    alias ls='eza --all --long --group --color=always --group-directories-first --icons' # preferred listing
-    alias lt='eza --all --tree --color=always --group-directories-first --icons' # tree listing
+    alias ls='eza --all --long --group --color=always --group-directories-first --icons=auto' # preferred listing
+    alias lt='eza --all --tree --color=always --group-directories-first --icons=auto' # tree listing
 end
