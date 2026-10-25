@@ -1,7 +1,7 @@
 font-family = "FiraCode Nerd Font"
 font-style = "Ret"
 font-size = 12
-theme = Abernathy
+theme = Builtin Tango Dark
 cursor-style = block_hollow
 cursor-click-to-move = true
 mouse-hide-while-typing = true
