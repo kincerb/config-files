@@ -5,7 +5,9 @@ services:
     group_add:
       - "44"
       - "992"
-    network_mode: "host"
+    ports:
+      - 8096:8096/tcp
+      - 7359:7359/udp
     volumes:
       - /data/media:/media
       - /data/jellyfin/cache:/cache
