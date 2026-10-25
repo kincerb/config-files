@@ -1,0 +1,16 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    user: 1000:1000
+    group_add:
+      - "44"
+      - "992"
+    network_mode: "host"
+    volumes:
+      - /data/media:/media
+      - /data/jellyfin/cache:/cache
+      - /data/jellyfin/config:/config
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+
+# vim: ft=yaml.docker-compose:
